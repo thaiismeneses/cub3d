@@ -14,13 +14,11 @@
 
 int	main(int argc, char **argv)
 {
-	if (argc == 2)
-	{
-		printf("Starting game...\n");
-		printf("Map file: %s\n", argv[1]);
-	}
-	else
-	{
-		printf("Error: Invalid number of arguments\n");
-	}
+	char	**map;
+
+	if (argc != 2)
+		return (error_messages(ARGS_ERROR));
+	map = open_fd(argv[1]);
+	printf("Mapa .cub recebido\n");
+	(void) map;
 }
