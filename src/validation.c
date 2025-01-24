@@ -47,5 +47,7 @@ int	error_messages(int error)
 		ft_putstr_fd("Error opening the map file.\n", 2);
 	else if (error == -4)
 		ft_putstr_fd("Invalid characters.\n", 2);
+	else if (error == -5)
+		ft_putstr_fd("Invalid texture.\n", 2);
 	return (error);
 }

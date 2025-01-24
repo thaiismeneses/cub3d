@@ -12,6 +12,21 @@
 
 #include "../includes/cub3d.h"
 
+void	free_matrix(char **matrix)
+{
+	int	i;
+
+	i = 0;
+	while (matrix[i])
+		i++;
+	while (i >= 0)
+	{
+		free(matrix[i]);
+		i--;
+	}
+	free(matrix);
+}
+
 static int	number_lines_fd(char *map_ext)
 {
 	int		number_lines;

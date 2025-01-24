@@ -14,11 +14,22 @@
 
 int	main(int argc, char **argv)
 {
+	int i = 0;
 	char	**map;
+	t_token *tokens;
 
+	tokens = NULL;
 	if (argc != 2)
 		return (error_messages(ARGS_ERROR));
 	map = open_fd(argv[1]);
-	printf("Mapa .cub recebido\n");
-	(void) map;
+	while (map[i])
+    {
+        printf("-> %s", map[i++]);
+        //printf("len: %li\n", ft_strlen(map[i]));
+    }
+	tokens = tokenization(map, tokens);
+	print_token_list(tokens);
+	/*if (check_errors(tokens) != NONE_ERROR)
+        return(free_matrix(map), 1);*/
+	return (0);
 }
