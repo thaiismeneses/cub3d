@@ -84,7 +84,7 @@ char	**open_fd(char *map_ext)
 {
 	char	**map;
 
-	if (check_extension(map_ext) == EXTENSION_ERROR)
+	if (check_extension(map_ext, ".cub") == EXTENSION_ERROR)
 	{
 		error_messages (EXTENSION_ERROR);
 		exit(0);

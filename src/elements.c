@@ -26,6 +26,8 @@ t_type	find_type(char *map, int i)
 		return (F);
     if (map[i] == 'C' && map[i + 1] == ' ')
 		return (C);
+    if (map[i] == '\0')
+        return (NONE);
     else
         return (MAP);
 }
@@ -39,7 +41,7 @@ int	type_index(t_type type, int i)
     return (i);
 }
 
-int verify_texture(t_token *tokens, t_type type)
+static int verify_texture(t_token *tokens, t_type type)
 {
     int i;
     t_token	*current;
@@ -57,6 +59,27 @@ int verify_texture(t_token *tokens, t_type type)
     return (0);
 }
 
+int verify_order(t_token *tokens)
+{
+    int count;
+    t_token	*current;
+
+    count = 0;
+    current = tokens;
+	while (current != NULL)
+    {
+        if (current->type != MAP && current->type != NONE)
+            count++;
+        else if (current->type == MAP)
+        {
+            if (count != 6)
+                return (TEXTURE_ERROR);
+        }
+        current = current->next;
+    }
+    return (NONE_ERROR);
+}
+
 int val_texture(t_token *tokens)
 {
     int n;
@@ -70,6 +93,8 @@ int val_texture(t_token *tokens)
     s = 0;
     w = 0;
     e = 0;
+    f = 0;
+    c = 0;
 	n = verify_texture(tokens, NO);
     s = verify_texture(tokens, SO);
     w = verify_texture(tokens, WE);
@@ -79,11 +104,4 @@ int val_texture(t_token *tokens)
     if (n != 1 || s != 1 || w != 1 || e != 1 || f != 1 || c != 1)
         return (TEXTURE_ERROR);
     return (NONE_ERROR);
-}
-
-int	check_errors(t_token *tokens)
-{
-	if (val_texture(tokens) == TEXTURE_ERROR)
-		return (error_messages(TEXTURE_ERROR));
-	return (NONE_ERROR);
 }

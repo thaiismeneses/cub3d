@@ -26,6 +26,7 @@
 # define FD_ERROR -3
 # define CHARACTER_ERROR -4
 # define TEXTURE_ERROR -5
+# define PATH_ERROR -6
 
 /*** STRUCTS ***/
 typedef enum s_type
@@ -36,7 +37,8 @@ typedef enum s_type
     EA, //3
     F, //4
     C, //5
-    MAP, //6
+    NONE, //6
+    MAP, //7
 }   t_type;
 
 typedef struct s_token
@@ -47,8 +49,9 @@ typedef struct s_token
 }   t_token;
 
 /*** validation ***/
-int     check_extension(char *argv);
+int	check_extension(char *argv, char *ext);
 int     error_messages(int error);
+int	check_errors(t_token *tokens);
 
 /*** map_file ***/
 void	free_matrix(char **matrix);
@@ -57,13 +60,20 @@ char    **open_fd(char *map_ext);
 /*** elements ***/
 t_type	find_type(char *map, int i);
 int	type_index(t_type type, int i);
+int verify_order(t_token *tokens);
 int val_texture(t_token *tokens);
-int	check_errors(t_token *tokens);
 
 /*** parse ***/
 char	*get_token(char *cmd, int i, int start);
 t_token	*set_token_list(t_token *data, int type, char *value);
 t_token *tokenization(char **map, t_token *data);
+
+/*** val_map.c ***/
+int map_exist(t_token *tokens);
+
+/*** textures ***/
+int is_valid_file_path(char *path);
+int xpm_file(t_token *tokens);
 
 /*** extra_print ***/
 void	print_token_list(t_token *head);
