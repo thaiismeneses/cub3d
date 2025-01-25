@@ -12,15 +12,13 @@
 
 #include "../includes/cub3d.h"
 
-int	check_extension(char *argv)
+int	check_extension(char *argv, char *ext)
 {
-	char	*ext;
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 3;
-	ext = ".cub";
 	while (argv[i] != '\0')
 		i++;
 	i--;
@@ -47,5 +45,19 @@ int	error_messages(int error)
 		ft_putstr_fd("Error opening the map file.\n", 2);
 	else if (error == -4)
 		ft_putstr_fd("Invalid characters.\n", 2);
+	else if (error == -5)
+		ft_putstr_fd("Invalid scene description.\n", 2);
+	else if (error == -6)
+		ft_putstr_fd("Invalid texture file.\n", 2);
 	return (error);
+}
+
+int	check_errors(t_token *tokens)
+{
+	if (val_texture(tokens) == TEXTURE_ERROR || verify_order(tokens) == TEXTURE_ERROR
+		|| map_exist(tokens) == TEXTURE_ERROR)
+		return (error_messages(TEXTURE_ERROR));
+	else if (xpm_file(tokens) == PATH_ERROR)
+		return(error_messages(PATH_ERROR));
+	return (NONE_ERROR);
 }
