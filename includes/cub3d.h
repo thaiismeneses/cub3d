@@ -55,6 +55,7 @@ int     error_messages(int error);
 int	check_errors(t_token *tokens);
 
 /*** map_file ***/
+void	free_list(t_token **token);
 void	free_matrix(char **matrix);
 char    **open_fd(char *map_ext);
 

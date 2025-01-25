@@ -30,6 +30,7 @@ int	main(int argc, char **argv)
 	tokens = tokenization(map, tokens);
 	//print_token_list(tokens);
 	if (check_errors(tokens) != NONE_ERROR)
-        return(free_matrix(map), 1);
+        return(free_list(tokens), 1);
+	free_list(tokens);
 	return (0);
 }
