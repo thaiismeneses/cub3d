@@ -48,6 +48,6 @@ int	error_messages(int error)
 	else if (error == -4)
 		ft_putstr_fd("Invalid characters.\n", 2);
 	else if (error == -5)
-		ft_putstr_fd("Invalid texture.\n", 2);
+		ft_putstr_fd("Invalid scene description.\n", 2);
 	return (error);
 }

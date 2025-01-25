@@ -39,91 +39,51 @@ int	type_index(t_type type, int i)
     return (i);
 }
 
-char	*get_token(char *cmd, int i, int start)
-{
-	char	*token;
-	int		token_length;
-
-	token_length = i - start;
-	token = NULL;
-	if (token_length > 0)
-	{
-		token = (char *)calloc((token_length + 1), sizeof(char));
-		ft_strncpy(token, cmd + start, token_length);
-		token[token_length] = '\0';
-	}
-	return (token);
-}
-static void	add_node(t_token **data, t_type type, char *value)
-{
-	t_token	*new_node;
-	t_token	*last_node;
-
-	new_node = NULL;
-	last_node = *data;
-	if (!data)
-		return ;
-	new_node = (t_token *)malloc(sizeof(t_token));
-	if (!new_node)
-		return ;
-	new_node->type = type;
-	new_node->data = ft_strdup(value);
-	new_node->next = NULL;
-	if (!(*data))
-		(*data) = new_node;
-	else
-    {
-		while (last_node->next != NULL)
-            last_node = last_node->next;
-        last_node->next = new_node;
-    }
-}
-
-t_token	*set_token_list(t_token *data, int type, char *value)
-{
-	add_node(&data, type, value);
-	return (data);
-}
-
-t_token *tokenization(char **map, t_token *data)
+int verify_texture(t_token *tokens, t_type type)
 {
     int i;
-    int j;
-    int start;
-    char *value;
-    t_type type;
+    t_token	*current;
 
     i = 0;
-    data = NULL;
-    if (!**map)
-        return (0);
-    while(map[i])
+    current = tokens;
+	while (current != NULL)
     {
-        j = 0;
-        while (ft_isspace(map[i][j]))
-            j++;
-        start = j;
-        type = find_type(map[i], j);
-        j = type_index(type, j);
-        while (ft_isspace(map[i][j]))
-            j++;
-        start = j;
-        if (type != MAP)
-        {
-            while (map[i][j] && map[i][j] != '\0' && !ft_isspace(map[i][j]))
-                j++;
-        }
-        else
-        {
-            j = 0;
-            start = 0;
-            while (map[i][j] && map[i][j] != '\0')
-                j++;
-        }
-        value = get_token(map[i], j, start);
-        data = set_token_list(data, type, value);
-        free(value);
-        i++;
+        if (current->type == type)
+            i++;
+        current = current->next;
     }
-    return (data);
+    if (i == 1)
+        return (1);
+    return (0);
+}
+
+int val_texture(t_token *tokens)
+{
+    int n;
+    int s;
+    int w;
+    int e;
+    int f;
+    int c;
+
+    n = 0;
+    s = 0;
+    w = 0;
+    e = 0;
+	n = verify_texture(tokens, NO);
+    s = verify_texture(tokens, SO);
+    w = verify_texture(tokens, WE);
+    e = verify_texture(tokens, EA);
+    f = verify_texture(tokens, F);
+    c = verify_texture(tokens, C);
+    if (n != 1 || s != 1 || w != 1 || e != 1 || f != 1 || c != 1)
+        return (TEXTURE_ERROR);
+    return (NONE_ERROR);
+}
+
+int	check_errors(t_token *tokens)
+{
+	if (val_texture(tokens) == TEXTURE_ERROR)
+		return (error_messages(TEXTURE_ERROR));
+	return (NONE_ERROR);
 }

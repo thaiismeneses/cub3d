@@ -57,6 +57,10 @@ char    **open_fd(char *map_ext);
 /*** elements ***/
 t_type	find_type(char *map, int i);
 int	type_index(t_type type, int i);
+int val_texture(t_token *tokens);
+int	check_errors(t_token *tokens);
+
+/*** parse ***/
 char	*get_token(char *cmd, int i, int start);
 t_token	*set_token_list(t_token *data, int type, char *value);
 t_token *tokenization(char **map, t_token *data);

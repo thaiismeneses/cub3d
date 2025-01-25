@@ -14,7 +14,7 @@
 
 int	main(int argc, char **argv)
 {
-	int i = 0;
+	//int i = 0;
 	char	**map;
 	t_token *tokens;
 
@@ -22,14 +22,14 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (error_messages(ARGS_ERROR));
 	map = open_fd(argv[1]);
-	while (map[i])
+	/*while (map[i])
     {
         printf("-> %s", map[i++]);
         //printf("len: %li\n", ft_strlen(map[i]));
-    }
+    }*/
 	tokens = tokenization(map, tokens);
-	print_token_list(tokens);
-	/*if (check_errors(tokens) != NONE_ERROR)
-        return(free_matrix(map), 1);*/
+	//print_token_list(tokens);
+	if (check_errors(tokens) != NONE_ERROR)
+        return(free_matrix(map), 1);
 	return (0);
 }

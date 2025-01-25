@@ -11,7 +11,8 @@ SRCS = src/main.c\
 		src/validation.c\
 		src/map_file.c\
 		src/elements.c\
-		src/extra_print.c
+		src/extra_print.c\
+		src/parse.c
 
 OBJS = $(SRCS:.c=.o)
 
