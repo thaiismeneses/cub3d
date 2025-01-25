@@ -49,6 +49,8 @@ int	error_messages(int error)
 		ft_putstr_fd("Invalid scene description.\n", 2);
 	else if (error == -6)
 		ft_putstr_fd("Invalid texture file.\n", 2);
+	else if (error == -7)
+		ft_putstr_fd("Invalid RGB colors.\n", 2);
 	return (error);
 }
 
@@ -59,5 +61,7 @@ int	check_errors(t_token *tokens)
 		return (error_messages(TEXTURE_ERROR));
 	else if (xpm_file(tokens) == PATH_ERROR)
 		return(error_messages(PATH_ERROR));
+	else if (rgb_textures(tokens) == COLOR_ERROR)
+		return(error_messages(COLOR_ERROR));
 	return (NONE_ERROR);
 }

@@ -27,6 +27,7 @@
 # define CHARACTER_ERROR -4
 # define TEXTURE_ERROR -5
 # define PATH_ERROR -6
+# define COLOR_ERROR -7
 
 /*** STRUCTS ***/
 typedef enum s_type
@@ -72,6 +73,7 @@ t_token *tokenization(char **map, t_token *data);
 int map_exist(t_token *tokens);
 
 /*** textures ***/
+int rgb_textures(t_token *tokens);
 int is_valid_file_path(char *path);
 int xpm_file(t_token *tokens);
 
