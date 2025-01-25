@@ -16,20 +16,27 @@ int	main(int argc, char **argv)
 {
 	//int i = 0;
 	char	**map;
-	t_token *tokens;
+	//t_token *tokens;
+	t_mlx_data data;
 
-	tokens = NULL;
+	data.tokens = NULL;
 	if (argc != 2)
 		return (error_messages(ARGS_ERROR));
 	map = open_fd(argv[1]);
 	/*while (map[i])
-    {
-        printf("-> %s", map[i++]);
-        //printf("len: %li\n", ft_strlen(map[i]));
-    }*/
-	tokens = tokenization(map, tokens);
+	{
+		printf("-> %s", map[i++]);
+		//printf("len: %li\n", ft_strlen(map[i]));
+	}*/
+	data.tokens = tokenization(map, data.tokens);
+	free_matrix(map);
 	//print_token_list(tokens);
-	if (check_errors(tokens) != NONE_ERROR)
-        return(free_matrix(map), 1);
+	if (check_errors(data.tokens) != NONE_ERROR)
+		return(free_list(data.tokens), 1);
+	data.mlx = mlx_init();
+    data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "Cub3D");
+	mlx_key_hook(data.win, handle_board, &data);
+	mlx_hook(data.win, 17, 0, free_game, &data);
+    mlx_loop(data.mlx);
 	return (0);
 }

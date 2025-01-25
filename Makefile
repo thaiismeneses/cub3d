@@ -14,7 +14,9 @@ SRCS = src/main.c\
 		src/extra_print.c\
 		src/parse.c\
 		src/val_map.c\
-		src/textures.c
+		src/textures.c\
+		src/free.c\
+		src/key_settings.c\
 
 OBJS = $(SRCS:.c=.o)
 
@@ -48,7 +50,7 @@ fclean: clean
 re: fclean all
 
 val: re
-	$(VALGRIND) ./$(NAME) map.cub
+	$(VALGRIND) ./cub3d maps/default.cub
 
 norm:
 	norminette $(SRCS) ./libft ./includes
