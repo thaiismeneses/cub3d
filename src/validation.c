@@ -44,7 +44,7 @@ int	error_messages(int error)
 	else if (error == -3)
 		ft_putstr_fd("Error opening the map file.\n", 2);
 	else if (error == -4)
-		ft_putstr_fd("Invalid characters.\n", 2);
+		ft_putstr_fd("Invalid map.\n", 2);
 	else if (error == -5)
 		ft_putstr_fd("Invalid scene description.\n", 2);
 	else if (error == -6)
@@ -63,5 +63,7 @@ int	check_errors(t_token *tokens)
 		return(error_messages(PATH_ERROR));
 	else if (rgb_textures(tokens) == COLOR_ERROR)
 		return(error_messages(COLOR_ERROR));
+	else if (break_map(tokens) == MAP_ERROR)
+		return(error_messages(MAP_ERROR));
 	return (NONE_ERROR);
 }

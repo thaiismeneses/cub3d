@@ -12,6 +12,31 @@
 
 #include "../includes/cub3d.h"
 
+int break_map(t_token *tokens)
+{
+    int map_found;
+    int map_ended;
+    t_token	*current;
+
+    current = tokens;
+    while (current != NULL)
+    {
+        if (current->type == MAP)
+        {
+            if (map_ended)
+                return (MAP_ERROR);
+            map_found = 1;
+        }
+        else if (current->type == NONE)
+        {
+            if (map_found)
+                map_ended = 1;
+        }
+        current = current->next;
+    }
+    return (NONE_ERROR);
+}
+
 int map_exist(t_token *tokens)
 {
     int count;

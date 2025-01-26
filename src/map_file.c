@@ -12,22 +12,22 @@
 
 #include "../includes/cub3d.h"
 
-void	free_list(t_token **token)
+void	free_list(t_token *token)
 {
 	t_token	*current;
 	t_token *temp;
-	if(!token || !(*token))
+	if(!token)
 		return ;
-	current = *token;
+	current = token;
 	while (current)
 	{
 		temp = current->next;
 		free(current->data);
-		cureent->data = NULL;
+		current->data = NULL;
 		free(current);
 		current = temp;
 	}
-	*token = NULL;
+	token = NULL;
 }
 
 void	free_matrix(char **matrix)

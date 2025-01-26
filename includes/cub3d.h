@@ -24,7 +24,7 @@
 # define ARGS_ERROR -1
 # define EXTENSION_ERROR -2
 # define FD_ERROR -3
-# define CHARACTER_ERROR -4
+# define MAP_ERROR -4
 # define TEXTURE_ERROR -5
 # define PATH_ERROR -6
 # define COLOR_ERROR -7
@@ -55,7 +55,7 @@ int     error_messages(int error);
 int	check_errors(t_token *tokens);
 
 /*** map_file ***/
-void	free_list(t_token **token);
+void	free_list(t_token *token);
 void	free_matrix(char **matrix);
 char    **open_fd(char *map_ext);
 
@@ -71,6 +71,7 @@ t_token	*set_token_list(t_token *data, int type, char *value);
 t_token *tokenization(char **map, t_token *data);
 
 /*** val_map.c ***/
+int break_map(t_token *tokens);
 int map_exist(t_token *tokens);
 
 /*** textures ***/
