@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <math.h>
+# include <ctype.h> //apagar
 
 /*** ERRORS ***/
 # define NONE_ERROR 1
@@ -40,6 +41,7 @@ typedef enum s_type
     C, //5
     NONE, //6
     MAP, //7
+    WALL, //8
 }   t_type;
 
 typedef struct s_token
@@ -71,6 +73,8 @@ t_token	*set_token_list(t_token *data, int type, char *value);
 t_token *tokenization(char **map, t_token *data);
 
 /*** val_map.c ***/
+int valid_player(t_token *tokens);
+int valid_char(t_token *tokens);
 int break_map(t_token *tokens);
 int map_exist(t_token *tokens);
 
