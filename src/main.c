@@ -30,9 +30,10 @@ int	main(int argc, char **argv)
 	}*/
 	data.tokens = tokenization(map, data.tokens);
 	free_matrix(map);
-	//print_token_list(tokens);
+	//print_token_list(data.tokens);
 	if (check_errors(data.tokens) != NONE_ERROR)
 		return(free_list(data.tokens), 1);
+	find_player(&data);
 	data.mlx = mlx_init();
     data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "Cub3D");
 	mlx_key_hook(data.win, handle_board, &data);

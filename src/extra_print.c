@@ -22,6 +22,7 @@ void	print_token_list(t_token *head)
 	{
 		printf("Token: %s\n", current->data);
 		printf("Tipo: %d\n", current->type);
+		printf("\n");
 		current = current->next;
 	}
 }
