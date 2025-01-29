@@ -41,7 +41,6 @@ typedef enum s_type
     C, //5
     NONE, //6
     MAP, //7
-    WALL, //8
 }   t_type;
 
 typedef struct s_token
@@ -82,6 +81,10 @@ int map_exist(t_token *tokens);
 int rgb_textures(t_token *tokens);
 int is_valid_file_path(char *path);
 int xpm_file(t_token *tokens);
+
+/*** valid_wall ***/
+int valid_wall(t_token *tokens);
+char **map_to_matrix(t_token *tokens);
 
 /*** extra_print ***/
 void	print_token_list(t_token *head);

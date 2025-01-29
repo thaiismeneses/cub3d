@@ -64,7 +64,7 @@ int	check_errors(t_token *tokens)
 	else if (rgb_textures(tokens) == COLOR_ERROR)
 		return(error_messages(COLOR_ERROR));
 	else if (break_map(tokens) == MAP_ERROR || valid_char(tokens) == MAP_ERROR
-			|| valid_player(tokens) == MAP_ERROR)
+			|| valid_player(tokens) == MAP_ERROR || valid_wall(tokens) == MAP_ERROR)
 		return(error_messages(MAP_ERROR));
 	return (NONE_ERROR);
 }

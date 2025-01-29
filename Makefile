@@ -14,7 +14,8 @@ SRCS = src/main.c\
 		src/extra_print.c\
 		src/parse.c\
 		src/val_map.c\
-		src/textures.c
+		src/textures.c\
+		src/val_wall.c
 
 OBJS = $(SRCS:.c=.o)
 
