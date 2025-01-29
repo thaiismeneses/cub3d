@@ -15,7 +15,11 @@ SRCS = src/main.c\
 		src/parse.c\
 		src/val_map.c\
 		src/textures.c\
+		src/free.c\
+		src/key_settings.c\
+		src/player.c\
 		src/val_wall.c
+
 
 OBJS = $(SRCS:.c=.o)
 
@@ -33,7 +37,7 @@ minilibx:
 $(NAME): $(OBJS)
 	@make bonus -s -C libft/
 	@make -s -C minilibx-linux/
-	@$(CC) $(FLAGS) $(SRCS) $(LIBS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(SRCS) $(LIBS) -o $(NAME)
 
 
 clean:
@@ -49,7 +53,7 @@ fclean: clean
 re: fclean all
 
 val: re
-	$(VALGRIND) ./$(NAME) map.cub
+	$(VALGRIND) ./cub3d maps/default.cub
 
 norm:
 	norminette $(SRCS) ./libft ./includes

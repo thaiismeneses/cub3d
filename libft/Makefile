@@ -43,11 +43,10 @@ OBJ = $(SRCS:.c=.o)
 CC		= cc
 RM		= rm -f
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 $(NAME): $(OBJ)
 		@ar rcs $(NAME) $(OBJ)
-
 
 bonus: $(OBJ) $(BONUS_OBJ)
 		@ar rcs $(NAME) $(OBJ) $(BONUS_OBJ)

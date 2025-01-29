@@ -20,6 +20,10 @@
 # include <math.h>
 # include <ctype.h> //apagar
 
+/*** SIZE_WINDOW ***/
+# define WIDTH 1920
+# define HEIGHT 1080
+
 /*** ERRORS ***/
 # define NONE_ERROR 1
 # define ARGS_ERROR -1
@@ -33,49 +37,77 @@
 /*** STRUCTS ***/
 typedef enum s_type
 {
-    NO, //0
-    SO, //1
-    WE, //2
-    EA, //3
-    F, //4
-    C, //5
-    NONE, //6
-    MAP, //7
-}   t_type;
+	NO, //0
+	SO, //1
+	WE, //2
+	EA, //3
+	F, //4
+	C, //5
+	NONE, //6
+	MAP, //7
+}	t_type;
 
 typedef struct s_token
 {
-    char    *data;
-    t_type  type;
-    struct s_token   *next;
-}   t_token;
+	char	*data;
+	t_type	type;
+	struct s_token	*next;
 
-/*** validation ***/
+}	t_token;
+
+typedef struct s_player
+{
+	char position;
+	double posX;
+	double posY;
+	double dirX;
+	double dirY;
+	double planeX;
+	double planeY;
+}	t_player;
+
+typedef struct s_data
+{
+	void *mlx;
+	void *win;
+	t_token *tokens;
+	t_player player;
+}	t_mlx_data;
+
+/*** validation.c ***/
 int	check_extension(char *argv, char *ext);
-int     error_messages(int error);
+int	error_messages(int error);
 int	check_errors(t_token *tokens);
 
 /*** map_file ***/
 void	free_list(t_token *token);
 void	free_matrix(char **matrix);
-char    **open_fd(char *map_ext);
+char	**open_fd(char *map_ext);
 
-/*** elements ***/
+/*** elements.c ***/
 t_type	find_type(char *map, int i);
 int	type_index(t_type type, int i);
-int verify_order(t_token *tokens);
-int val_texture(t_token *tokens);
+int	verify_order(t_token *tokens);
+int	val_texture(t_token *tokens);
 
-/*** parse ***/
+/*** parse.c ***/
 char	*get_token(char *cmd, int i, int start);
 t_token	*set_token_list(t_token *data, int type, char *value);
-t_token *tokenization(char **map, t_token *data);
+t_token	*tokenization(char **map, t_token *data);
 
 /*** val_map.c ***/
+int	map_exist(t_token *tokens);
+
+/*** textures.c ***/
+int	is_valid_file_path(char *path);
+int	xpm_file(t_token *tokens);
+
+/*** extra_print.c ***/
 int valid_player(t_token *tokens);
 int valid_char(t_token *tokens);
 int break_map(t_token *tokens);
 int map_exist(t_token *tokens);
+void	print_token_list(t_token *head);
 
 /*** textures ***/
 int rgb_textures(t_token *tokens);
@@ -86,7 +118,15 @@ int xpm_file(t_token *tokens);
 int valid_wall(t_token *tokens);
 char **map_to_matrix(t_token *tokens);
 
-/*** extra_print ***/
-void	print_token_list(t_token *head);
+/*** free.c ***/
+void	free_list(t_token *tokens);
+int	free_game(t_mlx_data *data);
 
+/*** key_settings.c ***/
+int	handle_board(int keysym, t_mlx_data *data);
+
+/*** player.c ***/
+void	find_player(t_mlx_data *data);
+void	find_direction(t_mlx_data *data);
+void	find_plane(t_mlx_data *data);
 #endif
