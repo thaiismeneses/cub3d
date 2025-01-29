@@ -98,5 +98,6 @@ t_token *tokenization(char **map, t_token *data)
         free(value);
         i++;
     }
+    free_matrix(map);
     return (data);
 }

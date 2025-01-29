@@ -18,15 +18,17 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <math.h>
+# include <ctype.h> //apagar
 
 /*** ERRORS ***/
 # define NONE_ERROR 1
 # define ARGS_ERROR -1
 # define EXTENSION_ERROR -2
 # define FD_ERROR -3
-# define CHARACTER_ERROR -4
+# define MAP_ERROR -4
 # define TEXTURE_ERROR -5
 # define PATH_ERROR -6
+# define COLOR_ERROR -7
 
 /*** STRUCTS ***/
 typedef enum s_type
@@ -54,6 +56,7 @@ int     error_messages(int error);
 int	check_errors(t_token *tokens);
 
 /*** map_file ***/
+void	free_list(t_token *token);
 void	free_matrix(char **matrix);
 char    **open_fd(char *map_ext);
 
@@ -69,11 +72,19 @@ t_token	*set_token_list(t_token *data, int type, char *value);
 t_token *tokenization(char **map, t_token *data);
 
 /*** val_map.c ***/
+int valid_player(t_token *tokens);
+int valid_char(t_token *tokens);
+int break_map(t_token *tokens);
 int map_exist(t_token *tokens);
 
 /*** textures ***/
+int rgb_textures(t_token *tokens);
 int is_valid_file_path(char *path);
 int xpm_file(t_token *tokens);
+
+/*** valid_wall ***/
+int valid_wall(t_token *tokens);
+char **map_to_matrix(t_token *tokens);
 
 /*** extra_print ***/
 void	print_token_list(t_token *head);

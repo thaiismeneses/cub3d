@@ -12,6 +12,38 @@
 
 #include "../includes/cub3d.h"
 
+int rgb_textures(t_token *tokens)
+{
+    int i;
+    int number;
+    char **rgb;
+    t_token	*current;
+
+    current = tokens;
+	while (current != NULL)
+    {
+        if (current->type == F || current->type == C)
+        {
+            rgb = ft_split(current->data, ',');
+            if (rgb == NULL)
+                return (COLOR_ERROR);
+            i = 0;
+            while(rgb[i])
+            {
+                number = ft_atoi(rgb[i]);
+                if (number < 0 || number > 255)
+                    return (free(rgb), COLOR_ERROR);
+                i++;
+            }
+            if (i != 3)
+                return (free(rgb), COLOR_ERROR);
+            free(rgb);
+        }
+        current = current->next;
+    }
+    return (NONE_ERROR);
+}
+
 int is_valid_file_path(char *path) 
 {
     int fd;
