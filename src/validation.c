@@ -44,11 +44,13 @@ int	error_messages(int error)
 	else if (error == -3)
 		ft_putstr_fd("Error opening the map file.\n", 2);
 	else if (error == -4)
-		ft_putstr_fd("Invalid characters.\n", 2);
+		ft_putstr_fd("Invalid map.\n", 2);
 	else if (error == -5)
 		ft_putstr_fd("Invalid scene description.\n", 2);
 	else if (error == -6)
 		ft_putstr_fd("Invalid texture file.\n", 2);
+	else if (error == -7)
+		ft_putstr_fd("Invalid RGB colors.\n", 2);
 	return (error);
 }
 
@@ -59,5 +61,10 @@ int	check_errors(t_token *tokens)
 		return (error_messages(TEXTURE_ERROR));
 	else if (xpm_file(tokens) == PATH_ERROR)
 		return(error_messages(PATH_ERROR));
+	else if (rgb_textures(tokens) == COLOR_ERROR)
+		return(error_messages(COLOR_ERROR));
+	else if (break_map(tokens) == MAP_ERROR || valid_char(tokens) == MAP_ERROR
+			|| valid_player(tokens) == MAP_ERROR || valid_wall(tokens) == MAP_ERROR)
+		return(error_messages(MAP_ERROR));
 	return (NONE_ERROR);
 }
