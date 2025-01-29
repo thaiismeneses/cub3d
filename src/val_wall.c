@@ -155,10 +155,10 @@ int valid_wall(t_token *tokens)
     map = map_to_matrix(tokens);
     map_portrat = make_portrat(map);
     free_matrix(map);
-    /*while (map_portrat[i])
+    while (map_portrat[i])
     {
         printf("-> %s\n", map_portrat[i++]);
         //printf("len: %li\n", ft_strlen(map_portrat[i]));
-    }*/
+    }
     return (NONE_ERROR);
 }

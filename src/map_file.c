@@ -12,39 +12,6 @@
 
 #include "../includes/cub3d.h"
 
-void	free_list(t_token *token)
-{
-	t_token	*current;
-	t_token *temp;
-	if(!token)
-		return ;
-	current = token;
-	while (current)
-	{
-		temp = current->next;
-		free(current->data);
-		current->data = NULL;
-		free(current);
-		current = temp;
-	}
-	token = NULL;
-}
-
-void	free_matrix(char **matrix)
-{
-	int	i;
-
-	i = 0;
-	while (matrix[i])
-		i++;
-	while (i >= 0)
-	{
-		free(matrix[i]);
-		i--;
-	}
-	free(matrix);
-}
-
 static int	number_lines_fd(char *map_ext)
 {
 	int		number_lines;

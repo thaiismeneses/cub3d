@@ -80,8 +80,6 @@ int	error_messages(int error);
 int	check_errors(t_token *tokens);
 
 /*** map_file ***/
-void	free_list(t_token *token);
-void	free_matrix(char **matrix);
 char	**open_fd(char *map_ext);
 
 /*** elements.c ***/
@@ -119,7 +117,8 @@ int valid_wall(t_token *tokens);
 char **map_to_matrix(t_token *tokens);
 
 /*** free.c ***/
-void	free_list(t_token *tokens);
+void	free_list(t_token *token);
+void	free_matrix(char **matrix);
 int	free_game(t_mlx_data *data);
 
 /*** key_settings.c ***/
