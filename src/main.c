@@ -29,16 +29,14 @@ int	main(int argc, char **argv)
 		//printf("len: %li\n", ft_strlen(map[i]));
 	}*/
 	data.tokens = tokenization(map, data.tokens);
-	//free_matrix(map);
 	//print_token_list(data.tokens);
 	if (check_errors(data.tokens) != NONE_ERROR)
 		return(free_list(data.tokens), 1);
 	//find_player(&data);
-	printf("aqui\n");
-	data.mlx = mlx_init();
+	/*data.mlx = mlx_init();
     data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "Cub3D");
 	mlx_key_hook(data.win, handle_board, &data);
 	mlx_hook(data.win, 17, 0, free_game, &data);
- 	mlx_loop(data.mlx);
+ 	mlx_loop(data.mlx);*/
 	return (0);
 }
