@@ -14,6 +14,7 @@
 
 static int verify_location(char **map, int i, int j)
 {
+
 	if ((i > 0 && (map[i - 1][j] == '1' || map[i - 1][j] == ' ')) ||
 		(j > 0 && (map[i][j - 1] == '1' || map[i][j - 1] == ' ')) ||
 		(map[i][j + 1] == '1' || map[i][j + 1] == ' ') ||

@@ -116,10 +116,12 @@ int xpm_file(t_token *tokens);
 /*** valid_wall ***/
 int valid_wall(t_mlx_data *data);
 
+
 /*** free.c ***/
 void	free_list(t_token *token);
 void	free_matrix(char **matrix);
 void	free_data_struct(t_mlx_data *data);
+
 int	free_game(t_mlx_data *data);
 
 /*** key_settings.c ***/
