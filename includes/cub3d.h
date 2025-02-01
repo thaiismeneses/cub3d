@@ -114,7 +114,6 @@ int xpm_file(t_token *tokens);
 
 /*** valid_wall ***/
 int valid_wall(t_token *tokens);
-char **map_to_matrix(t_token *tokens);
 
 /*** free.c ***/
 void	free_list(t_token *token);
@@ -128,4 +127,8 @@ int	handle_board(int keysym, t_mlx_data *data);
 void	find_player(t_mlx_data *data);
 void	find_direction(t_mlx_data *data);
 void	find_plane(t_mlx_data *data);
+
+/*** wall_utils ***/
+char **map_to_matrix(t_token *tokens);
+
 #endif
