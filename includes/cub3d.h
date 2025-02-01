@@ -57,13 +57,13 @@ typedef struct s_token
 
 typedef struct s_player
 {
-	char position;
-	double posX;
-	double posY;
-	double dirX;
-	double dirY;
-	double planeX;
-	double planeY;
+	char		position;
+	int	pos_x;
+	int	pos_y;
+	int	dir_x;
+	int	dir_y;
+	int	plane_x;
+	int plane_y;
 }	t_player;
 
 typedef struct s_data
@@ -72,16 +72,15 @@ typedef struct s_data
 	void *win;
 	t_token *tokens;
 	t_player player;
+	char **map;
 }	t_mlx_data;
 
 /*** validation.c ***/
 int	check_extension(char *argv, char *ext);
 int	error_messages(int error);
-int	check_errors(t_token *tokens);
+int	check_errors(t_mlx_data *data);
 
 /*** map_file ***/
-void	free_list(t_token *token);
-void	free_matrix(char **matrix);
 char	**open_fd(char *map_ext);
 
 /*** elements.c ***/
@@ -115,11 +114,12 @@ int is_valid_file_path(char *path);
 int xpm_file(t_token *tokens);
 
 /*** valid_wall ***/
-int valid_wall(t_token *tokens);
-char **map_to_matrix(t_token *tokens);
+int valid_wall(t_mlx_data *data);
 
 /*** free.c ***/
-void	free_list(t_token *tokens);
+void	free_list(t_token *token);
+void	free_matrix(char **matrix);
+void	free_data_struct(t_mlx_data *data);
 int	free_game(t_mlx_data *data);
 
 /*** key_settings.c ***/
@@ -129,4 +129,11 @@ int	handle_board(int keysym, t_mlx_data *data);
 void	find_player(t_mlx_data *data);
 void	find_direction(t_mlx_data *data);
 void	find_plane(t_mlx_data *data);
+
+/*** wall_utils ***/
+char **map_to_matrix(t_token *tokens);
+
+/*** frame.c ***/
+char **make_portrat(char **map);
+
 #endif

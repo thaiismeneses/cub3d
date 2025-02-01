@@ -12,64 +12,64 @@
 
 #include "../includes/cub3d.h"
 
-int rgb_textures(t_token *tokens)
+int	rgb_textures(t_token *tokens)
 {
-    int i;
-    int number;
-    char **rgb;
-    t_token	*current;
+	int i;
+	int number;
+	char **rgb;
+	t_token	*current;
 
-    current = tokens;
+	current = tokens;
 	while (current != NULL)
-    {
-        if (current->type == F || current->type == C)
-        {
-            rgb = ft_split(current->data, ',');
-            if (rgb == NULL)
-                return (COLOR_ERROR);
-            i = 0;
-            while(rgb[i])
-            {
-                number = ft_atoi(rgb[i]);
-                if (number < 0 || number > 255)
-                    return (free(rgb), COLOR_ERROR);
-                i++;
-            }
-            if (i != 3)
-                return (free(rgb), COLOR_ERROR);
-            free(rgb);
-        }
-        current = current->next;
-    }
-    return (NONE_ERROR);
+	{
+		if (current->type == F || current->type == C)
+		{
+			rgb = ft_split(current->data, ',');
+			if (rgb == NULL)
+				return (COLOR_ERROR);
+			i = 0;
+			while(rgb[i])
+			{
+				number = ft_atoi(rgb[i]);
+				if (number < 0 || number > 255)
+					return (free(rgb), COLOR_ERROR);
+				i++;
+			}
+			if (i != 3)
+				return (free(rgb), COLOR_ERROR);
+			free_matrix(rgb);
+		}
+		current = current->next;
+	}
+	return (NONE_ERROR);
 }
 
-int is_valid_file_path(char *path) 
+int	is_valid_file_path(char *path)
 {
-    int fd;
+	int fd;
 
 	fd = open(path, O_RDONLY);
-    if (fd == -1)
-        return (PATH_ERROR);
-    close(fd);
-    return (NONE_ERROR);
+	if (fd == -1)
+		return (PATH_ERROR);
+	close(fd);
+	return (NONE_ERROR);
 }
 
-int xpm_file(t_token *tokens)
+int	xpm_file(t_token *tokens)
 {
-    t_token	*current;
+	t_token	*current;
 
-    current = tokens;
+	current = tokens;
 	while (current != NULL)
-    {
-        if (current->type == NO || current->type == SO
-            || current->type == WE || current->type == EA)
-        {
-            if (check_extension(current->data, ".xpm") == EXTENSION_ERROR
-                || is_valid_file_path(current->data) == PATH_ERROR)
-                return (PATH_ERROR);
-        }
-        current = current->next;
-    }
-    return (NONE_ERROR);
+	{
+		if (current->type == NO || current->type == SO
+			|| current->type == WE || current->type == EA)
+		{
+			if (check_extension(current->data, ".xpm") == EXTENSION_ERROR
+				|| is_valid_file_path(current->data) == PATH_ERROR)
+				return (PATH_ERROR);
+		}
+		current = current->next;
+	}
+	return (NONE_ERROR);
 }

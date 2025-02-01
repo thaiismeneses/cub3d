@@ -18,7 +18,9 @@ SRCS = src/main.c\
 		src/free.c\
 		src/key_settings.c\
 		src/player.c\
-		src/val_wall.c
+		src/val_wall.c\
+		src/frame.c\
+		src/wall_utils.c
 
 
 OBJS = $(SRCS:.c=.o)

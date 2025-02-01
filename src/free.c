@@ -6,30 +6,56 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 14:22:14 by thfranco          #+#    #+#             */
-/*   Updated: 2025/01/26 20:40:34 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/02/01 14:31:38 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/cub3d.h"
 
-void free_list(t_token *tokens)
+void	free_list(t_token *token)
 {
-	t_token *tmp;
-
-	while (tokens)
+	t_token	*current;
+	t_token *temp;
+	if(!token)
+		return ;
+	current = token;
+	while (current)
 	{
-		tmp = tokens;
-		tokens = tokens->next;
-		free(tmp->data);
-		free(tmp);
+		temp = current->next;
+		free(current->data);
+		current->data = NULL;
+		free(current);
+		current = temp;
 	}
+	token = NULL;
+}
+
+void	free_matrix(char **matrix)
+{
+	int	i;
+
+	i = 0;
+	while (matrix[i])
+		i++;
+	while (i >= 0)
+	{
+		free(matrix[i]);
+		i--;
+	}
+	free(matrix);
+}
+
+void	free_data_struct(t_mlx_data *data)
+{
+	free_list(data->tokens);
+	free_matrix(data->map);
+	free(data->mlx);
 }
 
 int	free_game(t_mlx_data *data)
 {
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
-	free_list(data->tokens);
-	free(data->mlx);
+	free_data_struct(data);
 	exit(0);
 }

@@ -12,153 +12,97 @@
 
 #include "../includes/cub3d.h"
 
-static void full_matrix(char **matrix, t_token *tokens)
+static int verify_location(char **map, int i, int j)
 {
-    int i;
-    t_token *current;
-
-    i = 0;
-    current = tokens;
-    while (current != NULL)
-    {
-        if (current->type == MAP)
-        {
-            matrix[i] = ft_strdup(current->data);
-            if (!matrix[i])
-                break ;
-            i++;
-        }
-        current = current->next;
-    }
+	if ((i > 0 && (map[i - 1][j] == '1' || map[i - 1][j] == ' ')) ||
+		(j > 0 && (map[i][j - 1] == '1' || map[i][j - 1] == ' ')) ||
+		(map[i][j + 1] == '1' || map[i][j + 1] == ' ') ||
+		(map[i + 1] && (map[i + 1][j] == '1' || map[i + 1][j] == ' ')))
+		return (1);
+	return (0);
 }
 
-char **map_to_matrix(t_token *tokens)
+static int get_max_width(char **map)
 {
-    int line_count;
-    int max_cols;
-    int len;
-    char **matrix;
-    t_token *current;
+	int max_width;
+	int width;
+	int i;
 
-    current = tokens;
-    line_count = 0;
-    max_cols = 0;
-    while (current != NULL)
-    {
-        if (current->type == MAP)
-        {
-            line_count++;
-            len = ft_strlen(current->data);
-            if (len > max_cols)
-                max_cols = len;
-        }
-        current = current->next;
-    }
-    matrix = malloc(line_count * sizeof(char *));
-    if (!matrix)
-        return (NULL);
-    full_matrix(matrix, tokens);
-    return (matrix);
+	max_width = 0;
+	i = 0;
+	if (!map)
+		return (0);
+	while (map[i] != NULL)
+	{
+		width = ft_strlen(map[i]);
+		if (width > max_width)
+		max_width = width;
+		i++;
+	}
+	return (max_width);
 }
 
-static char    **make_portrat(char **map)
+static char **fill_zeros(char **map)
 {
-    size_t lines;
-    size_t columns;
-    size_t i;
-    size_t j;
-    char **map_portrat;
+	int i;
+	int j;
+	int max_width;
+	int num_rows;
+	char **new_map;
 
-    i = 0;
-    columns = 0;
-
-    // Calcula o número de linhas e a maior largura do mapa original
-    while (map[i])
-    {
-        size_t len = ft_strlen(map[i]);
-        if (map[i][len - 1] == '\n') // Ignora '\n' ao calcular largura
-            len--;
-        if (columns < len)
-            columns = len;
-        i++;
-    }
-
-    // Adiciona 4 ao tamanho original para criar a moldura (2 camadas de cada lado)
-    lines = i + 4;
-    columns = columns + 4;
-
-    // Aloca memória para o array de ponteiros (incluindo espaço para o NULL final)
-    map_portrat = malloc((lines + 1) * sizeof(char *));
-    if (!map_portrat)
-        return (NULL);
-
-    i = 0;
-    while (i < lines)
-    {
-        // Aloca memória para cada linha (incluindo '\0' no final)
-        map_portrat[i] = malloc(columns + 2); // +2 para '\n' e '\0'
-        if (!map_portrat[i])
-        {
-            // Libera a memória alocada anteriormente em caso de falha
-            while (i > 0)
-                free(map_portrat[--i]);
-            free(map_portrat);
-            return (NULL);
-        }
-
-        j = 0;
-        while (j < columns)
-        {
-            // Adiciona moldura externa de '1' e moldura interna de '0'
-            if (i < 2 || i >= lines - 2 || j < 2 || j >= columns - 2)
-            {
-                if (i == 0 || i == lines - 1 || j == 0 || j == columns - 1)
-                    map_portrat[i][j] = '1'; // Primeira camada de '1'
-                else
-                    map_portrat[i][j] = '0'; // Segunda camada de '0'
-            }
-            else
-            {
-                // Copia o mapa original para o centro, removendo '\n' se necessário
-                size_t original_len = ft_strlen(map[i - 2]);
-                if (map[i - 2][original_len - 1] == '\n')
-                    original_len--;
-
-                if (j - 2 < original_len)
-                    map_portrat[i][j] = map[i - 2][j - 2];
-                else
-                    map_portrat[i][j] = '0'; // Preenche espaços vazios com '0'
-            }
-            j++;
-        }
-
-        // Adiciona '\n' no final de cada linha antes do '\0'
-        map_portrat[i][j] = '\n';
-        map_portrat[i][j + 1] = '\0';
-
-        i++;
-    }
-
-    // Define o último elemento da matriz como NULL
-    map_portrat[lines] = NULL;
-
-    return (map_portrat);
+	i = 0;
+	num_rows = 0;
+	max_width = get_max_width(map);
+	while (map[num_rows])
+		num_rows++;
+	new_map = calloc((num_rows + 1), sizeof(char *)); // +1 for NULL
+	if (!new_map)
+		return (NULL);
+	while (i < num_rows)
+	{
+		new_map[i] = calloc((max_width + 1), sizeof(char)); // +1 for '\0'
+		if (!new_map[i])
+			return (NULL);
+		ft_memset(new_map[i], '0', max_width);
+		new_map[i][max_width] = '\0';
+		j = 0;
+		while (map[i][j] != '\0')
+		{
+			if (map[i][j] == ' ')
+			{
+				if (verify_location(map, i, j) == 1)
+					new_map[i][j] = '0';
+				else
+					new_map[i][j] = ' ';
+			}
+			else if (map[i][j] <= 13)
+				new_map[i][j] = '0';
+			else
+				new_map[i][j] = map[i][j];
+			j++;
+		}
+		i++;
+	}
+	new_map[num_rows] = NULL;
+	return (new_map);
 }
 
-int valid_wall(t_token *tokens)
+int valid_wall(t_mlx_data *data)
 {
-    int i;
-    char **map;
-    char **map_portrat;
+	int i;
+	char **map;
+	char **new_map;
 
-    i = 0;
-    map = map_to_matrix(tokens);
-    map_portrat = make_portrat(map);
-    free_matrix(map);
-    /*while (map_portrat[i])
-    {
-        printf("-> %s\n", map_portrat[i++]);
-        //printf("len: %li\n", ft_strlen(map_portrat[i]));
-    }*/
-    return (NONE_ERROR);
+	i = 0;
+	map = map_to_matrix(data->tokens);
+	new_map = fill_zeros(map);
+	data->map = make_portrat(new_map);
+	free_matrix(map);
+	free_matrix(new_map);
+	while (data->map[i])
+	{
+		printf("%s\n", data->map[i]);
+		i++;
+	}
+	return (NONE_ERROR);
 }
