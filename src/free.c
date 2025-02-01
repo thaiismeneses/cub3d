@@ -6,7 +6,7 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 14:22:14 by thfranco          #+#    #+#             */
-/*   Updated: 2025/01/29 09:22:31 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/02/01 14:31:38 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,17 @@ void	free_matrix(char **matrix)
 	free(matrix);
 }
 
+void	free_data_struct(t_mlx_data *data)
+{
+	free_list(data->tokens);
+	free_matrix(data->map);
+	free(data->mlx);
+}
+
 int	free_game(t_mlx_data *data)
 {
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
-	free_list(data->tokens);
-	free(data->mlx);
+	free_data_struct(data);
 	exit(0);
 }

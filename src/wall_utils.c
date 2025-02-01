@@ -12,51 +12,54 @@
 
 #include "../includes/cub3d.h"
 
-static void full_matrix(char **matrix, t_token *tokens)
+static void	full_matrix(char **matrix, t_token *tokens, int line_count)
 {
-    int i;
-    t_token *current;
+	int i;
+	t_token *current;
 
-    i = 0;
-    current = tokens;
-    while (current != NULL)
-    {
-        if (current->type == MAP)
-        {
-            matrix[i] = ft_strdup(current->data);
-            if (!matrix[i])
-                break ;
-            i++;
-        }
-        current = current->next;
-    }
+	i = 0;
+	current = tokens;
+	while (current != NULL)
+	{
+		if (current->type == MAP)
+		{
+			matrix[i] = ft_strdup(current->data);
+			if (i == line_count)
+			{
+				matrix[i + 1] = NULL;
+				break ;
+			}
+			i++;
+		}
+		current = current->next;
+	}
 }
 
-char **map_to_matrix(t_token *tokens)
+char	**map_to_matrix(t_token *tokens)
 {
-    int line_count;
-    int max_cols;
-    int len;
-    char **matrix;
-    t_token *current;
+	int line_count;
+	int max_cols;
+	int len;
+	char **matrix;
+	t_token *current;
 
-    current = tokens;
-    line_count = 0;
-    max_cols = 0;
-    while (current != NULL)
-    {
-        if (current->type == MAP)
-        {
-            line_count++;
-            len = ft_strlen(current->data);
-            if (len > max_cols)
-                max_cols = len;
-        }
-        current = current->next;
-    }
-    matrix = malloc(line_count * sizeof(char *));
-    if (!matrix)
-        return (NULL);
-    full_matrix(matrix, tokens);
-    return (matrix);
+	current = tokens;
+	line_count = 0;
+	max_cols = 0;
+	while (current != NULL)
+	{
+		if (current->type == MAP)
+		{
+			line_count++;
+			len = ft_strlen(current->data);
+			if (len > max_cols)
+				max_cols = len;
+		}
+		current = current->next;
+	}
+	matrix = calloc((line_count + 1), sizeof(char *));
+	if (!matrix)
+		return (NULL);
+	full_matrix(matrix, tokens, line_count);
+	return (matrix);
 }
