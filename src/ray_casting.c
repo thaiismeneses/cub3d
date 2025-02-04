@@ -6,7 +6,7 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 21:21:58 by thfranco          #+#    #+#             */
-/*   Updated: 2025/02/03 22:23:45 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/02/04 16:37:52 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	set_values(t_mlx_data *data, int x)
 void	set_ray_direction(t_mlx_data *data)
 {
 	//Calculando a direção do raio. Direita/Esquerda e Cima/Baixo
-	//Calcula a distancia do raio até a proxima parede
+	//Calcula a distância do raio até a próxima parede
 	if (data->ray.ray_dir_x < 0)
 	{
 		data->ray.step_x = -1;
@@ -55,32 +55,71 @@ void	set_ray_direction(t_mlx_data *data)
 	}
 }
 
-void	algoritmo_dda(t_mlx_data *data)
+void	algorithm_dda(t_mlx_data *data)
 {
 	int hit;
-	int side;
 
 	hit = 0;
+	//Encontra uma parede
 	while (hit == 0)
 	{
 		if (data->ray.side_dist_x < data->ray.side_dist_y)
 		{
 			data->ray.side_dist_x += data->ray.delta_dist_x;
 			data->ray.map_x += data->ray.step_x;
-			side = 0;
-			printf("side: %d\n", side);
+			data->ray.side = 0;
 		}
 		else
 		{
 			data->ray.side_dist_y += data->ray.delta_dist_y;
 			data->ray.map_y += data->ray.step_y;
-			side = 1;
-			printf("side: %d\n", side);
+			data->ray.side = 1;
 		}
 		if (data->map[data->ray.map_y][data->ray.map_x] == '1')
 			hit = 1;
 	}
 
+}
+
+void	wall_distance(t_mlx_data *data)
+{
+	//Calcula a distância perpendicular do jogador até a parede
+	//Corrigir a distorção da perespectiva, tamanho das paredes corretas na tela
+	if (data->ray.side == 0)
+		data->ray.prep_wall_dist = (data->ray.map_x - data->player.pos_x +
+			(1 - data->ray.step_x) / 2) / data->ray.ray_dir_x;
+	else
+		data->ray.prep_wall_dist = (data->ray.map_y - data->player.pos_y +
+			(1 - data->ray.step_y) / 2) / data->ray.ray_dir_y;
+}
+void	wall_height(t_mlx_data *data)
+{
+	int line_height;
+
+	line_height = (int)(HEIGHT / data->ray.prep_wall_dist);
+	data->ray.draw_start = -line_height / 2 + HEIGHT / 2;
+	if (data->ray.draw_start < 0)
+		data->ray.draw_start = 0;
+	data->ray.draw_end = line_height / 2 + HEIGHT / 2;
+	if (data->ray.draw_end >= HEIGHT)
+		data->ray.draw_end = HEIGHT -1;
+}
+
+void draw_vertical_line(t_mlx_data * data, int x)
+{
+	int color;
+	int y;
+
+	y = data->ray.draw_start;
+	if (data->ray.side == 0)
+		color = 0xFFFFFF;
+	else
+		color = 0xAAAAAA;
+	while (y < data->ray.draw_end)
+	{
+		mlx_pixel_put(data->mlx, data->win, x, y, color);
+		y++;
+	}
 }
 
 void	ray_casting(t_mlx_data *data)
@@ -92,19 +131,10 @@ void	ray_casting(t_mlx_data *data)
 	{
 		set_values(data, x);
 		set_ray_direction(data);
-		algoritmo_dda(data);
-
-		// printf("camera_x: %f\n", data->ray.camera_x);
-		// printf("ray_dir_x: %f\n", data->ray.ray_dir_x);
-		// printf("ray_dir_y: %f\n", data->ray.ray_dir_y);
-		// printf("map_x: %d\n", data->ray.map_x);
-		// printf("map_y: %d\n", data->ray.map_y);
-		// printf("delta_dist_x: %f\n", data->ray.delta_dist_x);
-		// printf("delta_dist_y: %f\n\n", data->ray.delta_dist_y);
-		// printf("step_x: %d\n", data->ray.step_x);
-		// printf("side_dist_x: %f\n", data->ray.side_dist_x);
-		// printf("step_y: %d\n", data->ray.step_y);
-		// printf("side_dist_y: %f\n", data->ray.side_dist_y);
+		algorithm_dda(data);
+		wall_distance(data);
+		wall_height(data);
+		draw_vertical_line(data,x);
 		x++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 21:00:11 by thfranco          #+#    #+#             */
-/*   Updated: 2025/02/03 20:58:35 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/02/04 11:29:01 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,18 @@ void	find_plane(t_mlx_data *data)
 	}
 	else if (data->player.position == 'S')
 	{
-		data->player.dir_x = -0.66;
-		data->player.dir_y = 0;
+		data->player.plane_x = -0.66;
+		data->player.plane_y = 0;
 	}
 	else if (data->player.position == 'E')
 	{
-		data->player.dir_x = 0;
-		data->player.dir_y = 0.66;
+		data->player.plane_x = 0;
+		data->player.plane_y = 0.66;
 	}
 	else if (data->player.position == 'W')
 	{
-		data->player.dir_x = 0;
-		data->player.dir_y = -0.66;
+		data->player.plane_x = 0;
+		data->player.plane_y = -0.66;
 	}
 }
 void	find_player(t_mlx_data *data)

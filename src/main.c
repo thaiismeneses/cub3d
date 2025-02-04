@@ -12,6 +12,12 @@
 
 #include "../includes/cub3d.h"
 
+void	config(t_mlx_data *data)
+{
+	find_player(data);
+	convert_map(data);
+}
+
 int	main(int argc, char **argv)
 {
 	char	**map;
@@ -24,12 +30,12 @@ int	main(int argc, char **argv)
 	data.tokens = tokenization(map, data.tokens);
 	if (check_errors(&data) != NONE_ERROR)
 		return(free_data_struct(&data), 1);
-	find_player(&data);
-	ray_casting(&data);
+	config(&data);
 	data.mlx = mlx_init();
-    data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "Cub3D");
+	data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "Cub3D");
+	ray_casting(&data);
 	mlx_key_hook(data.win, handle_board, &data);
 	mlx_hook(data.win, 17, 0, free_game, &data);
- 	mlx_loop(data.mlx);
+	mlx_loop(data.mlx);
 	return (0);
 }

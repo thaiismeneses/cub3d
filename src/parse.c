@@ -45,11 +45,11 @@ static void	add_node(t_token **data, t_type type, char *value)
 	if (!(*data))
 		(*data) = new_node;
 	else
-    {
+	{
 		while (last_node->next != NULL)
-            last_node = last_node->next;
-        last_node->next = new_node;
-    }
+			last_node = last_node->next;
+		last_node->next = new_node;
+	}
 }
 
 t_token	*set_token_list(t_token *data, int type, char *value)
@@ -60,44 +60,44 @@ t_token	*set_token_list(t_token *data, int type, char *value)
 
 t_token *tokenization(char **map, t_token *data)
 {
-    int i;
-    int j;
-    int start;
-    char *value;
-    t_type type;
+	int i;
+	int j;
+	int start;
+	char *value;
+	t_type type;
 
-    i = 0;
-    data = NULL;
-    if (!**map)
-        return (0);
-    while(map[i])
-    {
-        j = 0;
-        while (ft_isspace(map[i][j]))
-            j++;
-        start = j;
-        type = find_type(map[i], j);
-        j = type_index(type, j);
-        while (ft_isspace(map[i][j]))
-            j++;
-        start = j;
-        if (type != MAP)
-        {
-            while (map[i][j] && map[i][j] != '\0' && !ft_isspace(map[i][j]))
-                j++;
-        }
-        else
-        {
-            j = 0;
-            start = 0;
-            while (map[i][j] && map[i][j] != '\0')
-                j++;
-        }
-        value = get_token(map[i], j, start);
-        data = set_token_list(data, type, value);
-        free(value);
-        i++;
-    }
-    free_matrix(map);
-    return (data);
+	i = 0;
+	data = NULL;
+	if (!**map)
+		return (0);
+	while(map[i])
+	{
+		j = 0;
+		while (ft_isspace(map[i][j]))
+			j++;
+		start = j;
+		type = find_type(map[i], j);
+		j = type_index(type, j);
+		while (ft_isspace(map[i][j]))
+			j++;
+		start = j;
+		if (type != MAP)
+		{
+			while (map[i][j] && map[i][j] != '\0' && !ft_isspace(map[i][j]))
+				j++;
+		}
+		else
+		{
+			j = 0;
+			start = 0;
+			while (map[i][j] && map[i][j] != '\0')
+				j++;
+		}
+		value = get_token(map[i], j, start);
+		data = set_token_list(data, type, value);
+		free(value);
+		i++;
+	}
+	free_matrix(map);
+	return (data);
 }

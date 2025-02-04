@@ -63,7 +63,9 @@ typedef struct s_player
 	float	dir_x;
 	float	dir_y;
 	float	plane_x;
-	float plane_y;
+	float	plane_y;
+	float	time;
+	float	old_time;
 }	t_player;
 
 typedef struct s_ray
@@ -71,14 +73,18 @@ typedef struct s_ray
 	float	camera_x;
 	float	ray_dir_x;
 	float	ray_dir_y;
-	int map_x;
-	int map_y;
-	float delta_dist_x;
-	float delta_dist_y;
-	int step_x;
-	int step_y;
-	float side_dist_x;
-	float side_dist_y;
+	int	map_x;
+	int	map_y;
+	float	delta_dist_x;
+	float	delta_dist_y;
+	int	step_x;
+	int	step_y;
+	float	side_dist_x;
+	float	side_dist_y;
+	int	side;
+	float	prep_wall_dist;
+	int	draw_start;
+	int	draw_end;
 } t__ray;
 
 typedef struct s_data
@@ -89,6 +95,7 @@ typedef struct s_data
 	t_player player;
 	t__ray ray;
 	char **map;
+	int **map_int;
 }	t_mlx_data;
 
 /*** validation.c ***/
@@ -156,5 +163,9 @@ char **make_portrat(char **map);
 
 /*** ray_casting.c ***/
 void	ray_casting(t_mlx_data *data);
+
+/*** convert_map.c ***/
+void	convert_map(t_mlx_data *data);
+
 
 #endif
