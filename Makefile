@@ -20,7 +20,8 @@ SRCS = src/main.c\
 		src/player.c\
 		src/val_wall.c\
 		src/frame.c\
-		src/wall_utils.c
+		src/wall_utils.c\
+		src/ray_casting.c\
 
 
 OBJS = $(SRCS:.c=.o)

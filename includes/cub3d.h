@@ -58,13 +58,28 @@ typedef struct s_token
 typedef struct s_player
 {
 	char		position;
-	int	pos_x;
-	int	pos_y;
-	int	dir_x;
-	int	dir_y;
-	int	plane_x;
-	int plane_y;
+	float	pos_x;
+	float	pos_y;
+	float	dir_x;
+	float	dir_y;
+	float	plane_x;
+	float plane_y;
 }	t_player;
+
+typedef struct s_ray
+{
+	float	camera_x;
+	float	ray_dir_x;
+	float	ray_dir_y;
+	int map_x;
+	int map_y;
+	float delta_dist_x;
+	float delta_dist_y;
+	int step_x;
+	int step_y;
+	float side_dist_x;
+	float side_dist_y;
+} t__ray;
 
 typedef struct s_data
 {
@@ -72,6 +87,7 @@ typedef struct s_data
 	void *win;
 	t_token *tokens;
 	t_player player;
+	t__ray ray;
 	char **map;
 }	t_mlx_data;
 
@@ -137,5 +153,8 @@ char **map_to_matrix(t_token *tokens);
 
 /*** frame.c ***/
 char **make_portrat(char **map);
+
+/*** ray_casting.c ***/
+void	ray_casting(t_mlx_data *data);
 
 #endif
