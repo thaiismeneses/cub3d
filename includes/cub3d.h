@@ -55,6 +55,15 @@ typedef struct s_token
 
 }	t_token;
 
+typedef struct s_map
+{
+	char	**map;
+	int		height;
+	int		width;
+	int		x_player;
+	int		y_player;
+}			t_map;
+
 typedef struct s_player
 {
 	char		position;
@@ -137,5 +146,6 @@ char **map_to_matrix(t_token *tokens);
 
 /*** frame.c ***/
 char **make_portrat(char **map);
+int	playable_map(char **map);
 
 #endif

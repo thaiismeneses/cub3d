@@ -33,10 +33,10 @@ int	main(int argc, char **argv)
 	if (check_errors(&data) != NONE_ERROR)
 		return(free_data_struct(&data), 1);
 	//find_player(&data);
-	data.mlx = mlx_init();
+	/*data.mlx = mlx_init();
     data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "Cub3D");
 	mlx_key_hook(data.win, handle_board, &data);
 	mlx_hook(data.win, 17, 0, free_game, &data);
- 	mlx_loop(data.mlx);
+ 	mlx_loop(data.mlx);*/
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   frame.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
+/*   By: lfuruno- <lfuruno-@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 14:57:55 by thfranco          #+#    #+#             */
-/*   Updated: 2025/02/01 14:59:29 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/02/05 14:22:34 by lfuruno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,93 @@ char	**make_portrat(char **map)
 	map_portrat[lines] = NULL;
 
 	return (map_portrat);
+}
+
+static int	height(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+		i++;
+	return (i);
+}
+
+static int	width(char **map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (map[i][j])
+		j++;
+	return (j);
+}
+
+int	xy_player(char **map, char axis)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map && map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'N' || map[i][j] == 'W' 
+				|| map[i][j] == 'S' || map[i][j] == 'E')
+			{
+				if (axis == 'x')
+					return (j);
+				if (axis == 'y')
+					return (i);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+t_map	*struct_map(char **map)
+{
+	t_map	*copy_map;
+
+	copy_map = ft_calloc(1, sizeof(t_map));
+	copy_map->map = map;
+	copy_map->height = height(map);
+	copy_map->width = width(map);
+	copy_map->x_player = xy_player(map, 'x');
+	copy_map->y_player = xy_player(map, 'y');
+	return (copy_map);
+}
+static void	fill_map(t_map *copy_map, int x, int y)
+{
+	if (x < 1 || x > copy_map->width || y < 1 || y > copy_map->height
+		|| copy_map->map[y][x] == '1')
+		return ;
+	copy_map->map[y][x] = '1';
+	fill_map(copy_map, x - 1, y);
+	fill_map(copy_map, x + 1, y);
+	fill_map(copy_map, x, y - 1);
+	fill_map(copy_map, x, y + 1);
+}
+
+int	playable_map(char **map)
+{
+	t_map	*copy_map;
+
+	copy_map = struct_map(map);
+	fill_map(copy_map, copy_map->x_player, copy_map->y_player);
+	if (//qual condição vai aqui?)
+	{
+		free_matrix(copy_map->map);
+		free(copy_map);
+		return (MAP_ERROR);
+	}
+	free_matrix(copy_map->map);
+	free(copy_map);
+	return (NONE_ERROR);
 }
