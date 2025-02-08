@@ -87,6 +87,15 @@ typedef struct s_ray
 	int	draw_end;
 } t__ray;
 
+typedef struct s_img
+{
+	void	*img;
+	char	*addr; //endereço da memória da imagem
+	int	bits_per_pixel;
+	int	line_length; //Quantidade de bytes por linha
+	int	endian; //Ordem dos bytes na memória
+}	t_img;
+
 typedef struct s_data
 {
 	void *mlx;
@@ -96,6 +105,7 @@ typedef struct s_data
 	t__ray ray;
 	char **map;
 	int **map_int;
+	t_img img;
 }	t_mlx_data;
 
 /*** validation.c ***/
@@ -143,8 +153,8 @@ int valid_wall(t_mlx_data *data);
 /*** free.c ***/
 void	free_list(t_token *token);
 void	free_matrix(char **matrix);
+void	free_matrix_int(int **matrix);
 void	free_data_struct(t_mlx_data *data);
-
 int	free_game(t_mlx_data *data);
 
 /*** key_settings.c ***/
@@ -162,6 +172,15 @@ char **map_to_matrix(t_token *tokens);
 char **make_portrat(char **map);
 
 /*** ray_casting.c ***/
+void	my_put_pixel(t_img *img, int x, int y, int color);
+void	create_image(t_mlx_data *data);
+void	draw_vertical_line(t_mlx_data *data, int x);
+void	render(t_mlx_data *data);
+void	set_values(t_mlx_data *data, int x);
+void	wall_distance(t_mlx_data *data);
+void	wall_height(t_mlx_data *data);
+void	set_ray_direction(t_mlx_data *data);
+void	algorithm_dda(t_mlx_data *data);
 void	ray_casting(t_mlx_data *data);
 
 /*** convert_map.c ***/
