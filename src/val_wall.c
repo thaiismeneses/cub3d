@@ -95,9 +95,9 @@ int valid_wall(t_mlx_data *data)
 	char **new_map;
 
 	i = 0;
-	map = map_to_matrix(data->tokens);
-	new_map = fill_zeros(map);
-	data->map = make_portrat(new_map);
+	data->map = map_to_matrix(data->tokens);
+	new_map = fill_zeros(data->map);
+	map = make_portrat(new_map);
 	free_matrix(map);
 	free_matrix(new_map);
 	while (data->map[i])
