@@ -6,7 +6,7 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 21:21:58 by thfranco          #+#    #+#             */
-/*   Updated: 2025/02/04 16:37:52 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/02/05 22:04:36 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	set_ray_direction(t_mlx_data *data)
 	if (data->ray.ray_dir_y < 0)
 	{
 		data->ray.step_y = -1;
-		data->ray.side_dist_y = (data->player.pos_y - data->ray.map_y) * data->ray.side_dist_y;
+		data->ray.side_dist_y = (data->player.pos_y - data->ray.map_y) * data->ray.delta_dist_y;
 	}
 	else
 	{
@@ -105,7 +105,33 @@ void	wall_height(t_mlx_data *data)
 		data->ray.draw_end = HEIGHT -1;
 }
 
-void draw_vertical_line(t_mlx_data * data, int x)
+void my_put_pixel(t_img *img, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
+
+}
+
+void	create_image(t_mlx_data *data)
+{
+	data->img.img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	if (!data->img.img)
+	{
+		printf("Error creating image");
+		return ;
+	}
+	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bits_per_pixel,
+		&data->img.line_length, &data->img.endian);
+	if (!data->img.addr)
+	{
+		printf("Error getting image address");
+		return ;
+	}
+}
+
+void draw_vertical_line(t_mlx_data *data, int x)
 {
 	int color;
 	int y;
@@ -117,10 +143,11 @@ void draw_vertical_line(t_mlx_data * data, int x)
 		color = 0xAAAAAA;
 	while (y < data->ray.draw_end)
 	{
-		mlx_pixel_put(data->mlx, data->win, x, y, color);
+		my_put_pixel(&data->img, x, y, color);
 		y++;
 	}
 }
+
 
 void	ray_casting(t_mlx_data *data)
 {
@@ -137,4 +164,13 @@ void	ray_casting(t_mlx_data *data)
 		draw_vertical_line(data,x);
 		x++;
 	}
+}
+
+
+void	render(t_mlx_data *data)
+{
+	create_image(data);
+	ray_casting(data);
+	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
+	mlx_destroy_image(data->mlx, data->img.img);
 }

@@ -18,6 +18,12 @@ void	config(t_mlx_data *data)
 	convert_map(data);
 }
 
+int	game_loop(t_mlx_data *data)
+{
+	render(data);
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	char	**map;
@@ -33,7 +39,7 @@ int	main(int argc, char **argv)
 	config(&data);
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "Cub3D");
-	ray_casting(&data);
+	mlx_loop_hook(data.mlx, game_loop, &data);
 	mlx_key_hook(data.win, handle_board, &data);
 	mlx_hook(data.win, 17, 0, free_game, &data);
 	mlx_loop(data.mlx);
