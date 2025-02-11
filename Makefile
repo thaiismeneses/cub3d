@@ -23,6 +23,7 @@ SRCS = src/main.c\
 		src/wall_utils.c\
 		src/convert_map.c\
 		src/ray_casting.c\
+		src/mini_map.c\
 
 
 OBJS = $(SRCS:.c=.o)

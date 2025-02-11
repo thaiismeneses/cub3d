@@ -18,7 +18,14 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <math.h>
+# include <X11/keysym.h>
 # include <ctype.h> //apagar
+
+/*** SPEED ***/
+#define MOVE_SPEED 0.1
+
+/*** ROTATION DEGREE***/
+#define ROTATE 0.2
 
 /*** SIZE_WINDOW ***/
 # define WIDTH 1920
@@ -185,6 +192,11 @@ void	ray_casting(t_mlx_data *data);
 
 /*** convert_map.c ***/
 void	convert_map(t_mlx_data *data);
+
+
+/*** mini_map.c ***/
+void draw_minimap(t_mlx_data *data);
+
 
 
 #endif

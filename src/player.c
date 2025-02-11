@@ -6,7 +6,7 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 21:00:11 by thfranco          #+#    #+#             */
-/*   Updated: 2025/02/04 11:29:01 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/02/11 11:40:36 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	find_plane(t_mlx_data *data)
 		data->player.plane_y = -0.66;
 	}
 }
+
 void	find_player(t_mlx_data *data)
 {
 	int	i;

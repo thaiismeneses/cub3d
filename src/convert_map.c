@@ -6,7 +6,7 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 11:34:51 by thfranco          #+#    #+#             */
-/*   Updated: 2025/02/08 10:10:14 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/02/10 11:20:18 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,15 @@ void	convert_map(t_mlx_data *data)
 			j++;
 		}
 		i++;
+	}
+
+	// Impressão da matriz convertida
+	printf("Matriz de inteiros:\n");
+	for (i = 0; i < rows; i++)
+	{
+		for (size_t j = 0; j < ft_strlen(data->map[i]); j++)
+			printf("%d ", data->map_int[i][j]);
+		printf("\n");
 	}
 }
 
