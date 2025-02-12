@@ -41,7 +41,7 @@ int	main(int argc, char **argv)
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "Cub3D");
 	mlx_loop_hook(data.mlx, game_loop, &data);
-	mlx_key_hook(data.win, handle_board, &data);
+	mlx_hook(data.win, 2, 1L << 0, handle_board, &data);
 	mlx_hook(data.win, 17, 0, free_game, &data);
 	mlx_loop(data.mlx);
 	return (0);
