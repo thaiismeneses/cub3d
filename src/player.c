@@ -6,12 +6,11 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 21:00:11 by thfranco          #+#    #+#             */
-/*   Updated: 2025/02/11 11:40:36 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/02/12 22:33:49 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
 
 void	find_direction(t_mlx_data *data)
 {

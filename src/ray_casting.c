@@ -6,7 +6,7 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 21:21:58 by thfranco          #+#    #+#             */
-/*   Updated: 2025/02/05 22:04:36 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/02/12 22:12:45 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,6 @@ void draw_vertical_line(t_mlx_data *data, int x)
 	}
 }
 
-
 void	ray_casting(t_mlx_data *data)
 {
 	int x;
@@ -171,6 +170,7 @@ void	render(t_mlx_data *data)
 {
 	create_image(data);
 	ray_casting(data);
+	draw_minimap(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 	mlx_destroy_image(data->mlx, data->img.img);
 }

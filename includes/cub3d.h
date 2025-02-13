@@ -31,6 +31,14 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 
+/*** MINI MAP ***/
+# define MINI_MAP_SCALE 8
+# define MINIMAP_OFFSET_X 20
+# define MINIMAP_OFFSET_Y 20
+# define WHITE 0xFFFFFF
+# define BLACK 0x000000
+# define RED 0xFF0000
+
 /*** ERRORS ***/
 # define NONE_ERROR 1
 # define ARGS_ERROR -1
@@ -165,7 +173,7 @@ void	free_data_struct(t_mlx_data *data);
 int	free_game(t_mlx_data *data);
 
 /*** key_settings.c ***/
-int	handle_board(int keysym, t_mlx_data *data);
+int	handle_board(int keycode, t_mlx_data *data);
 
 /*** player.c ***/
 void	find_player(t_mlx_data *data);
@@ -197,6 +205,7 @@ void	convert_map(t_mlx_data *data);
 /*** mini_map.c ***/
 void draw_minimap(t_mlx_data *data);
 
-
+/*** moves.c ***/
+void	moviments(t_mlx_data *data, int keycode);
 
 #endif

@@ -6,47 +6,54 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:41:26 by thfranco          #+#    #+#             */
-/*   Updated: 2025/02/12 19:15:46 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/02/12 22:10:00 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static void draw_square(t_mlx_data *data, int x, int y, int color)
+static void	draw_pixel(t_mlx_data *data, int x, int y, int color)
 {
-	int i, j;
-	int tile_size = 10; // Define o tamanho dos blocos do minimapa
+	int i;
+	int j;
 
-	for (i = 0; i < tile_size; i++)
+	i = 0;
+	while (i < MINI_MAP_SCALE)
 	{
-		for (j = 0; j < tile_size; j++)
+		j = 0;
+		while (j < MINI_MAP_SCALE)
 		{
-			mlx_pixel_put(data->mlx, data->win, x + i, y + j, color);
+			my_put_pixel(&data->img, x + i, y + j, color);
+			j++;
 		}
+		i++;
 	}
 }
 
-void draw_minimap(t_mlx_data *data)
+void	draw_minimap(t_mlx_data *data)
 {
-	int x, y;
-	int tile_size = 10; // Tamanho dos blocos do minimapa
-	int start_x = 20;   // Posição inicial do minimapa na tela (ajuste conforme necessário)
-	int start_y = 20;
+	int	x;
+	int	y;
+	int	square_size;
 
-	for (y = 0; data->map[y]; y++)
+	square_size = MINI_MAP_SCALE;
+	y = 0;
+	while (data->map[y])
 	{
-		for (x = 0; data->map[y][x]; x++)
+		x = 0;
+		while (data->map[y][x])
 		{
-			if (data->map[y][x] == '1') // Paredes
-				draw_square(data, start_x + x * tile_size, start_y + y * tile_size, 0xFFFFFF);
-			else if (data->map[y][x] == '0' || data->map[y][x] == 'N') // Caminho ou jogador
-				draw_square(data, start_x + x * tile_size, start_y + y * tile_size, 0x333333);
+
+			if (data->map[y][x] == '1')
+				draw_pixel(data, MINIMAP_OFFSET_X + x * square_size, MINIMAP_OFFSET_Y + y * square_size, WHITE);
+			else if (data->map[y][x] == '0')
+				draw_pixel(data, MINIMAP_OFFSET_X + x * square_size, MINIMAP_OFFSET_Y + y * square_size, BLACK);
+			x++;
 		}
+		y++;
 	}
+	x = MINIMAP_OFFSET_X + (int)(data->player.pos_x * square_size);
+	y = MINIMAP_OFFSET_Y + (int)(data->player.pos_y * square_size);
 
-	// Desenhar o jogador no minimapa
-	int player_x = start_x + (data->player.pos_x * tile_size);
-	int player_y = start_y + (data->player.pos_y * tile_size);
-	draw_square(data, player_x, player_y, 0xFF0000); // Vermelho para o jogador
+	draw_pixel(data, x, y, RED);
 }
-

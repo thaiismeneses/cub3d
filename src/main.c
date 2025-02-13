@@ -21,7 +21,6 @@ void	config(t_mlx_data *data)
 int	game_loop(t_mlx_data *data)
 {
 	render(data);
-	draw_minimap(data);
 	return (0);
 }
 

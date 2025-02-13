@@ -16,6 +16,7 @@ SRCS = src/main.c\
 		src/val_map.c\
 		src/textures.c\
 		src/free.c\
+		src/moves.c\
 		src/key_settings.c\
 		src/player.c\
 		src/val_wall.c\
