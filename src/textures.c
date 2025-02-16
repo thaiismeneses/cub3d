@@ -73,3 +73,31 @@ int	xpm_file(t_token *tokens)
 	}
 	return (NONE_ERROR);
 }
+
+void	load_texture(t_mlx_data *data)
+{
+	int	i;
+	char	*texture_files[6];
+
+	i = 0;
+	texture_files[0] = "assets/redbrick.xpm";
+	texture_files[1] = "assets/mossy.xpm";
+	texture_files[2] = "assets/pillar.xpm";
+	texture_files[3] = "assets/barrel.xpm";
+	texture_files[4] = "assets/sky.xpm";
+	texture_files[5] = "assets/sand.xpm";
+	while (i < 6)
+	{
+		data->textures[i].img = mlx_xpm_file_to_image(data->mlx, texture_files[i] ,
+				&data->textures[i].width, &data->textures[i].height);
+		printf("data->textures[%d].img = %p\n", i, data->textures[i].img);
+		if (!data->textures[i].img)
+		{
+			printf("Error\nTexture file not found\n");
+			exit(1);
+		}
+		data->textures[i].addr = mlx_get_data_addr(data->textures[i].img, &data->textures[i].bits_per_pixel,
+				&data->textures[i].line_length, &data->textures[i].endian);
+		i++;
+	}
+}

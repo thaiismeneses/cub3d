@@ -73,34 +73,47 @@ typedef struct s_token
 typedef struct s_player
 {
 	char		position;
-	float	pos_x;
-	float	pos_y;
-	float	dir_x;
-	float	dir_y;
-	float	plane_x;
-	float	plane_y;
-	float	time;
-	float	old_time;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
 }	t_player;
 
 typedef struct s_ray
 {
-	float	camera_x;
-	float	ray_dir_x;
-	float	ray_dir_y;
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
 	int	map_x;
 	int	map_y;
-	float	delta_dist_x;
-	float	delta_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
 	int	step_x;
 	int	step_y;
-	float	side_dist_x;
-	float	side_dist_y;
+	double	side_dist_x;
+	double	side_dist_y;
 	int	side;
-	float	prep_wall_dist;
+	double	prep_wall_dist;
 	int	draw_start;
 	int	draw_end;
+	double wall_x;
+	int	tex_num;
 } t__ray;
+
+typedef struct s_floor_ceiling
+{
+	double floor_x;
+	double floor_y;
+	int tex_floor_x;
+	int tex_floor_y;
+	double ceiling_x;
+	double ceiling_y;
+	int tex_ceiling_x;
+	int tex_ceiling_y;
+	double current_dist;
+} t_floor_ceiling;
 
 typedef struct s_img
 {
@@ -111,6 +124,17 @@ typedef struct s_img
 	int	endian; //Ordem dos bytes na memória
 }	t_img;
 
+typedef struct s_texture
+{
+	void	*img;
+	char	*addr;
+	int	width;
+	int	height;
+	int	bits_per_pixel;
+	int	line_length;
+	int	endian;
+}	t_texture;
+
 typedef struct s_data
 {
 	void *mlx;
@@ -120,6 +144,8 @@ typedef struct s_data
 	t__ray ray;
 	char **map;
 	int **map_int;
+	t_floor_ceiling floor_ceiling;
+	t_texture textures[6];
 	t_img img;
 }	t_mlx_data;
 
@@ -148,6 +174,7 @@ int	map_exist(t_token *tokens);
 /*** textures.c ***/
 int	is_valid_file_path(char *path);
 int	xpm_file(t_token *tokens);
+void	load_texture(t_mlx_data *data);
 
 /*** extra_print.c ***/
 int valid_player(t_token *tokens);
@@ -207,5 +234,9 @@ void draw_minimap(t_mlx_data *data);
 
 /*** moves.c ***/
 void	moviments(t_mlx_data *data, int keycode);
+
+/*** ceiling_and_floor.c ***/
+void	dist_to_window(t_mlx_data *data, int y, int flag);
+void	draw_ceiling_floor(t_mlx_data *data);
 
 #endif

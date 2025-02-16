@@ -6,7 +6,7 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 21:00:11 by thfranco          #+#    #+#             */
-/*   Updated: 2025/02/12 22:33:49 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/02/14 21:56:23 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ void	find_player(t_mlx_data *data)
 				|| data->map[j][i] == 'W' || data->map[j][i] == 'E')
 			{
 				data->player.position = data->map[j][i];
-				data->player.pos_x = (float)i;
-				data->player.pos_y = (float)j;
+				data->player.pos_x = (double)i;
+				data->player.pos_y = (double)j;
 				find_direction(data);
 				find_plane(data);
 			}

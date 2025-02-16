@@ -6,7 +6,7 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 21:21:58 by thfranco          #+#    #+#             */
-/*   Updated: 2025/02/12 22:12:45 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/02/16 20:06:35 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	set_values(t_mlx_data *data, int x)
 {
 	//Convertendo as coordenadas da tela para as coordenadas da camera
-	data->ray.camera_x = 2 * x / (float)WIDTH - 1;
+	data->ray.camera_x = 2 * x / (double)WIDTH - 1;
 	/*Calculando a direção do raio (direção para onde o jogador ta olhando)
 		raio = direção do jogador + plano da camera * coordenada da camera
 	*/
@@ -86,12 +86,28 @@ void	wall_distance(t_mlx_data *data)
 	//Calcula a distância perpendicular do jogador até a parede
 	//Corrigir a distorção da perespectiva, tamanho das paredes corretas na tela
 	if (data->ray.side == 0)
+	{
 		data->ray.prep_wall_dist = (data->ray.map_x - data->player.pos_x +
 			(1 - data->ray.step_x) / 2) / data->ray.ray_dir_x;
+		data->ray.wall_x = data->player.pos_y + data->ray.prep_wall_dist * data->ray.ray_dir_y;
+		if (data->ray.ray_dir_x > 0)
+			data->ray.tex_num = 2; // Leste
+		else
+			data->ray.tex_num = 3; // Oeste
+	}
 	else
+	{
 		data->ray.prep_wall_dist = (data->ray.map_y - data->player.pos_y +
 			(1 - data->ray.step_y) / 2) / data->ray.ray_dir_y;
+		data->ray.wall_x = data->player.pos_x + data->ray.prep_wall_dist * data->ray.ray_dir_x;
+			if (data->ray.ray_dir_y > 0)
+			data->ray.tex_num = 1; //Sul
+			else
+			data->ray.tex_num = 0; //Norte
+		}
+	data->ray.wall_x -= floor(data->ray.wall_x);
 }
+
 void	wall_height(t_mlx_data *data)
 {
 	int line_height;
@@ -135,6 +151,15 @@ void draw_vertical_line(t_mlx_data *data, int x)
 {
 	int color;
 	int y;
+	// int tex_x;
+	// int tex_y;
+
+
+	// tex_x = (int)(data->ray.wall_x * data->textures[data->ray.tex_num].width);
+	// if (data->ray.side == 0 && data->ray.ray_dir_x > 0)
+	// 	tex_x = data->textures[data->ray.tex_num].width - tex_x -1;
+	// if (data->ray.side == 1 && data->ray.ray_dir_y < 0)
+	// 	tex_x = data->textures[data->ray.tex_num].width - tex_x -1;
 
 	y = data->ray.draw_start;
 	if (data->ray.side == 0)
@@ -143,6 +168,12 @@ void draw_vertical_line(t_mlx_data *data, int x)
 		color = 0xAAAAAA;
 	while (y < data->ray.draw_end)
 	{
+		// tex_y = (int)((y - data->ray.draw_start) *
+		// 	(double)data->textures[data->ray.tex_num].height /
+		// 	(data->ray.draw_end - data->ray.draw_start));
+		// color = *((int *)(data->textures[data->ray.tex_num].addr +
+		// 	(tex_y * data->textures[data->ray.tex_num].line_length + tex_x * (data->textures[data->ray.tex_num].bits_per_pixel / 8))));
+
 		my_put_pixel(&data->img, x, y, color);
 		y++;
 	}
@@ -165,10 +196,12 @@ void	ray_casting(t_mlx_data *data)
 	}
 }
 
-
 void	render(t_mlx_data *data)
 {
+	if (!data->textures[0].img)
+		load_texture(data);
 	create_image(data);
+	draw_ceiling_floor(data);
 	ray_casting(data);
 	draw_minimap(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);

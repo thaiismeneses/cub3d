@@ -23,6 +23,7 @@ SRCS = src/main.c\
 		src/frame.c\
 		src/wall_utils.c\
 		src/convert_map.c\
+		src/ceiling_and_floor.c\
 		src/ray_casting.c\
 		src/mini_map.c\
 

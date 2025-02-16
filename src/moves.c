@@ -6,7 +6,7 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 22:22:07 by thfranco          #+#    #+#             */
-/*   Updated: 2025/02/12 22:32:28 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/02/14 21:58:40 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	moviment_right(t_mlx_data *data, int keycode)
 {
-	float	old_dir_x;
-	float	old_plane_x;
+	double	old_dir_x;
+	double	old_plane_x;
 
 	if (keycode == XK_a)
 	{
@@ -34,8 +34,8 @@ static void	moviment_right(t_mlx_data *data, int keycode)
 
 static void	moviment_left(t_mlx_data *data, int keycode)
 {
-	float	old_dir_x;
-	float	old_plane_x;
+	double	old_dir_x;
+	double	old_plane_x;
 
 	if (keycode == XK_d)
 	{
