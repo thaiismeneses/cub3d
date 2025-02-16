@@ -6,18 +6,18 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 22:22:07 by thfranco          #+#    #+#             */
-/*   Updated: 2025/02/14 21:58:40 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/02/16 20:37:52 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static void	moviment_right(t_mlx_data *data, int keycode)
+static void	rotate_left(t_mlx_data *data, int keycode)
 {
 	double	old_dir_x;
 	double	old_plane_x;
 
-	if (keycode == XK_a)
+	if (keycode == XK_Left)
 	{
 		old_dir_x = data->player.dir_x;
 		old_plane_x = data->player.plane_x;
@@ -32,12 +32,12 @@ static void	moviment_right(t_mlx_data *data, int keycode)
 	}
 }
 
-static void	moviment_left(t_mlx_data *data, int keycode)
+static void	rotate_right(t_mlx_data *data, int keycode)
 {
 	double	old_dir_x;
 	double	old_plane_x;
 
-	if (keycode == XK_d)
+	if (keycode == XK_Right)
 	{
 		old_dir_x = data->player.dir_x;
 		old_plane_x = data->player.plane_x;
@@ -66,9 +66,24 @@ static void	moviments_front_back(t_mlx_data *data, int keycode)
 	}
 }
 
+static void	moviments_left_right(t_mlx_data *data, int keycode)
+{
+	if (keycode == XK_a)
+	{
+		data->player.pos_x -= data->player.plane_x * MOVE_SPEED;
+		data->player.pos_y -= data->player.plane_y * MOVE_SPEED;
+	}
+	if (keycode == XK_d)
+	{
+		data->player.pos_x += data->player.plane_x * MOVE_SPEED;
+		data->player.pos_y += data->player.plane_y * MOVE_SPEED;
+	}
+}
+
 void	moviments(t_mlx_data *data, int keycode)
 {
 	moviments_front_back(data, keycode);
-	moviment_right(data, keycode);
-	moviment_left(data, keycode);
+	moviments_left_right(data, keycode);
+	rotate_right(data, keycode);
+	rotate_left(data, keycode);
 }
