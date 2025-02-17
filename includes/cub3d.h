@@ -82,6 +82,7 @@ typedef struct s_data
 	t_token *tokens;
 	t_player player;
 	char **map;
+	char **map_frame;
 }	t_mlx_data;
 
 /*** validation.c ***/
@@ -110,11 +111,14 @@ int	map_exist(t_token *tokens);
 int	is_valid_file_path(char *path);
 int	xpm_file(t_token *tokens);
 
-/*** extra_print.c ***/
+
 int valid_player(t_token *tokens);
 int valid_char(t_token *tokens);
 int break_map(t_token *tokens);
 int map_exist(t_token *tokens);
+
+/*** extra_print.c ***/
+void	print_array(char **map);
 void	print_token_list(t_token *head);
 
 /*** textures ***/
@@ -130,7 +134,6 @@ int valid_wall(t_mlx_data *data);
 void	free_list(t_token *token);
 void	free_matrix(char **matrix);
 void	free_data_struct(t_mlx_data *data);
-
 int	free_game(t_mlx_data *data);
 
 /*** key_settings.c ***/
@@ -146,6 +149,6 @@ char **map_to_matrix(t_token *tokens);
 
 /*** frame.c ***/
 char **make_portrat(char **map);
-int	playable_map(char **map);
+int	playable_map(t_mlx_data *data);
 
 #endif

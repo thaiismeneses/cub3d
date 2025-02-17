@@ -95,9 +95,9 @@ int valid_wall(t_mlx_data *data)
 
 	map = map_to_matrix(data->tokens);
 	new_map = fill_zeros(map);
-	data->map = make_portrat(new_map);
+	data->map_frame = make_portrat(new_map);
 	free_matrix(map);
-    if (playable_map(new_map) == MAP_ERROR)
+    if (playable_map(data) == MAP_ERROR)
     {
         free_matrix(new_map);
         return (MAP_ERROR);
