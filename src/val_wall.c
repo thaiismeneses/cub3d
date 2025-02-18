@@ -56,12 +56,12 @@ static char **fill_zeros(char **map)
 	max_width = get_max_width(map);
 	while (map[num_rows])
 		num_rows++;
-	new_map = calloc((num_rows + 1), sizeof(char *)); // +1 for NULL
+	new_map = calloc((num_rows + 1), sizeof(char *));
 	if (!new_map)
 		return (NULL);
 	while (i < num_rows)
 	{
-		new_map[i] = calloc((max_width + 1), sizeof(char)); // +1 for '\0'
+		new_map[i] = calloc((max_width + 1), sizeof(char));
 		if (!new_map[i])
 			return (NULL);
 		ft_memset(new_map[i], '0', max_width);
@@ -90,20 +90,18 @@ static char **fill_zeros(char **map)
 
 int valid_wall(t_mlx_data *data)
 {
-	int i;
 	char **map;
 	char **new_map;
 
-	i = 0;
-	data->map = map_to_matrix(data->tokens);
-	new_map = fill_zeros(data->map);
-	map = make_portrat(new_map);
+	map = map_to_matrix(data->tokens);
+	new_map = fill_zeros(map);
+	data->map_frame = make_portrat(new_map);
 	free_matrix(map);
+    if (playable_map(data) == MAP_ERROR)
+    {
+        free_matrix(new_map);
+        return (MAP_ERROR);
+    }
 	free_matrix(new_map);
-	while (data->map[i])
-	{
-		printf("%s\n", data->map[i]);
-		i++;
-	}
 	return (NONE_ERROR);
 }

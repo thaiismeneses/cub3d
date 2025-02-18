@@ -12,6 +12,23 @@
 
 #include "../includes/cub3d.h"
 
+void	print_array(char **map)
+{
+	int i = 0;
+	int j;
+
+	while(map[i])
+	{
+		j = 0;
+		while (map[i][j] != '\0')
+		{
+			printf("%c", map[i][j]);
+			j++;
+		}
+		i++;
+	}
+}
+
 void	print_token_list(t_token *head)
 {
 	t_token	*current;

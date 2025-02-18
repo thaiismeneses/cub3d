@@ -70,6 +70,15 @@ typedef struct s_token
 
 }	t_token;
 
+typedef struct s_map
+{
+	char	**map;
+	int		height;
+	int		width;
+	int		x_player;
+	int		y_player;
+}			t_map;
+
 typedef struct s_player
 {
 	char		position;
@@ -177,11 +186,14 @@ int	is_valid_file_path(char *path);
 int	xpm_file(t_token *tokens);
 void	load_texture(t_mlx_data *data);
 
-/*** extra_print.c ***/
+
 int valid_player(t_token *tokens);
 int valid_char(t_token *tokens);
 int break_map(t_token *tokens);
 int map_exist(t_token *tokens);
+
+/*** extra_print.c ***/
+void	print_array(char **map);
 void	print_token_list(t_token *head);
 
 /*** textures ***/
@@ -214,6 +226,7 @@ char **map_to_matrix(t_token *tokens);
 
 /*** frame.c ***/
 char **make_portrat(char **map);
+int	playable_map(t_mlx_data *data);
 
 /*** ray_casting.c ***/
 void	set_values(t_mlx_data *data, int x);
