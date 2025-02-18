@@ -8,6 +8,7 @@ INCLUDES = -I./libft minilibx-linux/cub3d.h
 
 LIBS = libft/libft.a minilibx-linux/libmlx.a -L/usr/X11/lib  -lX11 -lXext -lbsd -lm
 SRCS = src/main.c\
+		src/init_structs.c\
 		src/validation.c\
 		src/map_file.c\
 		src/elements.c\
@@ -16,11 +17,17 @@ SRCS = src/main.c\
 		src/val_map.c\
 		src/textures.c\
 		src/free.c\
+		src/moves.c\
 		src/key_settings.c\
 		src/player.c\
 		src/val_wall.c\
 		src/frame.c\
-		src/wall_utils.c
+		src/wall_utils.c\
+		src/convert_map.c\
+		src/ceiling_and_floor.c\
+		src/create_img.c\
+		src/ray_casting.c\
+		src/mini_map.c\
 
 
 OBJS = $(SRCS:.c=.o)
