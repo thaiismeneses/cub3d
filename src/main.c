@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 	char	**map;
 	t_mlx_data	data;
 
-	data.tokens = NULL;
+	init_data(&data);
 	if (argc != 2)
 		return (error_messages(ARGS_ERROR));
 	map = open_fd(argv[1]);

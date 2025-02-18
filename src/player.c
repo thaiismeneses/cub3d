@@ -6,11 +6,22 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 21:00:11 by thfranco          #+#    #+#             */
-/*   Updated: 2025/02/14 21:56:23 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/02/17 22:30:26 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+void	init_player(t_player *player)
+{
+	player->position = '\0';
+	player->pos_x = 0.0;
+	player->pos_y = 0.0;
+	player->dir_x = 0.0;
+	player->dir_y = 0.0;
+	player->plane_x = 0.0;
+	player->plane_y = 0.0;
+}
 
 void	find_direction(t_mlx_data *data)
 {

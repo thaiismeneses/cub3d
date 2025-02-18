@@ -143,6 +143,7 @@ typedef struct s_data
 	t_player player;
 	t__ray ray;
 	char **map;
+	char **map_frame;
 	int **map_int;
 	t_floor_ceiling floor_ceiling;
 	t_texture textures[6];
@@ -203,6 +204,7 @@ int	free_game(t_mlx_data *data);
 int	handle_board(int keycode, t_mlx_data *data);
 
 /*** player.c ***/
+void	init_player(t_player *player);
 void	find_player(t_mlx_data *data);
 void	find_direction(t_mlx_data *data);
 void	find_plane(t_mlx_data *data);
@@ -214,16 +216,18 @@ char **map_to_matrix(t_token *tokens);
 char **make_portrat(char **map);
 
 /*** ray_casting.c ***/
-void	my_put_pixel(t_img *img, int x, int y, int color);
-void	create_image(t_mlx_data *data);
-void	draw_vertical_line(t_mlx_data *data, int x);
-void	render(t_mlx_data *data);
 void	set_values(t_mlx_data *data, int x);
 void	wall_distance(t_mlx_data *data);
 void	wall_height(t_mlx_data *data);
 void	set_ray_direction(t_mlx_data *data);
 void	algorithm_dda(t_mlx_data *data);
+
+/*** create_img.c ***/
+void	my_put_pixel(t_img *img, int x, int y, int color);
+void	create_image(t_mlx_data *data);
+void	draw_vertical_line(t_mlx_data *data, int x);
 void	ray_casting(t_mlx_data *data);
+void	render(t_mlx_data *data);
 
 /*** convert_map.c ***/
 void	convert_map(t_mlx_data *data);
@@ -238,5 +242,12 @@ void	moviments(t_mlx_data *data, int keycode);
 /*** ceiling_and_floor.c ***/
 void	dist_to_window(t_mlx_data *data, int y, int flag);
 void	draw_ceiling_floor(t_mlx_data *data);
+
+/*** init_structs.c ***/
+void	init_data(t_mlx_data *data);
+void	init_ray(t__ray *ray);
+void	init_floor_ceiling(t_floor_ceiling *floor_ceiling);
+void	init_img(t_img *img);
+void	init_textures(t_texture *texture);
 
 #endif

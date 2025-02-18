@@ -14,9 +14,9 @@
 
 int	rgb_textures(t_token *tokens)
 {
-	int i;
-	int number;
-	char **rgb;
+	int		i;
+	int		number;
+	char	**rgb;
 	t_token	*current;
 
 	current = tokens;
@@ -28,7 +28,7 @@ int	rgb_textures(t_token *tokens)
 			if (rgb == NULL)
 				return (COLOR_ERROR);
 			i = 0;
-			while(rgb[i])
+			while (rgb[i])
 			{
 				number = ft_atoi(rgb[i]);
 				if (number < 0 || number > 255)
@@ -46,7 +46,7 @@ int	rgb_textures(t_token *tokens)
 
 int	is_valid_file_path(char *path)
 {
-	int fd;
+	int	fd;
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
@@ -76,19 +76,20 @@ int	xpm_file(t_token *tokens)
 
 void	load_texture(t_mlx_data *data)
 {
-	int	i;
+	int		i;
 	char	*texture_files[6];
 
-	i = 0;
+	i = -1;
 	texture_files[0] = "assets/redbrick.xpm";
 	texture_files[1] = "assets/mossy.xpm";
 	texture_files[2] = "assets/pillar.xpm";
 	texture_files[3] = "assets/barrel.xpm";
 	texture_files[4] = "assets/sky.xpm";
 	texture_files[5] = "assets/sand.xpm";
-	while (i < 6)
+	while (i++ < 5)
 	{
-		data->textures[i].img = mlx_xpm_file_to_image(data->mlx, texture_files[i] ,
+		data->textures[i].img = mlx_xpm_file_to_image(data->mlx,
+				texture_files[i],
 				&data->textures[i].width, &data->textures[i].height);
 		printf("data->textures[%d].img = %p\n", i, data->textures[i].img);
 		if (!data->textures[i].img)
@@ -96,8 +97,8 @@ void	load_texture(t_mlx_data *data)
 			printf("Error\nTexture file not found\n");
 			exit(1);
 		}
-		data->textures[i].addr = mlx_get_data_addr(data->textures[i].img, &data->textures[i].bits_per_pixel,
+		data->textures[i].addr = mlx_get_data_addr(data->textures[i].img,
+				&data->textures[i].bits_per_pixel,
 				&data->textures[i].line_length, &data->textures[i].endian);
-		i++;
 	}
 }

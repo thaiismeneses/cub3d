@@ -6,7 +6,7 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 18:29:41 by thfranco          #+#    #+#             */
-/*   Updated: 2025/02/16 20:25:56 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/02/17 21:23:32 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ void	draw_ceiling_floor(t_mlx_data *data)
 	int	color_ceiling;
 
 	y = HEIGHT / 2;
+	color_ceiling = 0;
+	color_floor = 0;
 	while (y < HEIGHT)
 	{
 		dist_to_window(data, y, 0);
