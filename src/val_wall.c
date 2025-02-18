@@ -90,13 +90,11 @@ static char **fill_zeros(char **map)
 
 int valid_wall(t_mlx_data *data)
 {
-	char **map;
 	char **new_map;
 
-	map = map_to_matrix(data->tokens);
-	new_map = fill_zeros(map);
+	data->map = map_to_matrix(data->tokens);
+	new_map = fill_zeros(data->map);
 	data->map_frame = make_portrat(new_map);
-	free_matrix(map);
     if (playable_map(data) == MAP_ERROR)
     {
         free_matrix(new_map);
