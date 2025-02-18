@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 	char	**map;
 	t_mlx_data	data;
 
-	data.tokens = NULL;
+	init_data(&data);
 	if (argc != 2)
 		return (error_messages(ARGS_ERROR));
 	map = open_fd(argv[1]);
@@ -39,8 +39,9 @@ int	main(int argc, char **argv)
 	config(&data);
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "Cub3D");
+	load_texture(&data);
 	mlx_loop_hook(data.mlx, game_loop, &data);
-	mlx_key_hook(data.win, handle_board, &data);
+	mlx_hook(data.win, 2, 1L << 0, handle_board, &data);
 	mlx_hook(data.win, 17, 0, free_game, &data);
 	mlx_loop(data.mlx);
 	return (0);

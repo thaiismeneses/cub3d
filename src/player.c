@@ -6,12 +6,22 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 21:00:11 by thfranco          #+#    #+#             */
-/*   Updated: 2025/02/04 11:29:01 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/02/17 22:30:26 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
+void	init_player(t_player *player)
+{
+	player->position = '\0';
+	player->pos_x = 0.0;
+	player->pos_y = 0.0;
+	player->dir_x = 0.0;
+	player->dir_y = 0.0;
+	player->plane_x = 0.0;
+	player->plane_y = 0.0;
+}
 
 void	find_direction(t_mlx_data *data)
 {
@@ -60,6 +70,7 @@ void	find_plane(t_mlx_data *data)
 		data->player.plane_y = -0.66;
 	}
 }
+
 void	find_player(t_mlx_data *data)
 {
 	int	i;
@@ -76,8 +87,8 @@ void	find_player(t_mlx_data *data)
 				|| data->map[j][i] == 'W' || data->map[j][i] == 'E')
 			{
 				data->player.position = data->map[j][i];
-				data->player.pos_x = (float)i;
-				data->player.pos_y = (float)j;
+				data->player.pos_x = (double)i;
+				data->player.pos_y = (double)j;
 				find_direction(data);
 				find_plane(data);
 			}

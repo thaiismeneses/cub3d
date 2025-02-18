@@ -6,19 +6,16 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 14:41:39 by thfranco          #+#    #+#             */
-/*   Updated: 2025/01/25 14:42:08 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/02/12 22:28:30 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	handle_board(int keysym, t_mlx_data *data)
+int	handle_board(int keycode, t_mlx_data *data)
 {
-	if (keysym == 65307)
-	{
-		printf("ESC pressed\n");
-		sleep(1);
+	moviments(data, keycode);
+	if (keycode == XK_Escape)
 		free_game(data);
-	}
 	return (0);
 }
