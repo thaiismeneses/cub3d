@@ -25,7 +25,7 @@
 #define MOVE_SPEED 0.1
 
 /*** ROTATION DEGREE***/
-#define ROTATE 0.2
+#define ROTATE 0.1
 
 /*** SIZE_WINDOW ***/
 # define WIDTH 1920
