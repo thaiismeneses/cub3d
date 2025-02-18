@@ -91,7 +91,6 @@ void	load_texture(t_mlx_data *data)
 		data->textures[i].img = mlx_xpm_file_to_image(data->mlx,
 				texture_files[i],
 				&data->textures[i].width, &data->textures[i].height);
-		printf("data->textures[%d].img = %p\n", i, data->textures[i].img);
 		if (!data->textures[i].img)
 		{
 			printf("Error\nTexture file not found\n");
