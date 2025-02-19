@@ -6,7 +6,7 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 20:38:52 by thfranco          #+#    #+#             */
-/*   Updated: 2025/02/17 22:29:36 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/02/18 23:09:22 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,16 @@ void	init_floor_ceiling(t_floor_ceiling *floor_ceiling)
 	floor_ceiling->tex_ceiling_x = 0;
 	floor_ceiling->tex_ceiling_y = 0;
 	floor_ceiling->current_dist = 0.0;
+	floor_ceiling->floor_step_x = 0.0;
+	floor_ceiling->floor_step_y = 0.0;
+	floor_ceiling->ceiling_step_x = 0.0;
+	floor_ceiling->ceiling_step_y = 0.0;
+	floor_ceiling->ray_dir_x0 = 0.0;
+	floor_ceiling->ray_dir_y0 = 0.0;
+	floor_ceiling->ray_dir_x1 = 0.0;
+	floor_ceiling->ray_dir_y1 = 0.0;
+	floor_ceiling->pos_cur_y = 0;
+	floor_ceiling->hight_player = 0.0;
 }
 
 void	init_ray(t__ray *ray)
