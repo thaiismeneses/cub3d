@@ -74,16 +74,36 @@ int	xpm_file(t_token *tokens)
 	return (NONE_ERROR);
 }
 
+static char *get_texture_path(t_mlx_data *data, int flag)
+{
+	t_token	*current;
+
+	current = data->tokens;
+	while (current && current->next != NULL)
+	{
+		if (current->type == 0 && flag == 0)
+			return (current->data);
+		if (current->type == 1 && flag == 1)
+			return (current->data);
+		if (current->type == 2 && flag == 2)
+			return (current->data);
+		if (current->type == 3 && flag == 3)
+			return (current->data);
+		current = current->next;
+	}
+	return (NULL);
+}
+
 void	load_texture(t_mlx_data *data)
 {
 	int		i;
 	char	*texture_files[6];
 
 	i = -1;
-	texture_files[0] = "assets/redbrick.xpm";
-	texture_files[1] = "assets/mossy.xpm";
-	texture_files[2] = "assets/pillar.xpm";
-	texture_files[3] = "assets/barrel.xpm";
+	texture_files[0] = get_texture_path(data, 0);
+	texture_files[1] = get_texture_path(data, 1);
+	texture_files[2] = get_texture_path(data, 2);
+	texture_files[3] = get_texture_path(data, 3);
 	texture_files[4] = "assets/sky.xpm";
 	texture_files[5] = "assets/sand.xpm";
 	while (i++ < 5)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfuruno- <lfuruno-@student.42.rio>         +#+  +:+       +#+        */
+/*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 14:22:14 by thfranco          #+#    #+#             */
-/*   Updated: 2025/02/08 10:35:37 by lfuruno-         ###   ########.fr       */
+/*   Updated: 2025/02/18 17:41:47 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	free_matrix_int(int **matrix)
 	int	i;
 
 	i = 0;
+	if (!matrix)
+		return ;
 	while (matrix[i])
 		i++;
 	while (i >= 0)

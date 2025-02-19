@@ -25,7 +25,7 @@
 #define MOVE_SPEED 0.1
 
 /*** ROTATION DEGREE***/
-#define ROTATE 0.2
+#define ROTATE 0.1
 
 /*** SIZE_WINDOW ***/
 # define WIDTH 1920
@@ -113,12 +113,22 @@ typedef struct s_ray
 
 typedef struct s_floor_ceiling
 {
+	double ray_dir_x0;
+	double ray_dir_y0;
+	double ray_dir_x1;
+	double ray_dir_y1;
+	double hight_player;
+	int pos_cur_y;
 	double floor_x;
 	double floor_y;
+	double floor_step_x;
+	double floor_step_y;
 	int tex_floor_x;
 	int tex_floor_y;
 	double ceiling_x;
 	double ceiling_y;
+	double ceiling_step_x;
+	double ceiling_step_y;
 	int tex_ceiling_x;
 	int tex_ceiling_y;
 	double current_dist;
@@ -253,7 +263,8 @@ void draw_minimap(t_mlx_data *data);
 void	moviments(t_mlx_data *data, int keycode);
 
 /*** ceiling_and_floor.c ***/
-void	dist_to_window(t_mlx_data *data, int y, int flag);
+void	dist_to_window(t_mlx_data *data, t_floor_ceiling *fc, int y, int flag);
+void	textures_ceiling_floor(t_mlx_data *data, t_floor_ceiling *fc, int flag);
 void	draw_ceiling_floor(t_mlx_data *data);
 
 /*** init_structs.c ***/
