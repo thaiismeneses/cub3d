@@ -6,7 +6,7 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 22:22:07 by thfranco          #+#    #+#             */
-/*   Updated: 2025/02/16 20:37:52 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/02/24 10:53:56 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,29 +54,49 @@ static void	rotate_right(t_mlx_data *data, int keycode)
 
 static void	moviments_front_back(t_mlx_data *data, int keycode)
 {
+	double	move_x;
+	double	move_y;
+
+	move_x = data->player.dir_x * MOVE_SPEED;
+	move_y = data->player.dir_y * MOVE_SPEED;
 	if (keycode == XK_w)
 	{
-		data->player.pos_x += data->player.dir_x * MOVE_SPEED;
-		data->player.pos_y += data->player.dir_y * MOVE_SPEED;
+		if (is_valid_position(data, data->player.pos_x + move_x, data->player.pos_y))
+			data->player.pos_x += move_x;
+		if (is_valid_position(data, data->player.pos_x, data->player.pos_y + move_y))
+			data->player.pos_y += move_y;
+
 	}
 	if (keycode == XK_s)
 	{
-		data->player.pos_x -= data->player.dir_x * MOVE_SPEED;
-		data->player.pos_y -= data->player.dir_y * MOVE_SPEED;
+		if (is_valid_position(data, data->player.pos_x - move_x, data->player.pos_y))
+			data->player.pos_x -=  move_x;
+		if (is_valid_position(data, data->player.pos_x, data->player.pos_y - move_y))
+			data->player.pos_y -=  move_y;
 	}
+
 }
 
 static void	moviments_left_right(t_mlx_data *data, int keycode)
 {
+	double	move_x;
+	double	move_y;
+
+	move_x = data->player.plane_x * MOVE_SPEED;
+	move_y = data->player.plane_y * MOVE_SPEED;
 	if (keycode == XK_a)
 	{
-		data->player.pos_x -= data->player.plane_x * MOVE_SPEED;
-		data->player.pos_y -= data->player.plane_y * MOVE_SPEED;
+		if (is_valid_position(data, data->player.pos_x - move_x, data->player.pos_y))
+			data->player.pos_x -= move_x;
+		if (is_valid_position(data, data->player.pos_x, data->player.pos_y - move_y))
+			data->player.pos_y -= move_y;
 	}
 	if (keycode == XK_d)
 	{
-		data->player.pos_x += data->player.plane_x * MOVE_SPEED;
-		data->player.pos_y += data->player.plane_y * MOVE_SPEED;
+		if (is_valid_position(data, data->player.pos_x + move_x, data->player.pos_y))
+			data->player.pos_x += move_x;
+		if (is_valid_position(data, data->player.pos_x, data->player.pos_y + move_y))
+			data->player.pos_y += move_y;
 	}
 }
 

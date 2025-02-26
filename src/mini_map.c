@@ -6,7 +6,7 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:41:26 by thfranco          #+#    #+#             */
-/*   Updated: 2025/02/12 22:10:00 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/02/24 09:51:54 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	draw_minimap(t_mlx_data *data)
 			if (data->map[y][x] == '1')
 				draw_pixel(data, MINIMAP_OFFSET_X + x * square_size, MINIMAP_OFFSET_Y + y * square_size, WHITE);
 			else if (data->map[y][x] == '0')
-				draw_pixel(data, MINIMAP_OFFSET_X + x * square_size, MINIMAP_OFFSET_Y + y * square_size, BLACK);
+				draw_pixel(data, MINIMAP_OFFSET_X + x * square_size, MINIMAP_OFFSET_Y + y * square_size, BLUE);
 			x++;
 		}
 		y++;

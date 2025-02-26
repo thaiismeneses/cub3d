@@ -36,7 +36,7 @@
 # define MINIMAP_OFFSET_X 20
 # define MINIMAP_OFFSET_Y 20
 # define WHITE 0xFFFFFF
-# define BLACK 0x000000
+# define BLUE 0x219EBC
 # define RED 0xFF0000
 
 /*** ERRORS ***/
@@ -273,5 +273,8 @@ void	init_ray(t__ray *ray);
 void	init_floor_ceiling(t_floor_ceiling *floor_ceiling);
 void	init_img(t_img *img);
 void	init_textures(t_texture *texture);
+
+/*** wall_collision.c  ***/
+int	is_valid_position(t_mlx_data *data, double new_x, double new_y);
 
 #endif

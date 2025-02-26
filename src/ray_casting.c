@@ -6,7 +6,7 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 21:21:58 by thfranco          #+#    #+#             */
-/*   Updated: 2025/02/17 22:40:56 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/02/24 10:59:44 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	set_values(t_mlx_data *data, int x)
 	*/
 	data->ray.ray_dir_x = data->player.dir_x + data->player.plane_x * data->ray.camera_x;
 	data->ray.ray_dir_y = data->player.dir_y + data->player.plane_y * data->ray.camera_x;
-	//Posição do jogador no mapa 
+	//Posição do jogador no mapa
 	data->ray.map_x = (int)data->player.pos_x;
 	data->ray.map_y = (int)data->player.pos_y;
 	//Tamanho do raio entre dois pontos. Calculo o tempo que o raio leva para atravessar um quadrado
@@ -104,7 +104,7 @@ void	wall_distance(t_mlx_data *data)
 			data->ray.tex_num = 1; //Sul
 			else
 			data->ray.tex_num = 0; //Norte
-		}
+	}
 	data->ray.wall_x -= floor(data->ray.wall_x);
 }
 
