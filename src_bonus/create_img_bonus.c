@@ -6,7 +6,7 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 22:37:29 by thfranco          #+#    #+#             */
-/*   Updated: 2025/02/28 10:51:17 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/02/28 10:41:30 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	render(t_mlx_data *data)
 	if (!data->textures[0].img)
 		load_texture(data);
 	create_image(data);
+	draw_ceiling_floor(data);
 	ray_casting(data);
 	draw_minimap(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
