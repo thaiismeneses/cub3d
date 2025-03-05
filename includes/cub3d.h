@@ -156,6 +156,8 @@ typedef struct s_texture
 
 typedef struct s_data
 {
+	int c_color;
+	int f_color;
 	void *mlx;
 	void *win;
 	t_token *tokens;
@@ -192,6 +194,7 @@ t_token	*tokenization(char **map, t_token *data);
 int	map_exist(t_token *tokens);
 
 /*** textures.c ***/
+void get_rgb_color_to_hex(t_mlx_data *data);
 int	is_valid_file_path(char *path);
 int	xpm_file(t_token *tokens);
 void	load_texture(t_mlx_data *data);

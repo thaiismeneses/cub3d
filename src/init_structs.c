@@ -82,6 +82,8 @@ void	init_data(t_mlx_data *data)
 	int	i;
 
 	i = -1;
+	data->c_color = NULL;
+	data->f_color = NULL;
 	data->mlx = NULL;
 	data->win = NULL;
 	data->tokens = NULL;
