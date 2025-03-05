@@ -66,5 +66,6 @@ int	check_errors(t_mlx_data *data)
 	else if (break_map(data->tokens) == MAP_ERROR || valid_char(data->tokens) == MAP_ERROR
 			|| valid_player(data->tokens) == MAP_ERROR || valid_wall(data) == MAP_ERROR)
 		return(error_messages(MAP_ERROR));
+	get_rgb_color_to_hex(data);
 	return (NONE_ERROR);
 }
