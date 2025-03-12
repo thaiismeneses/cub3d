@@ -28,6 +28,7 @@ SRCS = src/main.c\
 		src/create_img.c\
 		src/ray_casting.c\
 		src/mini_map.c\
+		src/ceiling_and_floor.c\
 
 BONUS = src_bonus/main_bonus.c\
 		src_bonus/init_structs_bonus.c\

@@ -266,6 +266,9 @@ void draw_minimap(t_mlx_data *data);
 void	moviments(t_mlx_data *data, int keycode);
 
 /*** ceiling_and_floor.c ***/
+void	draw_ceiling_and_floor(t_mlx_data *data);
+
+/*** ceiling_and_floor_bonus.c ***/
 void	dist_to_window(t_mlx_data *data, t_floor_ceiling *fc, int y, int flag);
 void	textures_ceiling_floor(t_mlx_data *data, t_floor_ceiling *fc, int flag);
 void	draw_ceiling_floor(t_mlx_data *data);

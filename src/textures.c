@@ -23,11 +23,12 @@ void get_rgb_color_to_hex(t_mlx_data *data)
 	{
 		if (current->type == F)
 		{
-			f_rgb = ft_split(current->data, ',')
+			f_rgb = ft_split(current->data, ',');
 			data->f_color = ft_atoi(f_rgb[0]) << 16 \
 							| ft_atoi(f_rgb[1]) << 8 \
             				| ft_atoi(f_rgb[2]);
 			free_matrix(f_rgb);
+			printf("f_color: %d\n", data->f_color);
 		}
 		else if (current->type == C)
 		{
@@ -36,6 +37,7 @@ void get_rgb_color_to_hex(t_mlx_data *data)
 							| ft_atoi(c_rgb[1]) << 8 \
 							| ft_atoi(c_rgb[2]);
 			free_matrix(c_rgb);
+			printf("c_color: %d\n", data->c_color);
 		}
 		current = current->next;
 	}
@@ -57,7 +59,7 @@ static int	ft_isdigit_str(char *str)
 	return (1);
 }
 
-int	rgb_textures(t_mlx_data *data, t_token *tokens)
+int	rgb_textures(t_token *tokens)
 {
 	int		i;
 	int		number;
