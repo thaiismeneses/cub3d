@@ -49,16 +49,15 @@ void draw_vertical_line(t_mlx_data *data, int x)
 		tex_x = data->textures[data->ray.tex_num].width - tex_x -1;
 	if (data->ray.side == 1 && data->ray.ray_dir_y < 0)
 		tex_x = data->textures[data->ray.tex_num].width - tex_x -1;
+	data->ray.step = 1.0 * data->textures[data->ray.tex_num].height / data->ray.line_height;
+	data->ray.tex_pos = (data->ray.draw_start - HEIGHT / 2 + data->ray.line_height / 2) * data->ray.step;
 	y = data->ray.draw_start;
-	// if (data->ray.side == 0)
-	// 	color = 0xFFFFFF;
-	// else
-	// 	color = 0xAAAAAA;
 	while (y < data->ray.draw_end)
 	{
-		tex_y = (int)((y - data->ray.draw_start) *
-			(double)data->textures[data->ray.tex_num].height /
-			(data->ray.draw_end - data->ray.draw_start));
+		tex_y = (int)data->ray.tex_pos;
+		if (tex_y >= data->textures[data->ray.tex_num].height)
+			tex_y = data->textures[data->ray.tex_num].height - 1;
+		data->ray.tex_pos += data->ray.step;
 		color = *((int *)(data->textures[data->ray.tex_num].addr +
 			(tex_y * data->textures[data->ray.tex_num].line_length + tex_x * (data->textures[data->ray.tex_num].bits_per_pixel / 8))));
 		my_put_pixel(&data->img, x, y, color);
@@ -88,6 +87,7 @@ void	render(t_mlx_data *data)
 	if (!data->textures[0].img)
 		load_texture(data);
 	create_image(data);
+	draw_ceiling_and_floor(data);
 	ray_casting(data);
 	draw_minimap(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);

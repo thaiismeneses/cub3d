@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <math.h>
+# include "X11/X.h"
 # include <X11/keysym.h>
 # include <ctype.h> //apagar
 
@@ -108,6 +109,9 @@ typedef struct s_ray
 	int	draw_start;
 	int	draw_end;
 	double wall_x;
+	double line_height;
+	double step;
+	double tex_pos;
 	int	tex_num;
 } t__ray;
 
@@ -169,6 +173,7 @@ typedef struct s_data
 	t_floor_ceiling floor_ceiling;
 	t_texture textures[6];
 	t_img img;
+	int mouse_x;
 }	t_mlx_data;
 
 /*** validation.c ***/
@@ -266,6 +271,9 @@ void draw_minimap(t_mlx_data *data);
 void	moviments(t_mlx_data *data, int keycode);
 
 /*** ceiling_and_floor.c ***/
+void	draw_ceiling_and_floor(t_mlx_data *data);
+
+/*** ceiling_and_floor_bonus.c ***/
 void	dist_to_window(t_mlx_data *data, t_floor_ceiling *fc, int y, int flag);
 void	textures_ceiling_floor(t_mlx_data *data, t_floor_ceiling *fc, int flag);
 void	draw_ceiling_floor(t_mlx_data *data);
@@ -279,5 +287,8 @@ void	init_textures(t_texture *texture);
 
 /*** wall_collision.c  ***/
 int	is_valid_position(t_mlx_data *data, double new_x, double new_y);
+
+/*** move_with_mouse.c ***/
+int	mouse(t_mlx_data *data, int x, int y);
 
 #endif

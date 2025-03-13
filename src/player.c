@@ -87,8 +87,8 @@ void	find_player(t_mlx_data *data)
 				|| data->map[j][i] == 'W' || data->map[j][i] == 'E')
 			{
 				data->player.position = data->map[j][i];
-				data->player.pos_x = (double)i;
-				data->player.pos_y = (double)j;
+				data->player.pos_x = (double)i + 0.5;
+				data->player.pos_y = (double)j + 0.5;
 				find_direction(data);
 				find_plane(data);
 			}
