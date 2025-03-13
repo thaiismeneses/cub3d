@@ -110,13 +110,11 @@ void	wall_distance(t_mlx_data *data)
 
 void	wall_height(t_mlx_data *data)
 {
-	int line_height;
-
-	line_height = (int)(HEIGHT / data->ray.prep_wall_dist);
-	data->ray.draw_start = -line_height / 2 + HEIGHT / 2;
+	data->ray.line_height = (int)(HEIGHT / data->ray.prep_wall_dist);
+	data->ray.draw_start = -data->ray.line_height / 2 + HEIGHT / 2;
 	if (data->ray.draw_start < 0)
 		data->ray.draw_start = 0;
-	data->ray.draw_end = line_height / 2 + HEIGHT / 2;
+	data->ray.draw_end = data->ray.line_height / 2 + HEIGHT / 2;
 	if (data->ray.draw_end >= HEIGHT)
 		data->ray.draw_end = HEIGHT -1;
 }

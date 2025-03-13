@@ -28,6 +28,7 @@ SRCS = src/main.c\
 		src/create_img.c\
 		src/ray_casting.c\
 		src/mini_map.c\
+		src/ceiling_and_floor.c\
 
 BONUS = src_bonus/main_bonus.c\
 		src_bonus/init_structs_bonus.c\
@@ -41,6 +42,7 @@ BONUS = src_bonus/main_bonus.c\
 		src_bonus/free_bonus.c\
 		src_bonus/wall_collision_bonus.c\
 		src_bonus/moves_bonus.c\
+		src_bonus/move_with_mouse_bonus.c\
 		src_bonus/key_settings_bonus.c\
 		src_bonus/player_bonus.c\
 		src_bonus/val_wall_bonus.c\
