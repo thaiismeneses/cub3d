@@ -89,6 +89,8 @@ void	wall_distance(t_mlx_data *data)
 	{
 		data->ray.prep_wall_dist = (data->ray.map_x - data->player.pos_x +
 			(1 - data->ray.step_x) / 2) / data->ray.ray_dir_x;
+		if (data->ray.prep_wall_dist < 0.1)
+			data->ray.prep_wall_dist = 0.1;
 		data->ray.wall_x = data->player.pos_y + data->ray.prep_wall_dist * data->ray.ray_dir_y;
 		if (data->ray.ray_dir_x > 0)
 			data->ray.tex_num = 2; // Leste
@@ -99,24 +101,25 @@ void	wall_distance(t_mlx_data *data)
 	{
 		data->ray.prep_wall_dist = (data->ray.map_y - data->player.pos_y +
 			(1 - data->ray.step_y) / 2) / data->ray.ray_dir_y;
+		if (data->ray.prep_wall_dist < 0.1)
+			data->ray.prep_wall_dist = 0.1;
 		data->ray.wall_x = data->player.pos_x + data->ray.prep_wall_dist * data->ray.ray_dir_x;
 			if (data->ray.ray_dir_y > 0)
 			data->ray.tex_num = 1; //Sul
 			else
 			data->ray.tex_num = 0; //Norte
 	}
-	data->ray.wall_x -= floor(data->ray.wall_x);
+	data->ray.wall_x = fmod(data->ray.wall_x, 1.0);
+	//data->ray.wall_x -= floor(data->ray.wall_x);
 }
 
 void	wall_height(t_mlx_data *data)
 {
-	int line_height;
-
-	line_height = (int)(HEIGHT / data->ray.prep_wall_dist);
-	data->ray.draw_start = -line_height / 2 + HEIGHT / 2;
+	data->ray.line_height = (int)(HEIGHT / data->ray.prep_wall_dist);
+	data->ray.draw_start = -data->ray.line_height / 2 + HEIGHT / 2;
 	if (data->ray.draw_start < 0)
 		data->ray.draw_start = 0;
-	data->ray.draw_end = line_height / 2 + HEIGHT / 2;
+	data->ray.draw_end = data->ray.line_height / 2 + HEIGHT / 2;
 	if (data->ray.draw_end >= HEIGHT)
 		data->ray.draw_end = HEIGHT -1;
 }

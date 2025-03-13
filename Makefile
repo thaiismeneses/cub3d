@@ -42,6 +42,7 @@ BONUS = src_bonus/main_bonus.c\
 		src_bonus/free_bonus.c\
 		src_bonus/wall_collision_bonus.c\
 		src_bonus/moves_bonus.c\
+		src_bonus/move_with_mouse_bonus.c\
 		src_bonus/key_settings_bonus.c\
 		src_bonus/player_bonus.c\
 		src_bonus/val_wall_bonus.c\

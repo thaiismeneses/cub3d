@@ -40,9 +40,10 @@ int	main(int argc, char **argv)
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "Cub3D");
 	load_texture(&data);
-	mlx_loop_hook(data.mlx, game_loop, &data);
 	mlx_hook(data.win, 2, 1L << 0, handle_board, &data);
 	mlx_hook(data.win, 17, 0, free_game, &data);
+	mlx_hook(data.win,06, 1L << 6, mouse, &data);
+	mlx_loop_hook(data.mlx, game_loop, &data);
 	mlx_loop(data.mlx);
 	return (0);
 }
