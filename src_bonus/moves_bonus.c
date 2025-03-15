@@ -106,4 +106,6 @@ void	moviments(t_mlx_data *data, int keycode)
 	moviments_left_right(data, keycode);
 	rotate_right(data, keycode);
 	rotate_left(data, keycode);
+	if (keycode == XK_m)
+		data->mouse_rotation = !data->mouse_rotation;
 }

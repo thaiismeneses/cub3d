@@ -26,6 +26,7 @@
 #define MOVE_SPEED 0.1
 
 /*** ROTATION DEGREE***/
+#define MOUSE_SPEED 0.001
 #define ROTATE 0.1
 
 /*** SIZE_WINDOW ***/
@@ -173,7 +174,7 @@ typedef struct s_data
 	t_floor_ceiling floor_ceiling;
 	t_texture textures[6];
 	t_img img;
-	int mouse_x;
+	int mouse_rotation;
 }	t_mlx_data;
 
 /*** validation.c ***/
@@ -289,6 +290,7 @@ void	init_textures(t_texture *texture);
 int	is_valid_position(t_mlx_data *data, double new_x, double new_y);
 
 /*** move_with_mouse.c ***/
-int	mouse(t_mlx_data *data, int x, int y);
+int	mouse(int x, int y, t_mlx_data *data);
+
 
 #endif
