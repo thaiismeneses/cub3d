@@ -39,8 +39,8 @@ int	main(int argc, char **argv)
 	config(&data);
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "Cub3D");
-	mlx_mouse_hide(data.mlx, data.win);
 	load_texture(&data);
+	load_animation(&data);
 	mlx_hook(data.win, 2, 1L << 0, handle_board, &data);
 	mlx_hook(data.win, 17, 0, free_game, &data);
 	mlx_mouse_move(data.mlx, data.win, WIDTH / 2, HEIGHT / 2);

@@ -53,6 +53,7 @@ BONUS = src_bonus/main_bonus.c\
 		src_bonus/ray_casting_bonus.c\
 		src_bonus/mini_map_bonus.c\
 		src_bonus/ceiling_and_floor_bonus.c\
+		src_bonus/animation_bonus.c\
 
 OBJS = $(SRCS:.c=.o)
 
