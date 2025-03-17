@@ -1,8 +1,9 @@
-NO assets/Frame-3_1.xpm
-SO assets/Frame-1.xpm
-WE assets/Frame-5-_2__1.xpm
-EA assets/Frame-4_1.xpm
-DR assets/Agua.xpm
+
+NO assets/close_trunk.xpm
+SO assets/turtle.xpm
+WE assets/octopus.xpm
+EA assets/fish.xpm
+DR assets/spongebob_house.xpm
 
 F 216,197,168
 C 135,206,235
@@ -10,7 +11,7 @@ C 135,206,235
         1111111111111111111111111
         1000000000110000000000001
         1011000001110000000000001
-        1001000000000000000000001
+        10010000000D0000000000001
 111111111011000001110000000000001
 100000000011000001110111111111111
 11110111111111011100000010001
