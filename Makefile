@@ -98,7 +98,7 @@ val: re
 	$(VALGRIND) ./cub3d maps/default.cub
 
 val_bonus: re bonus
-	$(VALGRIND) ./cub3d maps/default.cub
+	$(VALGRIND) ./cub3d maps/bonus.cub
 
 norm:
 	norminette $(SRCS) ./libft ./includes
