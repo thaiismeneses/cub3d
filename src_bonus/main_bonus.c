@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes_bonus/cub3d_bonus.h"
 
 void	config(t_mlx_data *data)
 {
@@ -40,9 +40,11 @@ int	main(int argc, char **argv)
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "Cub3D");
 	load_texture(&data);
+	load_animation(&data);
 	mlx_hook(data.win, 2, 1L << 0, handle_board, &data);
 	mlx_hook(data.win, 17, 0, free_game, &data);
-	mlx_hook(data.win,06, 1L << 6, mouse, &data);
+	mlx_mouse_move(data.mlx, data.win, WIDTH / 2, HEIGHT / 2);
+	mlx_hook(data.win,6, 1L << 6, mouse, &data);
 	mlx_loop_hook(data.mlx, game_loop, &data);
 	mlx_loop(data.mlx);*/
 	return (0);
