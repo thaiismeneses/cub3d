@@ -150,24 +150,16 @@ t_map	*struct_map(char **map)
 	if (!copy_map)
 		return (NULL);
 	copy_map->map = map;
-	print_array(copy_map->map);
 	copy_map->height = height(map);
-	printf("%i\n", copy_map->height);
 	copy_map->width = width(map);
-	printf("%i\n", copy_map->width);
-	printf("ok\n");
 	xy_player(map, copy_map);
-	printf("X: %i", copy_map->x_player);
-	printf("Y: %i", copy_map->y_player);
 	return (copy_map);
 }
 static void	fill_map(t_map *copy_map, int x, int y)
 {
 	if (x < 0 || x >= copy_map->width || y < 0 || y >= copy_map->height)
 		return;
-	if (copy_map->map[y][x] == '1' || copy_map->map[y][x] == 'N' ||
-		copy_map->map[y][x] == 'S' || copy_map->map[y][x] == 'E' ||
-		copy_map->map[y][x] == 'W')
+	if (copy_map->map[y][x] == '1')
 		return;
 	copy_map->map[y][x] = '1';
 	fill_map(copy_map, x - 1, y);
@@ -185,8 +177,6 @@ static int valid_map(t_map *copy_map)
 	y = copy_map->y_player;
 	if (!copy_map || !copy_map->map)
 		return (MAP_ERROR);
-	printf("Y - 1: %c", copy_map->map[y - 1][x]);
-	printf("Y + 1: %c", copy_map->map[y + 1][x]);
 	if (copy_map->map[y - 1][x] == '1' && copy_map->map[y + 1][x] == '1' &&
 		copy_map->map[y][x - 1] == '1' && copy_map->map[y][x + 1] == '1')
 		return (MAP_ERROR);
@@ -198,8 +188,6 @@ int	playable_map(t_mlx_data *data)
 
 	copy_map = struct_map(data->map_frame);
 	fill_map(copy_map, 1, 1);
-	printf("X: %i", copy_map->x_player);
-	printf("Y: %i", copy_map->y_player);
 	if (valid_map(copy_map) == MAP_ERROR)
 	{
 		free_matrix(copy_map->map);

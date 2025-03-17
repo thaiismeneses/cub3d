@@ -56,7 +56,8 @@ int	valid_char(t_token *tokens)
 				if (current->data[i] != '0' && current->data[i] != '1'
 				&& current->data[i] != 'N' && current->data[i] != 'S'
 				&& current->data[i] != 'E' && current->data[i] != 'W'
-				&& current->data[i] != ' ' && current->data[i] >= 14)
+				&& current->data[i] != ' ' && current->data[i] >= 14
+				&& current->data[i] != 'D')
 				{
 					return (MAP_ERROR);
 				}

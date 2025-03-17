@@ -63,7 +63,7 @@ int	xpm_file(t_token *tokens)
 	while (current != NULL)
 	{
 		if (current->type == NO || current->type == SO
-			|| current->type == WE || current->type == EA)
+			|| current->type == WE || current->type == EA || current->type == DR)
 		{
 			if (check_extension(current->data, ".xpm") == EXTENSION_ERROR
 				|| is_valid_file_path(current->data) == PATH_ERROR)
