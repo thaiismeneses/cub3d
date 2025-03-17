@@ -6,7 +6,7 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:26:13 by thfranco          #+#    #+#             */
-/*   Updated: 2025/03/17 11:05:03 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/03/17 11:22:33 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef enum s_type
 	C, //5
 	NONE, //6
 	MAP, //7
+	DR, //8
 }	t_type;
 
 typedef struct s_token
@@ -122,6 +123,7 @@ typedef struct s_ray
 	double tex_pos;
 	int	tex_num;
 } t__ray;
+
 
 typedef struct s_floor_ceiling
 {
