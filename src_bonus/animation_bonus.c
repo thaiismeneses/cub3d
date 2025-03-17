@@ -6,11 +6,11 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 15:26:59 by thfranco          #+#    #+#             */
-/*   Updated: 2025/03/17 10:48:50 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/03/17 11:01:21 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes_bonus/cub3d_bonus.h"
 
 void	update_animation(t_mlx_data *data)
 {

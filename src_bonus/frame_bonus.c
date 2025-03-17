@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes_bonus/cub3d_bonus.h"
 
 char	**make_portrat(char **map)
 {
@@ -129,7 +129,7 @@ static void	xy_player(char **map, t_map *map_copy)
 		j = 0;
 		while (map[i] && map[i][j] != '\0')
 		{
-			if (map[i][j] == 'N' || map[i][j] == 'W' 
+			if (map[i][j] == 'N' || map[i][j] == 'W'
 				|| map[i][j] == 'S' || map[i][j] == 'E')
 			{
 					map_copy->x_player = j;

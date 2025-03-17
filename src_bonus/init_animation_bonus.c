@@ -6,11 +6,11 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 10:41:32 by thfranco          #+#    #+#             */
-/*   Updated: 2025/03/17 10:45:11 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/03/17 11:02:25 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes_bonus/cub3d_bonus.h"
 
 void	init_animation(t_animation *animation)
 {

@@ -6,11 +6,11 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:16:55 by thfranco          #+#    #+#             */
-/*   Updated: 2025/03/15 18:56:32 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/03/17 11:03:12 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/cub3d.h"
+#include "../includes_bonus/cub3d_bonus.h"
 
 int	mouse(int x, int y, t_mlx_data *data)
 {
