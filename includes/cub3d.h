@@ -18,12 +18,18 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <math.h>
+# include <time.h>
 # include "X11/X.h"
 # include <X11/keysym.h>
 # include <ctype.h> //apagar
 
 /*** SPEED ***/
 #define MOVE_SPEED 0.1
+#define MOUSE_SPEED 0.001
+
+/*** ANIMATION ***/
+#define NUM_JELLYFISH 3
+
 
 /*** ROTATION DEGREE***/
 #define ROTATE 0.1
@@ -159,6 +165,21 @@ typedef struct s_texture
 	int	endian;
 }	t_texture;
 
+typedef struct s_animation
+{
+	t_texture jf[4];
+	int current_frame;
+	int frame_time;
+	int offset_x;
+	int multi_offset_x[NUM_JELLYFISH];
+
+}	t_animation;
+
+typedef struct s_point {
+	int x;
+	int y;
+}	t_point;
+
 typedef struct s_data
 {
 	int c_color;
@@ -173,8 +194,9 @@ typedef struct s_data
 	int **map_int;
 	t_floor_ceiling floor_ceiling;
 	t_texture textures[6];
+	t_animation animation;
 	t_img img;
-	int mouse_x;
+	int mouse_rotation;
 }	t_mlx_data;
 
 /*** validation.c ***/
@@ -289,7 +311,20 @@ void	init_textures(t_texture *texture);
 /*** wall_collision.c  ***/
 int	is_valid_position(t_mlx_data *data, double new_x, double new_y);
 
-/*** move_with_mouse.c ***/
-int	mouse(t_mlx_data *data, int x, int y);
+/*** move_with_mouse_bonus.c ***/
+int	mouse(int x, int y, t_mlx_data *data);
+
+/*** animation_bonus.c ***/
+void	update_animation(t_mlx_data *data);
+void	draw_scaled_pixel(t_mlx_data *data, t_point base, int scale, int color);
+void	draw_jellyfish_instance(t_mlx_data *data, t_point jelly_pos,
+			t_texture current, int scale);
+t_point	calculate_jellyfish_position(t_mlx_data *data, int i,
+		t_texture current, int scale);
+void	render_animation(t_mlx_data *data);
+
+/*** init_animation_bonus.c ***/
+void	init_animation(t_animation *animation);
+void	load_animation(t_mlx_data *data);
 
 #endif

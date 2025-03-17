@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes_bonus/cub3d_bonus.h"
 
 static void	rotate_left(t_mlx_data *data, int keycode)
 {
@@ -106,4 +106,6 @@ void	moviments(t_mlx_data *data, int keycode)
 	moviments_left_right(data, keycode);
 	rotate_right(data, keycode);
 	rotate_left(data, keycode);
+	if (keycode == XK_m)
+		data->mouse_rotation = !data->mouse_rotation;
 }
