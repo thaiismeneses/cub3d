@@ -36,7 +36,7 @@ int	main(int argc, char **argv)
 	data.tokens = tokenization(map, data.tokens);
 	if (check_errors(&data) != NONE_ERROR)
 		return(free_data_struct(&data), 1);
-	/*config(&data);
+	config(&data);
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "Cub3D");
 	load_texture(&data);
@@ -46,6 +46,6 @@ int	main(int argc, char **argv)
 	mlx_mouse_move(data.mlx, data.win, WIDTH / 2, HEIGHT / 2);
 	mlx_hook(data.win,6, 1L << 6, mouse, &data);
 	mlx_loop_hook(data.mlx, game_loop, &data);
-	mlx_loop(data.mlx);*/
+	mlx_loop(data.mlx);
 	return (0);
 }
