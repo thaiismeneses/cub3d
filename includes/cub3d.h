@@ -67,6 +67,7 @@ typedef enum s_type
 	C, //5
 	NONE, //6
 	MAP, //7
+	DR, //8
 }	t_type;
 
 typedef struct s_token

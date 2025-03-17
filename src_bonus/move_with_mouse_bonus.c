@@ -38,3 +38,4 @@ int	mouse(int x, int y, t_mlx_data *data)
 		mlx_mouse_move(data->mlx, data->win, WIDTH / 2, HEIGHT / 2);
 	return (0);
 }
+

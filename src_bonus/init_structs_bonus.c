@@ -97,3 +97,4 @@ void	init_data(t_mlx_data *data)
 	init_animation(&data->animation);
 	data->mouse_rotation = 0;
 }
+
