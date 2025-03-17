@@ -6,7 +6,7 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 20:38:52 by thfranco          #+#    #+#             */
-/*   Updated: 2025/03/15 18:49:15 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/03/17 10:45:35 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,6 @@ void	init_data(t_mlx_data *data)
 	data->map = NULL;
 	data->map_frame = NULL;
 	data->map_int = NULL;
+	init_animation(&data->animation);
 	data->mouse_rotation = 0;
 }

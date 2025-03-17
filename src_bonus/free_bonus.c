@@ -80,6 +80,9 @@ int	free_game(t_mlx_data *data)
 	i = -1;
 	while (i++ < 5)
 		mlx_destroy_image(data->mlx, data->textures[i].img);
+	i = -1;
+	while (i++ < 3)
+		mlx_destroy_image(data->mlx, data->animation.jf[i].img);
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
 	free_data_struct(data);

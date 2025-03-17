@@ -314,7 +314,16 @@ int	is_valid_position(t_mlx_data *data, double new_x, double new_y);
 int	mouse(int x, int y, t_mlx_data *data);
 
 /*** animation_bonus.c ***/
-void	load_animation(t_mlx_data *data);
 void	update_animation(t_mlx_data *data);
+void	draw_scaled_pixel(t_mlx_data *data, t_point base, int scale, int color);
+void	draw_jellyfish_instance(t_mlx_data *data, t_point jelly_pos,
+			t_texture current, int scale);
+t_point	calculate_jellyfish_position(t_mlx_data *data, int i,
+		t_texture current, int scale);
 void	render_animation(t_mlx_data *data);
+
+/*** init_animation_bonus.c ***/
+void	init_animation(t_animation *animation);
+void	load_animation(t_mlx_data *data);
+
 #endif
