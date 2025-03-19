@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfuruno- <lfuruno-@student.42.rio>         +#+  +:+       +#+        */
+/*   By: lfuruno- <lfuruno-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:26:13 by thfranco          #+#    #+#             */
-/*   Updated: 2025/03/19 13:16:36 by lfuruno-         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:25:18 by lfuruno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,6 +217,8 @@ int	error_messages(int error);
 int	check_errors(t_mlx_data *data);
 
 /*** map_file ***/
+int	height(char **map);
+int	width(char **map);
 char	**open_fd(char *map_ext);
 
 /*** elements.c ***/
@@ -279,6 +281,8 @@ char **map_to_matrix(t_token *tokens);
 
 /*** frame.c ***/
 char **make_portrat(char **map);
+
+/*** playable_map ***/
 int	playable_map(t_mlx_data *data);
 
 /*** ray_casting.c ***/
@@ -314,12 +318,15 @@ void	textures_ceiling_floor(t_mlx_data *data, t_floor_ceiling *fc, int flag);
 void	draw_ceiling_floor(t_mlx_data *data);
 
 /*** init_structs.c ***/
-void init_portrat(t_portrat *portrat);
 void	init_data(t_mlx_data *data);
 void	init_ray(t__ray *ray);
 void	init_floor_ceiling(t_floor_ceiling *floor_ceiling);
 void	init_img(t_img *img);
 void	init_textures(t_texture *texture);
+
+/*** init_strcucts_two.c */
+t_map	*struct_map(char **map);
+void init_portrat(t_portrat *portrat);
 
 /*** wall_collision.c  ***/
 int	is_valid_position(t_mlx_data *data, double new_x, double new_y);

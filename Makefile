@@ -29,6 +29,10 @@ SRCS = src/main.c\
 		src/ray_casting.c\
 		src/mini_map.c\
 		src/ceiling_and_floor.c\
+		src/playable_map.c\
+		src/init_structs_two.c\
+		src/tokenization.c\
+		src/rgb.c\
 
 BONUS = src_bonus/main_bonus.c\
 		src_bonus/init_structs_bonus.c\
@@ -55,6 +59,10 @@ BONUS = src_bonus/main_bonus.c\
 		src_bonus/ceiling_and_floor_bonus.c\
 		src_bonus/init_animation_bonus.c\
 		src_bonus/animation_bonus.c\
+		src/playable_map_bonus.c\
+		src/init_structs_two_bonus.c\
+		src/tokenization_bonus.c\
+		src/rgb_bonus.c\
 
 
 OBJS = $(SRCS:.c=.o)

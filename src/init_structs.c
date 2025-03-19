@@ -12,14 +12,6 @@
 
 #include "../includes/cub3d.h"
 
-void init_portrat(t_portrat *portrat)
-{
-	portrat->lines = 0;
-	portrat->columns = 0;
-	portrat->i = 0;
-	portrat->j = 0;
-	portrat->map_portrat = NULL;
-}
 
 void	init_img(t_img *img)
 {

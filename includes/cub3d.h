@@ -218,6 +218,8 @@ int	error_messages(int error);
 int	check_errors(t_mlx_data *data);
 
 /*** map_file ***/
+int	height(char **map);
+int	width(char **map);
 char	**open_fd(char *map_ext);
 
 /*** elements.c ***/
@@ -229,13 +231,18 @@ int	val_texture(t_token *tokens);
 /*** parse.c ***/
 char	*get_token(char *cmd, int i, int start);
 t_token	*set_token_list(t_token *data, int type, char *value);
+
+/*** tokenization.c ***/
 t_token	*tokenization(char **map, t_token *data);
 
 /*** val_map.c ***/
 int	map_exist(t_token *tokens);
 
-/*** textures.c ***/
+/*** rgb.c ***/
 void get_rgb_color_to_hex(t_mlx_data *data);
+int	rgb_textures(t_token *tokens);
+
+/*** textures.c ***/
 int	is_valid_file_path(char *path);
 int	xpm_file(t_token *tokens);
 void	load_texture(t_mlx_data *data);
@@ -263,7 +270,6 @@ int valid_wall(t_mlx_data *data);
 void	free_list(t_token *token);
 void	free_matrix(char **matrix);
 void	free_matrix_int(int **matrix);
-void	free_data_struct(t_mlx_data *data);
 int	free_game(t_mlx_data *data);
 
 /*** key_settings.c ***/
@@ -279,7 +285,9 @@ void	find_plane(t_mlx_data *data);
 char **map_to_matrix(t_token *tokens);
 
 /*** frame.c ***/
-char **make_portrat(char **map);
+char	**make_portrat(char **map);
+
+/*** playable_map ***/
 int	playable_map(t_mlx_data *data);
 
 /*** ray_casting.c ***/
@@ -299,7 +307,6 @@ void	render(t_mlx_data *data);
 /*** convert_map.c ***/
 void	convert_map(t_mlx_data *data);
 
-
 /*** mini_map.c ***/
 void draw_minimap(t_mlx_data *data);
 
@@ -315,12 +322,15 @@ void	textures_ceiling_floor(t_mlx_data *data, t_floor_ceiling *fc, int flag);
 void	draw_ceiling_floor(t_mlx_data *data);
 
 /*** init_structs.c ***/
-void init_portrat(t_portrat *portrat);
 void	init_data(t_mlx_data *data);
 void	init_ray(t__ray *ray);
 void	init_floor_ceiling(t_floor_ceiling *floor_ceiling);
 void	init_img(t_img *img);
 void	init_textures(t_texture *texture);
+
+/*** init_structs_two.c */
+void init_portrat(t_portrat *portrat);
+t_map	*struct_map(char **map);
 
 /*** wall_collision.c  ***/
 int	is_valid_position(t_mlx_data *data, double new_x, double new_y);
