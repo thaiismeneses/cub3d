@@ -23,6 +23,9 @@
 # include <X11/keysym.h>
 # include <ctype.h> //apagar
 
+/*** PADDING ***/
+#define PADDING 0.2
+
 /*** SPEED ***/
 #define MOVE_SPEED 0.1
 #define MOUSE_SPEED 0.001

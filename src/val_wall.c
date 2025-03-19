@@ -43,10 +43,31 @@ static int get_max_width(char **map)
 	return (max_width);
 }
 
+static void put_zeros(char **map, char **new_map, int i)
+{
+	int j;
+
+	j = 0;
+	while (map[i][j] != '\0')
+	{
+		if (map[i][j] == ' ')
+		{
+			if (verify_location(map, i, j) == 1)
+				new_map[i][j] = '0';
+			else
+				new_map[i][j] = ' ';
+		}
+		else if (map[i][j] <= 13)
+			new_map[i][j] = '0';
+		else
+			new_map[i][j] = map[i][j];
+		j++;
+	}
+}
+
 static char **fill_zeros(char **map)
 {
 	int i;
-	int j;
 	int max_width;
 	int num_rows;
 	char **new_map;
@@ -66,22 +87,7 @@ static char **fill_zeros(char **map)
 			return (NULL);
 		ft_memset(new_map[i], '0', max_width);
 		new_map[i][max_width] = '\0';
-		j = 0;
-		while (map[i][j] != '\0')
-		{
-			if (map[i][j] == ' ')
-			{
-				if (verify_location(map, i, j) == 1)
-					new_map[i][j] = '0';
-				else
-					new_map[i][j] = ' ';
-			}
-			else if (map[i][j] <= 13)
-				new_map[i][j] = '0';
-			else
-				new_map[i][j] = map[i][j];
-			j++;
-		}
+		put_zeros(map, new_map, i);
 		i++;
 	}
 	new_map[num_rows] = NULL;
