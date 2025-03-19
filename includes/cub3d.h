@@ -151,10 +151,10 @@ typedef struct s_floor_ceiling
 typedef struct s_img
 {
 	void	*img;
-	char	*addr; //endereço da memória da imagem
+	char	*addr;
 	int	bits_per_pixel;
-	int	line_length; //Quantidade de bytes por linha
-	int	endian; //Ordem dos bytes na memória
+	int	line_length;
+	int	endian;
 }	t_img;
 
 typedef struct s_texture
@@ -178,7 +178,8 @@ typedef struct s_animation
 
 }	t_animation;
 
-typedef struct s_point {
+typedef struct s_point 
+{
 	int x;
 	int y;
 }	t_point;
@@ -201,6 +202,15 @@ typedef struct s_data
 	t_img img;
 	int mouse_rotation;
 }	t_mlx_data;
+
+typedef struct s_portrat
+{
+	size_t lines;
+	size_t columns;
+	size_t i;
+	size_t j;
+	char **map_portrat;
+}	t_portrat;
 
 /*** validation.c ***/
 int	check_extension(char *argv, char *ext);
@@ -305,6 +315,7 @@ void	textures_ceiling_floor(t_mlx_data *data, t_floor_ceiling *fc, int flag);
 void	draw_ceiling_floor(t_mlx_data *data);
 
 /*** init_structs.c ***/
+void init_portrat(t_portrat *portrat);
 void	init_data(t_mlx_data *data);
 void	init_ray(t__ray *ray);
 void	init_floor_ceiling(t_floor_ceiling *floor_ceiling);

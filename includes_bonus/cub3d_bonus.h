@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
+/*   By: lfuruno- <lfuruno-@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:26:13 by thfranco          #+#    #+#             */
-/*   Updated: 2025/03/17 11:22:33 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/03/19 13:16:36 by lfuruno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,6 +202,15 @@ typedef struct s_data
 	int mouse_rotation;
 }	t_mlx_data;
 
+typedef struct s_portrat
+{
+	size_t lines;
+	size_t columns;
+	size_t i;
+	size_t j;
+	char **map_portrat;
+}	t_portrat;
+
 /*** validation.c ***/
 int	check_extension(char *argv, char *ext);
 int	error_messages(int error);
@@ -305,6 +314,7 @@ void	textures_ceiling_floor(t_mlx_data *data, t_floor_ceiling *fc, int flag);
 void	draw_ceiling_floor(t_mlx_data *data);
 
 /*** init_structs.c ***/
+void init_portrat(t_portrat *portrat);
 void	init_data(t_mlx_data *data);
 void	init_ray(t__ray *ray);
 void	init_floor_ceiling(t_floor_ceiling *floor_ceiling);

@@ -41,7 +41,6 @@ void get_rgb_color_to_hex(t_mlx_data *data)
 	}
 }
 
-
 int is_valid_number(char **rgb)
 {
 	int i;
