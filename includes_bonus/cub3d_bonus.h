@@ -6,7 +6,7 @@
 /*   By: lfuruno- <lfuruno-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:26:13 by thfranco          #+#    #+#             */
-/*   Updated: 2025/03/19 15:25:18 by lfuruno-         ###   ########.fr       */
+/*   Updated: 2025/03/19 17:34:41 by lfuruno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,6 +230,8 @@ int	val_texture(t_token *tokens);
 /*** parse.c ***/
 char	*get_token(char *cmd, int i, int start);
 t_token	*set_token_list(t_token *data, int type, char *value);
+
+/*** tokenization.c ***/
 t_token	*tokenization(char **map, t_token *data);
 
 /*** val_map.c ***/
@@ -252,13 +254,14 @@ void	print_array(char **map);
 void	print_token_list(t_token *head);
 
 /*** textures ***/
-int rgb_textures(t_token *tokens);
 int is_valid_file_path(char *path);
 int xpm_file(t_token *tokens);
 
+/*** rgb.c ***/
+int rgb_textures(t_token *tokens);
+
 /*** valid_wall ***/
 int valid_wall(t_mlx_data *data);
-
 
 /*** free.c ***/
 void	free_list(t_token *token);
@@ -283,6 +286,7 @@ char **map_to_matrix(t_token *tokens);
 char **make_portrat(char **map);
 
 /*** playable_map ***/
+void	xy_player(char **map, t_map *map_copy);
 int	playable_map(t_mlx_data *data);
 
 /*** ray_casting.c ***/

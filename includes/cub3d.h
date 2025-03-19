@@ -225,7 +225,6 @@ char	**open_fd(char *map_ext);
 /*** elements.c ***/
 t_type	find_type(char *map, int i);
 int	type_index(t_type type, int i);
-int	verify_order(t_token *tokens);
 int	val_texture(t_token *tokens);
 
 /*** parse.c ***/
@@ -243,6 +242,7 @@ void get_rgb_color_to_hex(t_mlx_data *data);
 int	rgb_textures(t_token *tokens);
 
 /*** textures.c ***/
+int	verify_order(t_token *tokens);
 int	is_valid_file_path(char *path);
 int	xpm_file(t_token *tokens);
 void	load_texture(t_mlx_data *data);
@@ -270,6 +270,7 @@ int valid_wall(t_mlx_data *data);
 void	free_list(t_token *token);
 void	free_matrix(char **matrix);
 void	free_matrix_int(int **matrix);
+void	free_data_struct(t_mlx_data *data);
 int	free_game(t_mlx_data *data);
 
 /*** key_settings.c ***/
@@ -288,6 +289,7 @@ char **map_to_matrix(t_token *tokens);
 char	**make_portrat(char **map);
 
 /*** playable_map ***/
+void	xy_player(char **map, t_map *map_copy);
 int	playable_map(t_mlx_data *data);
 
 /*** ray_casting.c ***/

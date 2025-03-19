@@ -6,16 +6,16 @@
 /*   By: lfuruno- <lfuruno-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 14:57:55 by thfranco          #+#    #+#             */
-/*   Updated: 2025/03/19 14:35:59 by lfuruno-         ###   ########.fr       */
+/*   Updated: 2025/03/19 17:54:11 by lfuruno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static int columns_lines(char **map, t_portrat *portrat)
+static int	columns_lines(char **map, t_portrat *portrat)
 {
-	int i;
-	size_t len;
+	int		i;
+	size_t	len;
 
 	i = 0;
 	while (map[i])
@@ -32,7 +32,7 @@ static int columns_lines(char **map, t_portrat *portrat)
 	return (i);
 }
 
-static void malloc_line(t_portrat *portrat, size_t i)
+static void	malloc_line(t_portrat *portrat, size_t i)
 {
 	portrat->map_portrat[i] = malloc(portrat->columns + 2);
 	if (!portrat->map_portrat[i])
@@ -45,11 +45,12 @@ static void malloc_line(t_portrat *portrat, size_t i)
 
 void	put_on_portrat(char **map, t_portrat *portrat, size_t i, size_t j)
 {
-	size_t original_len;
+	size_t	original_len;
 
 	if (i < 2 || i >= portrat->lines - 2 || j < 2 || j >= portrat->columns - 2)
 	{
-		if (i == 0 || i == portrat->lines - 1 || j == 0 || j == portrat->columns - 1)
+		if (i == 0 || i == portrat->lines - 1
+			|| j == 0 || j == portrat->columns - 1)
 			portrat->map_portrat[i][j] = '1';
 		else
 			portrat->map_portrat[i][j] = '0';
@@ -68,8 +69,8 @@ void	put_on_portrat(char **map, t_portrat *portrat, size_t i, size_t j)
 
 char	**make_portrat(char **map)
 {
-	size_t i;
-	size_t j;
+	size_t		i;
+	size_t		j;
 	t_portrat	portrat;
 
 	init_portrat(&portrat);

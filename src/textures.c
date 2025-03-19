@@ -12,6 +12,27 @@
 
 #include "../includes/cub3d.h"
 
+int	verify_order(t_token *tokens)
+{
+	int		count;
+	t_token	*current;
+
+	count = 0;
+	current = tokens;
+	while (current != NULL)
+	{
+		if (current->type != MAP && current->type != NONE)
+			count++;
+		else if (current->type == MAP)
+		{
+			if (count != 6)
+				return (TEXTURE_ERROR);
+		}
+		current = current->next;
+	}
+	return (NONE_ERROR);
+}
+
 int	is_valid_file_path(char *path)
 {
 	int	fd;

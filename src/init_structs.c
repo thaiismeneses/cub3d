@@ -12,7 +12,6 @@
 
 #include "../includes/cub3d.h"
 
-
 void	init_img(t_img *img)
 {
 	img->img = NULL;

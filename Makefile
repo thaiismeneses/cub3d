@@ -59,10 +59,10 @@ BONUS = src_bonus/main_bonus.c\
 		src_bonus/ceiling_and_floor_bonus.c\
 		src_bonus/init_animation_bonus.c\
 		src_bonus/animation_bonus.c\
-		src/playable_map_bonus.c\
-		src/init_structs_two_bonus.c\
-		src/tokenization_bonus.c\
-		src/rgb_bonus.c\
+		src_bonus/playable_map_bonus.c\
+		src_bonus/init_structs_two_bonus.c\
+		src_bonus/tokenization_bonus.c\
+		src_bonus/rgb_bonus.c\
 
 
 OBJS = $(SRCS:.c=.o)

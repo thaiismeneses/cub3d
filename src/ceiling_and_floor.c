@@ -6,12 +6,11 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 11:00:46 by thfranco          #+#    #+#             */
-/*   Updated: 2025/03/12 11:12:49 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/03/19 17:37:37 by lfuruno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
 
 void	draw_ceiling_and_floor(t_mlx_data *data)
 {

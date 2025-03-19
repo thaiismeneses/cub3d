@@ -6,14 +6,13 @@
 /*   By: lfuruno- <lfuruno-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 14:59:51 by lfuruno-          #+#    #+#             */
-/*   Updated: 2025/03/19 15:02:47 by lfuruno-         ###   ########.fr       */
+/*   Updated: 2025/03/19 17:55:14 by lfuruno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-
-void init_portrat(t_portrat *portrat)
+void	init_portrat(t_portrat *portrat)
 {
 	portrat->lines = 0;
 	portrat->columns = 0;
@@ -31,7 +30,7 @@ t_map	*struct_map(char **map)
 		return (NULL);
 	copy_map->map = map;
 	copy_map->height = height(map);
-	copy_map->width = width(map);;
+	copy_map->width = width(map);
 	xy_player(map, copy_map);
 	return (copy_map);
 }

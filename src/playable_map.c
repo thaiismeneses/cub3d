@@ -6,13 +6,13 @@
 /*   By: lfuruno- <lfuruno-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 14:31:53 by lfuruno-          #+#    #+#             */
-/*   Updated: 2025/03/19 14:55:39 by lfuruno-         ###   ########.fr       */
+/*   Updated: 2025/03/19 18:03:23 by lfuruno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static void	xy_player(char **map, t_map *map_copy)
+void	xy_player(char **map, t_map *map_copy)
 {
 	int	i;
 	int	j;
@@ -23,12 +23,12 @@ static void	xy_player(char **map, t_map *map_copy)
 		j = 0;
 		while (map[i] && map[i][j] != '\0')
 		{
-			if (map[i][j] == 'N' || map[i][j] == 'W' 
+			if (map[i][j] == 'N' || map[i][j] == 'W'
 				|| map[i][j] == 'S' || map[i][j] == 'E')
 			{
-					map_copy->x_player = j;
-					map_copy->y_player = i;
-					break ;
+				map_copy->x_player = j;
+				map_copy->y_player = i;
+				break ;
 			}
 			j++;
 		}
@@ -39,9 +39,9 @@ static void	xy_player(char **map, t_map *map_copy)
 static void	fill_map(t_map *copy_map, int x, int y)
 {
 	if (x < 0 || x >= copy_map->width || y < 0 || y >= copy_map->height)
-		return;
+		return ;
 	if (copy_map->map[y][x] == '1')
-		return;
+		return ;
 	copy_map->map[y][x] = '1';
 	fill_map(copy_map, x - 1, y);
 	fill_map(copy_map, x + 1, y);
@@ -49,10 +49,10 @@ static void	fill_map(t_map *copy_map, int x, int y)
 	fill_map(copy_map, x, y + 1);
 }
 
-static int valid_map(t_map *copy_map)
+static int	valid_map(t_map *copy_map)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = copy_map->x_player;
 	y = copy_map->y_player;
@@ -61,8 +61,9 @@ static int valid_map(t_map *copy_map)
 	if (copy_map->map[y - 1][x] == '1' && copy_map->map[y + 1][x] == '1' &&
 		copy_map->map[y][x - 1] == '1' && copy_map->map[y][x + 1] == '1')
 		return (MAP_ERROR);
-	return(NONE_ERROR);
+	return (NONE_ERROR);
 }
+
 int	playable_map(t_mlx_data *data)
 {
 	t_map	*copy_map;

@@ -6,7 +6,7 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 22:37:29 by thfranco          #+#    #+#             */
-/*   Updated: 2025/02/28 10:51:17 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/03/19 17:45:29 by lfuruno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,22 @@ void	create_image(t_mlx_data *data)
 	}
 }
 
-void draw_vertical_line(t_mlx_data *data, int x)
+void	draw_vertical_line(t_mlx_data *data, int x)
 {
-	int color;
-	int y;
-	int tex_x;
-	int tex_y;
+	int	color;
+	int	y;
+	int	tex_x;
+	int	tex_y;
 
 	tex_x = (int)(data->ray.wall_x * data->textures[data->ray.tex_num].width);
 	if (data->ray.side == 0 && data->ray.ray_dir_x > 0)
 		tex_x = data->textures[data->ray.tex_num].width - tex_x -1;
 	if (data->ray.side == 1 && data->ray.ray_dir_y < 0)
 		tex_x = data->textures[data->ray.tex_num].width - tex_x -1;
-	data->ray.step = 1.0 * data->textures[data->ray.tex_num].height / data->ray.line_height;
-	data->ray.tex_pos = (data->ray.draw_start - HEIGHT / 2 + data->ray.line_height / 2) * data->ray.step;
+	data->ray.step = 1.0 * data->textures[data->ray.tex_num].height
+		/ data->ray.line_height;
+	data->ray.tex_pos = (data->ray.draw_start - HEIGHT / 2
+			+ data->ray.line_height / 2) * data->ray.step;
 	y = data->ray.draw_start;
 	while (y < data->ray.draw_end)
 	{
@@ -58,8 +60,10 @@ void draw_vertical_line(t_mlx_data *data, int x)
 		if (tex_y >= data->textures[data->ray.tex_num].height)
 			tex_y = data->textures[data->ray.tex_num].height - 1;
 		data->ray.tex_pos += data->ray.step;
-		color = *((int *)(data->textures[data->ray.tex_num].addr +
-			(tex_y * data->textures[data->ray.tex_num].line_length + tex_x * (data->textures[data->ray.tex_num].bits_per_pixel / 8))));
+		color = *((int *)(data->textures[data->ray.tex_num].addr
+					+ (tex_y * data->textures[data->ray.tex_num].line_length
+						+ tex_x * (data->textures
+						[data->ray.tex_num].bits_per_pixel / 8))));
 		my_put_pixel(&data->img, x, y, color);
 		y++;
 	}

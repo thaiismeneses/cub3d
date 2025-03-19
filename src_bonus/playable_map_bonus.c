@@ -6,13 +6,13 @@
 /*   By: lfuruno- <lfuruno-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:14:21 by lfuruno-          #+#    #+#             */
-/*   Updated: 2025/03/19 15:24:13 by lfuruno-         ###   ########.fr       */
+/*   Updated: 2025/03/19 16:23:07 by lfuruno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes_bonus/cub3d_bonus.h"
 
-static void	xy_player(char **map, t_map *map_copy)
+void	xy_player(char **map, t_map *map_copy)
 {
 	int	i;
 	int	j;

@@ -27,6 +27,7 @@ char	*get_token(char *cmd, int i, int start)
 	}
 	return (token);
 }
+
 static void	add_node(t_token **data, t_type type, char *value)
 {
 	t_token	*new_node;
