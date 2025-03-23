@@ -6,7 +6,7 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:26:13 by thfranco          #+#    #+#             */
-/*   Updated: 2025/03/23 14:35:12 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/03/23 16:02:01 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ typedef struct s_floor_ceiling
 	double ray_dir_x1;
 	double ray_dir_y1;
 	double hight_player;
-	int pos_cur_y;
+	double pos_cur_y;
 	double floor_x;
 	double floor_y;
 	double floor_step_x;
