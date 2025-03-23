@@ -22,10 +22,10 @@ int	mouse(int x, int y, t_mlx_data *data)
 	if (!data->mouse_rotation)
 		return (0);
 
-	if (x < (WIDTH / 4))
-		angle = -((WIDTH / 4) - x) * MOUSE_SPEED;
-	else if (x > ((3 * WIDTH) / 4))
-		angle = (x - ((3 * WIDTH) / 4)) * MOUSE_SPEED;
+	if (x >= (WIDTH / 4) && x < (WIDTH / 2))
+		angle = -((WIDTH / 2) - x) * MOUSE_SPEED;
+	else if (x >= (WIDTH / 2) && x < ((3 * WIDTH) / 4))
+		angle = (x - (WIDTH / 2)) * MOUSE_SPEED;
 	else
 		angle = 0;
 	old_dir_x = data->player.dir_x;

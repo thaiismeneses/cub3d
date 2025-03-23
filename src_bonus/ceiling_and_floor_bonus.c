@@ -22,13 +22,13 @@ void	set_direction_ray(t_mlx_data *data)
 
 void	dist_to_window(t_mlx_data *data, t_floor_ceiling *fc, int y, int flag)
 {
-	fc->pos_cur_y = y - HEIGHT / 2;
+	fc->pos_cur_y = y - 539 ;
 	fc->hight_player = 0.5 * HEIGHT;
 	if (flag == 0)
 	{
 		fc->current_dist = fc->hight_player / fc->pos_cur_y;
-		fc->floor_step_x = fc->current_dist * (fc->ray_dir_x1 - fc->ray_dir_x0) / WIDTH;;
-		fc->floor_step_y = fc->current_dist * (fc->ray_dir_y1 - fc->ray_dir_y0) / HEIGHT;
+		fc->floor_step_x = fc->current_dist * (fc->ray_dir_x1 - fc->ray_dir_x0) / WIDTH;
+		fc->floor_step_y = fc->current_dist * (fc->ray_dir_y1 - fc->ray_dir_y0) / WIDTH;
 		fc->floor_x = data->player.pos_x + fc->current_dist * fc->ray_dir_x0;
 		fc->floor_y = data->player.pos_y + fc->current_dist * fc->ray_dir_y0;
 	}
@@ -36,7 +36,7 @@ void	dist_to_window(t_mlx_data *data, t_floor_ceiling *fc, int y, int flag)
 	{
 		fc->current_dist = fc->hight_player / (fc->pos_cur_y);
 		fc->ceiling_step_x = fc->current_dist * (fc->ray_dir_x1 - fc->ray_dir_x0) / WIDTH;
-		fc->ceiling_step_y = fc->current_dist * (fc->ray_dir_y1 - fc->ray_dir_y0) / HEIGHT;
+		fc->ceiling_step_y = fc->current_dist * (fc->ray_dir_y1 - fc->ray_dir_y0) / WIDTH;
 		fc->ceiling_x = data->player.pos_x + fc->current_dist * fc->ray_dir_x0;
 		fc->ceiling_y = data->player.pos_y + fc->current_dist * fc->ray_dir_y0;
 	}

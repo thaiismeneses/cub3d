@@ -6,7 +6,7 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:26:13 by thfranco          #+#    #+#             */
-/*   Updated: 2025/03/17 11:22:33 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/03/23 19:08:49 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 /*** SPEED ***/
 # define MOVE_SPEED 0.1
-# define MOUSE_SPEED 0.001
+# define MOUSE_SPEED 0.0001
 
 /*** ANIMATION ***/
 # define NUM_JELLYFISH 3
@@ -122,6 +122,8 @@ typedef struct s_ray
 	double step;
 	double tex_pos;
 	int	tex_num;
+	int	tex_x;
+	int	is_door;
 } t__ray;
 
 
@@ -132,7 +134,7 @@ typedef struct s_floor_ceiling
 	double ray_dir_x1;
 	double ray_dir_y1;
 	double hight_player;
-	int pos_cur_y;
+	double pos_cur_y;
 	double floor_x;
 	double floor_y;
 	double floor_step_x;
@@ -196,7 +198,7 @@ typedef struct s_data
 	char **map_frame;
 	int **map_int;
 	t_floor_ceiling floor_ceiling;
-	t_texture textures[6];
+	t_texture textures[7];
 	t_animation animation;
 	t_img img;
 	int mouse_rotation;

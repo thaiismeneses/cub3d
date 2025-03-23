@@ -78,7 +78,7 @@ int	free_game(t_mlx_data *data)
 	int	i;
 
 	i = -1;
-	while (i++ < 5)
+	while (i++ < 6)
 		mlx_destroy_image(data->mlx, data->textures[i].img);
 	i = -1;
 	while (i++ < 3)
