@@ -6,7 +6,7 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:26:13 by thfranco          #+#    #+#             */
-/*   Updated: 2025/03/17 11:22:33 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/03/23 13:57:12 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ typedef struct s_ray
 	double step;
 	double tex_pos;
 	int	tex_num;
+	int	tex_x;
 } t__ray;
 
 
