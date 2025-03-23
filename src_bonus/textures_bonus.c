@@ -89,6 +89,8 @@ static char *get_texture_path(t_mlx_data *data, int flag)
 			return (current->data);
 		if (current->type == 3 && flag == 3)
 			return (current->data);
+		if (current->type == 8 && flag == 8)
+			return (current->data);
 		current = current->next;
 	}
 	return (NULL);
@@ -106,7 +108,8 @@ void	load_texture(t_mlx_data *data)
 	texture_files[3] = get_texture_path(data, 3);
 	texture_files[4] = "assets/sky.xpm";
 	texture_files[5] = "assets/sand.xpm";
-	while (i++ < 5)
+	texture_files[6] = get_texture_path(data, 8);
+	while (i++ < 6)
 	{
 		data->textures[i].img = mlx_xpm_file_to_image(data->mlx,
 				texture_files[i],

@@ -6,7 +6,7 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:26:13 by thfranco          #+#    #+#             */
-/*   Updated: 2025/03/23 16:02:01 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/03/23 19:08:49 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ typedef struct s_ray
 	double tex_pos;
 	int	tex_num;
 	int	tex_x;
+	int	is_door;
 } t__ray;
 
 
@@ -197,7 +198,7 @@ typedef struct s_data
 	char **map_frame;
 	int **map_int;
 	t_floor_ceiling floor_ceiling;
-	t_texture textures[6];
+	t_texture textures[7];
 	t_animation animation;
 	t_img img;
 	int mouse_rotation;
