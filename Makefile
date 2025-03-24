@@ -54,9 +54,11 @@ BONUS = src_bonus/main_bonus.c\
 		src_bonus/wall_utils_bonus.c\
 		src_bonus/convert_map_bonus.c\
 		src_bonus/create_img_bonus.c\
+		src_bonus/rendering.c\
 		src_bonus/ray_casting_bonus.c\
 		src_bonus/mini_map_bonus.c\
 		src_bonus/ceiling_and_floor_bonus.c\
+		src_bonus/draw_ceiling_floor.c\
 		src_bonus/init_animation_bonus.c\
 		src_bonus/animation_bonus.c\
 		src_bonus/playable_map_bonus.c\

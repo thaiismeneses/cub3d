@@ -12,7 +12,7 @@
 
 #include "../includes_bonus/cub3d_bonus.h"
 
-int is_valid_position(t_mlx_data *data, double new_x, double new_y)
+int	is_valid_position(t_mlx_data *data, double new_x, double new_y)
 {
 	int	x1;
 	int	y1;

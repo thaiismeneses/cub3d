@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_structs_two_bonus.c                           :+:      :+:    :+:   */
+/*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/19 15:26:20 by lfuruno-          #+#    #+#             */
-/*   Updated: 2025/03/24 11:56:05 by thfranco         ###   ########.fr       */
+/*   Created: 2025/03/24 11:27:17 by thfranco          #+#    #+#             */
+/*   Updated: 2025/03/24 11:29:02 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes_bonus/cub3d_bonus.h"
 
-t_map	*struct_map(char **map)
+void	render(t_mlx_data *data)
 {
-	t_map	*copy_map;
-
-	copy_map = ft_calloc(1, sizeof(t_map));
-	if (!copy_map)
-		return (NULL);
-	copy_map->map = map;
-	copy_map->height = height(map);
-	copy_map->width = width(map);
-	xy_player(map, copy_map);
-	return (copy_map);
-}
-
-void	init_portrat(t_portrat *portrat)
-{
-	portrat->lines = 0;
-	portrat->columns = 0;
-	portrat->i = 0;
-	portrat->j = 0;
-	portrat->map_portrat = NULL;
+	if (!data->textures[0].img)
+		load_texture(data);
+	create_image(data);
+	draw_ceiling_floor(data);
+	ray_casting(data);
+	update_animation(data);
+	render_animation(data);
+	draw_minimap(data);
+	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
+	mlx_destroy_image(data->mlx, data->img.img);
 }

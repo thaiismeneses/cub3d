@@ -12,6 +12,18 @@
 
 #include "../includes_bonus/cub3d_bonus.h"
 
+void	check_position(t_mlx_data *data, int i, int j)
+{
+	if (data->map[i][j] == '1')
+		data->map_int[i][j] = 1;
+	else if (data->map[i][j] == 'D')
+		data->map_int[i][j] = 2;
+	else if (data->map_int[i][j] == 'O')
+		data->map_int[i][j] = 3;
+	else
+		data->map_int[i][j] = 0;
+}
+
 void	convert_map(t_mlx_data *data)
 {
 	int	i;
@@ -31,17 +43,9 @@ void	convert_map(t_mlx_data *data)
 		j = 0;
 		while (j < len)
 		{
-			if (data->map[i][j] == '1')
-				data->map_int[i][j] = 1;
-			else if (data->map[i][j] == 'D')
-				data->map_int[i][j] = 2;
-			else if (data->map_int[i][j] == 'O')
-				data->map_int[i][j] = 3;
-			else
-				data->map_int[i][j] = 0;
+			check_position(data, i, j);
 			j++;
 		}
 		i++;
 	}
-	
 }
