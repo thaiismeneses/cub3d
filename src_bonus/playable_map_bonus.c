@@ -6,7 +6,7 @@
 /*   By: lfuruno- <lfuruno-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:14:21 by lfuruno-          #+#    #+#             */
-/*   Updated: 2025/03/19 16:23:07 by lfuruno-         ###   ########.fr       */
+/*   Updated: 2025/03/24 16:25:38 by lfuruno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,22 @@ void	xy_player(char **map, t_map *map_copy)
 			if (map[i][j] == 'N' || map[i][j] == 'W'
 				|| map[i][j] == 'S' || map[i][j] == 'E')
 			{
-					map_copy->x_player = j;
-					map_copy->y_player = i;
-					break ;
+				map_copy->x_player = j;
+				map_copy->y_player = i;
+				break ;
 			}
 			j++;
 		}
 		i++;
 	}
 }
+
 static void	fill_map(t_map *copy_map, int x, int y)
 {
 	if (x < 0 || x >= copy_map->width || y < 0 || y >= copy_map->height)
-		return;
+		return ;
 	if (copy_map->map[y][x] == '1')
-		return;
+		return ;
 	copy_map->map[y][x] = '1';
 	fill_map(copy_map, x - 1, y);
 	fill_map(copy_map, x + 1, y);
@@ -48,10 +49,10 @@ static void	fill_map(t_map *copy_map, int x, int y)
 	fill_map(copy_map, x, y + 1);
 }
 
-static int valid_map(t_map *copy_map)
+static int	valid_map(t_map *copy_map)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = copy_map->x_player;
 	y = copy_map->y_player;
@@ -60,8 +61,9 @@ static int valid_map(t_map *copy_map)
 	if (copy_map->map[y - 1][x] == '1' && copy_map->map[y + 1][x] == '1' &&
 		copy_map->map[y][x - 1] == '1' && copy_map->map[y][x + 1] == '1')
 		return (MAP_ERROR);
-	return(NONE_ERROR);
+	return (NONE_ERROR);
 }
+
 int	playable_map(t_mlx_data *data)
 {
 	t_map	*copy_map;

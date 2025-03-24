@@ -15,31 +15,22 @@
 
 #include "../includes_bonus/cub3d_bonus.h"
 
-
 void	set_values(t_mlx_data *data, int x)
 {
-	// Convertendo as coordenadas da tela para as coordenadas da camera
 	data->ray.camera_x = 2 * x / (double)WIDTH - 1;
 	data->ray.is_door = 0;
-	/*Calculando a direção do raio (direção para onde o jogador ta olhando)
-		raio = direção do jogador + plano da camera * coordenada da camera
-	*/
 	data->ray.ray_dir_x = data->player.dir_x + data->player.plane_x
 		* data->ray.camera_x;
 	data->ray.ray_dir_y = data->player.dir_y + data->player.plane_y
 		* data->ray.camera_x;
-	// Posição do jogador no mapa
 	data->ray.map_x = (int)data->player.pos_x;
 	data->ray.map_y = (int)data->player.pos_y;
-	// Tamanho do raio entre dois pontos. Calculo o tempo que o raio leva para atravessar um quadrado
 	data->ray.delta_dist_x = fabs(1 / data->ray.ray_dir_x);
 	data->ray.delta_dist_y = fabs(1 / data->ray.ray_dir_y);
 }
 
 void	set_ray_direction(t_mlx_data *data)
 {
-	// Calculando a direção do raio. Direita/Esquerda e Cima/Baixo
-	// Calcula a distância do raio até a próxima parede
 	if (data->ray.ray_dir_x < 0)
 	{
 		data->ray.step_x = -1;
@@ -68,7 +59,7 @@ void	set_ray_direction(t_mlx_data *data)
 
 void	algorithm_dda(t_mlx_data *data)
 {
-	int hit;
+	int	hit;
 
 	hit = 0;
 	while (hit == 0)

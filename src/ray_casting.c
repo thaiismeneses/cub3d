@@ -15,8 +15,10 @@
 void	set_values(t_mlx_data *data, int x)
 {
 	data->ray.camera_x = 2 * x / (double)WIDTH - 1;
-	data->ray.ray_dir_x = data->player.dir_x + data->player.plane_x * data->ray.camera_x;
-	data->ray.ray_dir_y = data->player.dir_y + data->player.plane_y * data->ray.camera_x;
+	data->ray.ray_dir_x = data->player.dir_x
+		+ data->player.plane_x * data->ray.camera_x;
+	data->ray.ray_dir_y = data->player.dir_y
+		+ data->player.plane_y * data->ray.camera_x;
 	data->ray.map_x = (int)data->player.pos_x;
 	data->ray.map_y = (int)data->player.pos_y;
 	data->ray.delta_dist_x = fabs(1 / data->ray.ray_dir_x);
@@ -28,28 +30,32 @@ void	set_ray_direction(t_mlx_data *data)
 	if (data->ray.ray_dir_x < 0)
 	{
 		data->ray.step_x = -1;
-		data->ray.side_dist_x = (data->player.pos_x - data->ray.map_x) * data->ray.delta_dist_x;
+		data->ray.side_dist_x = (data->player.pos_x - data->ray.map_x)
+			* data->ray.delta_dist_x;
 	}
 	else
 	{
 		data->ray.step_x = 1;
-		data->ray.side_dist_x = (data->ray.map_x + 1.0 - data->player.pos_x) * data->ray.delta_dist_x;
+		data->ray.side_dist_x = (data->ray.map_x + 1.0 - data->player.pos_x)
+			* data->ray.delta_dist_x;
 	}
 	if (data->ray.ray_dir_y < 0)
 	{
 		data->ray.step_y = -1;
-		data->ray.side_dist_y = (data->player.pos_y - data->ray.map_y) * data->ray.delta_dist_y;
+		data->ray.side_dist_y = (data->player.pos_y - data->ray.map_y)
+			* data->ray.delta_dist_y;
 	}
 	else
 	{
 		data->ray.step_y = 1;
-		data->ray.side_dist_y = (data->ray.map_y + 1.0 - data->player.pos_y) * data->ray.delta_dist_y;
+		data->ray.side_dist_y = (data->ray.map_y
+				+ 1.0 - data->player.pos_y) * data->ray.delta_dist_y;
 	}
 }
 
 void	algorithm_dda(t_mlx_data *data)
 {
-	int hit;
+	int	hit;
 
 	hit = 0;
 	while (hit == 0)
@@ -75,9 +81,10 @@ void	wall_distance(t_mlx_data *data)
 {
 	if (data->ray.side == 0)
 	{
-		data->ray.prep_wall_dist = (data->ray.map_x - data->player.pos_x +
-			(1 - data->ray.step_x) / 2) / data->ray.ray_dir_x;
-		data->ray.wall_x = data->player.pos_y + data->ray.prep_wall_dist * data->ray.ray_dir_y;
+		data->ray.prep_wall_dist = (data->ray.map_x - data->player.pos_x
+				+ (1 - data->ray.step_x) / 2) / data->ray.ray_dir_x;
+		data->ray.wall_x = data->player.pos_y
+			+ data->ray.prep_wall_dist * data->ray.ray_dir_y;
 		if (data->ray.ray_dir_x > 0)
 			data->ray.tex_num = 2;
 		else
@@ -85,12 +92,13 @@ void	wall_distance(t_mlx_data *data)
 	}
 	else
 	{
-		data->ray.prep_wall_dist = (data->ray.map_y - data->player.pos_y +
-			(1 - data->ray.step_y) / 2) / data->ray.ray_dir_y;
-		data->ray.wall_x = data->player.pos_x + data->ray.prep_wall_dist * data->ray.ray_dir_x;
-			if (data->ray.ray_dir_y > 0)
+		data->ray.prep_wall_dist = (data->ray.map_y - data->player.pos_y
+				+ (1 - data->ray.step_y) / 2) / data->ray.ray_dir_y;
+		data->ray.wall_x = data->player.pos_x
+			+ data->ray.prep_wall_dist * data->ray.ray_dir_x;
+		if (data->ray.ray_dir_y > 0)
 			data->ray.tex_num = 1;
-			else
+		else
 			data->ray.tex_num = 0;
 	}
 	data->ray.wall_x -= floor(data->ray.wall_x);

@@ -12,7 +12,6 @@ SRCS = src/main.c\
 		src/validation.c\
 		src/map_file.c\
 		src/elements.c\
-		src/extra_print.c\
 		src/parse.c\
 		src/val_map.c\
 		src/textures.c\
@@ -39,7 +38,6 @@ BONUS = src_bonus/main_bonus.c\
 		src_bonus/validation_bonus.c\
 		src_bonus/map_file_bonus.c\
 		src_bonus/elements_bonus.c\
-		src_bonus/extra_print_bonus.c\
 		src_bonus/parse_bonus.c\
 		src_bonus/val_map_bonus.c\
 		src_bonus/textures_bonus.c\

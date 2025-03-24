@@ -14,8 +14,8 @@
 
 static void	full_matrix(char **matrix, t_token *tokens, int line_count)
 {
-	int i;
-	t_token *current;
+	int		i;
+	t_token	*current;
 
 	i = 0;
 	current = tokens;
@@ -37,11 +37,11 @@ static void	full_matrix(char **matrix, t_token *tokens, int line_count)
 
 char	**map_to_matrix(t_token *tokens)
 {
-	int line_count;
-	int max_cols;
-	int len;
-	char **matrix;
-	t_token *current;
+	int		line_count;
+	int		max_cols;
+	int		len;
+	char	**matrix;
+	t_token	*current;
 
 	current = tokens;
 	line_count = 0;

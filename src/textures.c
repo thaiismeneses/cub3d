@@ -63,7 +63,7 @@ int	xpm_file(t_token *tokens)
 	return (NONE_ERROR);
 }
 
-static char *get_texture_path(t_mlx_data *data, int flag)
+static char	*get_texture_path(t_mlx_data *data, int flag)
 {
 	t_token	*current;
 

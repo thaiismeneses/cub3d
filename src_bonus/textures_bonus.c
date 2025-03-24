@@ -12,6 +12,27 @@
 
 #include "../includes_bonus/cub3d_bonus.h"
 
+int	verify_order(t_token *tokens)
+{
+	int		count;
+	t_token	*current;
+
+	count = 0;
+	current = tokens;
+	while (current != NULL)
+	{
+		if (current->type != MAP && current->type != NONE)
+			count++;
+		else if (current->type == MAP)
+		{
+			if (count != 7)
+				return (TEXTURE_ERROR);
+		}
+		current = current->next;
+	}
+	return (NONE_ERROR);
+}
+
 int	is_valid_file_path(char *path)
 {
 	int	fd;
@@ -31,7 +52,8 @@ int	xpm_file(t_token *tokens)
 	while (current != NULL)
 	{
 		if (current->type == NO || current->type == SO
-			|| current->type == WE || current->type == EA || current->type == DR)
+			|| current->type == WE || current->type == EA
+			|| current->type == DR)
 		{
 			if (check_extension(current->data, ".xpm") == EXTENSION_ERROR
 				|| is_valid_file_path(current->data) == PATH_ERROR)
@@ -42,7 +64,7 @@ int	xpm_file(t_token *tokens)
 	return (NONE_ERROR);
 }
 
-static char *get_texture_path(t_mlx_data *data, int flag)
+static char	*get_texture_path(t_mlx_data *data, int flag)
 {
 	t_token	*current;
 

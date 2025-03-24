@@ -12,9 +12,8 @@
 
 #include "../includes_bonus/cub3d_bonus.h"
 
-static int verify_location(char **map, int i, int j)
+static int	verify_location(char **map, int i, int j)
 {
-
 	if ((i > 0 && (map[i - 1][j] == '1' || map[i - 1][j] == ' ')) ||
 		(j > 0 && (map[i][j - 1] == '1' || map[i][j - 1] == ' ')) ||
 		(map[i][j + 1] == '1' || map[i][j + 1] == ' ') ||
@@ -23,11 +22,11 @@ static int verify_location(char **map, int i, int j)
 	return (0);
 }
 
-static int get_max_width(char **map)
+static int	get_max_width(char **map)
 {
-	int max_width;
-	int width;
-	int i;
+	int	max_width;
+	int	width;
+	int	i;
 
 	max_width = 0;
 	i = 0;
@@ -37,15 +36,15 @@ static int get_max_width(char **map)
 	{
 		width = ft_strlen(map[i]);
 		if (width > max_width)
-		max_width = width;
+			max_width = width;
 		i++;
 	}
 	return (max_width);
 }
 
-static void put_zeros(char **map, char **new_map, int i)
+static void	put_zeros(char **map, char **new_map, int i)
 {
-	int j;
+	int	j;
 
 	j = 0;
 	while (map[i][j] != '\0')
@@ -65,12 +64,12 @@ static void put_zeros(char **map, char **new_map, int i)
 	}
 }
 
-static char **fill_zeros(char **map)
+static char	**fill_zeros(char **map)
 {
-	int i;
-	int max_width;
-	int num_rows;
-	char **new_map;
+	int		i;
+	int		max_width;
+	int		num_rows;
+	char	**new_map;
 
 	i = 0;
 	num_rows = 0;
@@ -94,18 +93,18 @@ static char **fill_zeros(char **map)
 	return (new_map);
 }
 
-int valid_wall(t_mlx_data *data)
+int	valid_wall(t_mlx_data *data)
 {
-	char **new_map;
+	char	**new_map;
 
 	data->map = map_to_matrix(data->tokens);
 	new_map = fill_zeros(data->map);
 	data->map_frame = make_portrat(new_map);
-    if (playable_map(data) == MAP_ERROR)
-    {
-        free_matrix(new_map);
-        return (MAP_ERROR);
-    }
+	if (playable_map(data) == MAP_ERROR)
+	{
+		free_matrix(new_map);
+		return (MAP_ERROR);
+	}
 	free_matrix(new_map);
 	return (NONE_ERROR);
 }

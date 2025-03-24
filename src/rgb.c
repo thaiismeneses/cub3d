@@ -6,17 +6,17 @@
 /*   By: lfuruno- <lfuruno-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:07:49 by lfuruno-          #+#    #+#             */
-/*   Updated: 2025/03/19 15:08:33 by lfuruno-         ###   ########.fr       */
+/*   Updated: 2025/03/24 16:00:35 by lfuruno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void get_rgb_color_to_hex(t_mlx_data *data)
+void	get_rgb_color_to_hex(t_mlx_data *data)
 {
-	t_token *current;
-	char **f_rgb;
-	char **c_rgb;
+	t_token	*current;
+	char	**f_rgb;
+	char	**c_rgb;
 
 	current = data->tokens;
 	while (current != NULL)
@@ -26,7 +26,7 @@ void get_rgb_color_to_hex(t_mlx_data *data)
 			f_rgb = ft_split(current->data, ',');
 			data->f_color = ft_atoi(f_rgb[0]) << 16 \
 							| ft_atoi(f_rgb[1]) << 8 \
-            				| ft_atoi(f_rgb[2]);
+							| ft_atoi(f_rgb[2]);
 			free_matrix(f_rgb);
 		}
 		else if (current->type == C)
@@ -40,10 +40,11 @@ void get_rgb_color_to_hex(t_mlx_data *data)
 		current = current->next;
 	}
 }
-int is_valid_number(char **rgb)
+
+int	is_valid_number(char **rgb)
 {
-	int i;
-	int number;
+	int	i;
+	int	number;
 
 	i = 0;
 	while (rgb[i])

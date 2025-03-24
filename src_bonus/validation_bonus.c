@@ -56,15 +56,19 @@ int	error_messages(int error)
 
 int	check_errors(t_mlx_data *data)
 {
-	if (val_texture(data->tokens) == TEXTURE_ERROR || verify_order(data->tokens) == TEXTURE_ERROR
+	if (val_texture(data->tokens) == TEXTURE_ERROR
+		|| verify_order(data->tokens) == TEXTURE_ERROR
 		|| map_exist(data->tokens) == TEXTURE_ERROR)
 		return (error_messages(TEXTURE_ERROR));
 	else if (xpm_file(data->tokens) == PATH_ERROR)
-		return(error_messages(PATH_ERROR));
+		return (error_messages(PATH_ERROR));
 	else if (rgb_textures(data->tokens) == COLOR_ERROR)
-		return(error_messages(COLOR_ERROR));
-	else if (break_map(data->tokens) == MAP_ERROR || valid_char(data->tokens) == MAP_ERROR
-			|| valid_player(data->tokens) == MAP_ERROR || valid_wall(data) == MAP_ERROR)
-		return(error_messages(MAP_ERROR));
+		return (error_messages(COLOR_ERROR));
+	else if (break_map(data->tokens) == MAP_ERROR
+		|| valid_char(data->tokens) == MAP_ERROR
+		|| valid_player(data->tokens) == MAP_ERROR
+		|| valid_wall(data) == MAP_ERROR)
+		return (error_messages(MAP_ERROR));
+	get_rgb_color_to_hex(data);
 	return (NONE_ERROR);
 }

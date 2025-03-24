@@ -26,7 +26,7 @@ int	game_loop(t_mlx_data *data)
 
 int	main(int argc, char **argv)
 {
-	char	**map;
+	char		**map;
 	t_mlx_data	data;
 
 	init_data(&data);
@@ -35,7 +35,7 @@ int	main(int argc, char **argv)
 	map = open_fd(argv[1]);
 	data.tokens = tokenization(map, data.tokens);
 	if (check_errors(&data) != NONE_ERROR)
-		return(free_data_struct(&data), 1);
+		return (free_data_struct(&data), 1);
 	config(&data);
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "Cub3D");
@@ -44,7 +44,7 @@ int	main(int argc, char **argv)
 	mlx_hook(data.win, 2, 1L << 0, handle_board, &data);
 	mlx_hook(data.win, 17, 0, free_game, &data);
 	mlx_mouse_move(data.mlx, data.win, WIDTH / 2, HEIGHT / 2);
-	mlx_hook(data.win,6, 1L << 6, mouse, &data);
+	mlx_hook(data.win, 6, 1L << 6, mouse, &data);
 	mlx_loop_hook(data.mlx, game_loop, &data);
 	mlx_loop(data.mlx);
 	return (0);

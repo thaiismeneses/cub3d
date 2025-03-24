@@ -14,13 +14,13 @@
 
 int	valid_player(t_token *tokens)
 {
-	int player;
-	int i;
-	t_token *current;
+	int		player;
+	int		i;
+	t_token	*current;
 
 	player = 0;
 	current = tokens;
-	while(current != NULL)
+	while (current != NULL)
 	{
 		if (current->type == MAP)
 		{
@@ -37,13 +37,13 @@ int	valid_player(t_token *tokens)
 	}
 	if (player == 0 || player > 1)
 		return (MAP_ERROR);
-	return(NONE_ERROR);
+	return (NONE_ERROR);
 }
 
 int	valid_char(t_token *tokens)
 {
-	int i;
-	t_token *current;
+	int		i;
+	t_token	*current;
 
 	current = tokens;
 	while (current != NULL)
@@ -54,10 +54,9 @@ int	valid_char(t_token *tokens)
 			while (current->data[i] != '\0')
 			{
 				if (current->data[i] != '0' && current->data[i] != '1'
-				&& current->data[i] != 'N' && current->data[i] != 'S'
-				&& current->data[i] != 'E' && current->data[i] != 'W'
-				&& current->data[i] != ' ' && current->data[i] >= 14
-				&& current->data[i] != 'D')
+					&& current->data[i] != 'N' && current->data[i] != 'S'
+					&& current->data[i] != 'E' && current->data[i] != 'W'
+					&& current->data[i] != ' ' && current->data[i] >= 14)
 				{
 					return (MAP_ERROR);
 				}
@@ -71,8 +70,8 @@ int	valid_char(t_token *tokens)
 
 int	break_map(t_token *tokens)
 {
-	int	map_found;
-	int	map_ended;
+	int		map_found;
+	int		map_ended;
 	t_token	*current;
 
 	current = tokens;
@@ -98,7 +97,7 @@ int	break_map(t_token *tokens)
 
 int	map_exist(t_token *tokens)
 {
-	int count;
+	int		count;
 	t_token	*current;
 
 	count = 0;

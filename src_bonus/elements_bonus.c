@@ -61,24 +61,19 @@ static int	verify_texture(t_token *tokens, t_type type)
 	return (0);
 }
 
-int	verify_order(t_token *tokens)
+int	val_rgb(t_token *tokens)
 {
-	int		count;
-	t_token	*current;
+	int	f;
+	int	c;
+	int	d;
 
-	count = 0;
-	current = tokens;
-	while (current != NULL)
-	{
-		if (current->type != MAP && current->type != NONE)
-			count++;
-		else if (current->type == MAP)
-		{
-			if (count != 7)
-				return (TEXTURE_ERROR);
-		}
-		current = current->next;
-	}
+	f = 0;
+	c = 0;
+	d = 0;
+	f = verify_texture(tokens, F);
+	c = verify_texture(tokens, C);
+	if (f != 1 || c != 1 || d != 1)
+		return (TEXTURE_ERROR);
 	return (NONE_ERROR);
 }
 
@@ -88,25 +83,18 @@ int	val_texture(t_token *tokens)
 	int	s;
 	int	w;
 	int	e;
-	int	f;
-	int	c;
-	int d;
 
 	n = 0;
 	s = 0;
 	w = 0;
 	e = 0;
-	f = 0;
-	c = 0;
-	d = 0;
 	n = verify_texture(tokens, NO);
 	s = verify_texture(tokens, SO);
 	w = verify_texture(tokens, WE);
 	e = verify_texture(tokens, EA);
-	f = verify_texture(tokens, F);
-	c = verify_texture(tokens, C);
-	d = verify_texture(tokens, DR);
-	if (n != 1 || s != 1 || w != 1 || e != 1 || f != 1 || c != 1 || d != 1)
+	if (n != 1 || s != 1 || w != 1 || e != 1)
+		return (TEXTURE_ERROR);
+	if (val_rgb(tokens) == TEXTURE_ERROR)
 		return (TEXTURE_ERROR);
 	return (NONE_ERROR);
 }
