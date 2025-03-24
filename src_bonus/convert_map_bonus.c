@@ -33,10 +33,15 @@ void	convert_map(t_mlx_data *data)
 		{
 			if (data->map[i][j] == '1')
 				data->map_int[i][j] = 1;
+			else if (data->map[i][j] == 'D')
+				data->map_int[i][j] = 2;
+			else if (data->map_int[i][j] == 'O')
+				data->map_int[i][j] = 3;
 			else
 				data->map_int[i][j] = 0;
 			j++;
 		}
 		i++;
 	}
+	
 }
