@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   rgb_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfuruno- <lfuruno-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 17:27:39 by lfuruno-          #+#    #+#             */
-/*   Updated: 2025/03/19 17:29:31 by lfuruno-         ###   ########.fr       */
+/*   Updated: 2025/03/24 11:16:36 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int is_valid_number(char **rgb)
+int	is_valid_number(char **rgb)
 {
-	int i;
-	int number;
+	int	i;
+	int	number;
 
 	i = 0;
 	while (rgb[i])

@@ -67,7 +67,7 @@ static char *get_texture_path(t_mlx_data *data, int flag)
 void	load_texture(t_mlx_data *data)
 {
 	int		i;
-	char	*texture_files[6];
+	char	*texture_files[7];
 
 	i = -1;
 	texture_files[0] = get_texture_path(data, 0);

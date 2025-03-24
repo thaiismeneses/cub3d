@@ -21,12 +21,14 @@ static void	open_door(t_mlx_data *data, int keycode)
 	front_y = (int)(data->player.pos_y + data->player.dir_y);
 	if (keycode == XK_space)
 	{
-		if (data->map_int[front_y][front_x] == 2  && data->map[front_y][front_x] == 'D')
+		if (data->map_int[front_y][front_x] == 2
+			&& data->map[front_y][front_x] == 'D')
 		{
 			data->map_int[front_y][front_x] = 3;
 			data->map[front_y][front_x] = 'O';
 		}
-		else if (data->map_int[front_y][front_x] == 3 && data->map[front_y][front_x] == 'O')
+		else if (data->map_int[front_y][front_x] == 3
+			&& data->map[front_y][front_x] == 'O')
 		{
 			data->map_int[front_y][front_x] = 2;
 			data->map[front_y][front_x] = 'D';

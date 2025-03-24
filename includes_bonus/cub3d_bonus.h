@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfuruno- <lfuruno-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:26:13 by thfranco          #+#    #+#             */
-/*   Updated: 2025/03/23 19:08:49 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/03/24 11:50:03 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,8 @@ typedef struct s_floor_ceiling
 	int tex_ceiling_x;
 	int tex_ceiling_y;
 	double current_dist;
+	int color_floor;
+	int color_ceiling;
 } t_floor_ceiling;
 
 typedef struct s_img
@@ -303,6 +305,8 @@ void	my_put_pixel(t_img *img, int x, int y, int color);
 void	create_image(t_mlx_data *data);
 void	draw_vertical_line(t_mlx_data *data, int x);
 void	ray_casting(t_mlx_data *data);
+
+/*** rendering.c ***/
 void	render(t_mlx_data *data);
 
 /*** convert_map.c ***/
@@ -320,7 +324,12 @@ void	draw_ceiling_and_floor(t_mlx_data *data);
 
 /*** ceiling_and_floor_bonus.c ***/
 void	dist_to_window(t_mlx_data *data, t_floor_ceiling *fc, int y, int flag);
+void	set_direction_ray(t_mlx_data *data);
+int	color_ceiling_floor(t_mlx_data *data, int flag);
 void	textures_ceiling_floor(t_mlx_data *data, t_floor_ceiling *fc, int flag);
+
+/*** draw_ceiling_floor.c ***/
+void	utils_ceiling_floor(t_mlx_data *data, int x, int y);
 void	draw_ceiling_floor(t_mlx_data *data);
 
 /*** init_structs.c ***/
