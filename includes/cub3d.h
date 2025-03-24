@@ -122,6 +122,7 @@ typedef struct s_ray
 	double	step;
 	double	tex_pos;
 	int		tex_num;
+	int		tex_x;
 }			t__ray;
 
 typedef struct s_floor_ceiling
@@ -145,6 +146,8 @@ typedef struct s_floor_ceiling
 	int		tex_ceiling_x;
 	int		tex_ceiling_y;
 	double	current_dist;
+	int		color_floor;
+	int		color_ceiling;
 }			t_floor_ceiling;
 
 typedef struct s_img

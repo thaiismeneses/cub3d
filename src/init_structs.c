@@ -54,6 +54,8 @@ void	init_floor_ceiling(t_floor_ceiling *floor_ceiling)
 	floor_ceiling->ray_dir_y1 = 0.0;
 	floor_ceiling->pos_cur_y = 0;
 	floor_ceiling->hight_player = 0.0;
+	floor_ceiling->color_floor = 0;
+	floor_ceiling->color_ceiling = 0;
 }
 
 void	init_ray(t__ray *ray)
