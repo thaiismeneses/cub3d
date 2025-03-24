@@ -12,6 +12,28 @@
 
 #include "../includes/cub3d.h"
 
+int	height(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+		i++;
+	return (i);
+}
+
+int	width(char **map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (map[i][j] != '\0' && map[i][j] != '\n')
+		j++;
+	return (j);
+}
+
 static int	number_lines_fd(char *map_ext)
 {
 	int		number_lines;

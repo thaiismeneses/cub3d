@@ -23,6 +23,9 @@
 # include <X11/keysym.h>
 # include <ctype.h> //apagar
 
+/*** PADDING ***/
+#define PADDING 0.2
+
 /*** SPEED ***/
 #define MOVE_SPEED 0.1
 #define MOUSE_SPEED 0.001
@@ -148,10 +151,10 @@ typedef struct s_floor_ceiling
 typedef struct s_img
 {
 	void	*img;
-	char	*addr; //endereço da memória da imagem
+	char	*addr;
 	int	bits_per_pixel;
-	int	line_length; //Quantidade de bytes por linha
-	int	endian; //Ordem dos bytes na memória
+	int	line_length;
+	int	endian;
 }	t_img;
 
 typedef struct s_texture
@@ -175,7 +178,8 @@ typedef struct s_animation
 
 }	t_animation;
 
-typedef struct s_point {
+typedef struct s_point 
+{
 	int x;
 	int y;
 }	t_point;
@@ -199,30 +203,46 @@ typedef struct s_data
 	int mouse_rotation;
 }	t_mlx_data;
 
+typedef struct s_portrat
+{
+	size_t lines;
+	size_t columns;
+	size_t i;
+	size_t j;
+	char **map_portrat;
+}	t_portrat;
+
 /*** validation.c ***/
 int	check_extension(char *argv, char *ext);
 int	error_messages(int error);
 int	check_errors(t_mlx_data *data);
 
 /*** map_file ***/
+int	height(char **map);
+int	width(char **map);
 char	**open_fd(char *map_ext);
 
 /*** elements.c ***/
 t_type	find_type(char *map, int i);
 int	type_index(t_type type, int i);
-int	verify_order(t_token *tokens);
 int	val_texture(t_token *tokens);
 
 /*** parse.c ***/
 char	*get_token(char *cmd, int i, int start);
 t_token	*set_token_list(t_token *data, int type, char *value);
+
+/*** tokenization.c ***/
 t_token	*tokenization(char **map, t_token *data);
 
 /*** val_map.c ***/
 int	map_exist(t_token *tokens);
 
-/*** textures.c ***/
+/*** rgb.c ***/
 void get_rgb_color_to_hex(t_mlx_data *data);
+int	rgb_textures(t_token *tokens);
+
+/*** textures.c ***/
+int	verify_order(t_token *tokens);
 int	is_valid_file_path(char *path);
 int	xpm_file(t_token *tokens);
 void	load_texture(t_mlx_data *data);
@@ -266,7 +286,10 @@ void	find_plane(t_mlx_data *data);
 char **map_to_matrix(t_token *tokens);
 
 /*** frame.c ***/
-char **make_portrat(char **map);
+char	**make_portrat(char **map);
+
+/*** playable_map ***/
+void	xy_player(char **map, t_map *map_copy);
 int	playable_map(t_mlx_data *data);
 
 /*** ray_casting.c ***/
@@ -285,7 +308,6 @@ void	render(t_mlx_data *data);
 
 /*** convert_map.c ***/
 void	convert_map(t_mlx_data *data);
-
 
 /*** mini_map.c ***/
 void draw_minimap(t_mlx_data *data);
@@ -307,6 +329,10 @@ void	init_ray(t__ray *ray);
 void	init_floor_ceiling(t_floor_ceiling *floor_ceiling);
 void	init_img(t_img *img);
 void	init_textures(t_texture *texture);
+
+/*** init_structs_two.c */
+void init_portrat(t_portrat *portrat);
+t_map	*struct_map(char **map);
 
 /*** wall_collision.c  ***/
 int	is_valid_position(t_mlx_data *data, double new_x, double new_y);

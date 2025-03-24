@@ -12,6 +12,7 @@
 
 #include "../includes_bonus/cub3d_bonus.h"
 
+
 void	init_img(t_img *img)
 {
 	img->img = NULL;

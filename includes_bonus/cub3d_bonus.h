@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
+/*   By: lfuruno- <lfuruno-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:26:13 by thfranco          #+#    #+#             */
 /*   Updated: 2025/03/23 19:08:49 by thfranco         ###   ########.fr       */
@@ -204,12 +204,23 @@ typedef struct s_data
 	int mouse_rotation;
 }	t_mlx_data;
 
+typedef struct s_portrat
+{
+	size_t lines;
+	size_t columns;
+	size_t i;
+	size_t j;
+	char **map_portrat;
+}	t_portrat;
+
 /*** validation.c ***/
 int	check_extension(char *argv, char *ext);
 int	error_messages(int error);
 int	check_errors(t_mlx_data *data);
 
 /*** map_file ***/
+int	height(char **map);
+int	width(char **map);
 char	**open_fd(char *map_ext);
 
 /*** elements.c ***/
@@ -221,6 +232,8 @@ int	val_texture(t_token *tokens);
 /*** parse.c ***/
 char	*get_token(char *cmd, int i, int start);
 t_token	*set_token_list(t_token *data, int type, char *value);
+
+/*** tokenization.c ***/
 t_token	*tokenization(char **map, t_token *data);
 
 /*** val_map.c ***/
@@ -243,13 +256,14 @@ void	print_array(char **map);
 void	print_token_list(t_token *head);
 
 /*** textures ***/
-int rgb_textures(t_token *tokens);
 int is_valid_file_path(char *path);
 int xpm_file(t_token *tokens);
 
+/*** rgb.c ***/
+int rgb_textures(t_token *tokens);
+
 /*** valid_wall ***/
 int valid_wall(t_mlx_data *data);
-
 
 /*** free.c ***/
 void	free_list(t_token *token);
@@ -272,6 +286,9 @@ char **map_to_matrix(t_token *tokens);
 
 /*** frame.c ***/
 char **make_portrat(char **map);
+
+/*** playable_map ***/
+void	xy_player(char **map, t_map *map_copy);
 int	playable_map(t_mlx_data *data);
 
 /*** ray_casting.c ***/
@@ -312,6 +329,10 @@ void	init_ray(t__ray *ray);
 void	init_floor_ceiling(t_floor_ceiling *floor_ceiling);
 void	init_img(t_img *img);
 void	init_textures(t_texture *texture);
+
+/*** init_strcucts_two.c */
+t_map	*struct_map(char **map);
+void init_portrat(t_portrat *portrat);
 
 /*** wall_collision.c  ***/
 int	is_valid_position(t_mlx_data *data, double new_x, double new_y);

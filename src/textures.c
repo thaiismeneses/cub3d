@@ -12,85 +12,21 @@
 
 #include "../includes/cub3d.h"
 
-void get_rgb_color_to_hex(t_mlx_data *data)
+int	verify_order(t_token *tokens)
 {
-	t_token *current;
-	char **f_rgb;
-	char **c_rgb;
-
-	current = data->tokens;
-	while (current != NULL)
-	{
-		if (current->type == F)
-		{
-			f_rgb = ft_split(current->data, ',');
-			data->f_color = ft_atoi(f_rgb[0]) << 16 \
-							| ft_atoi(f_rgb[1]) << 8 \
-            				| ft_atoi(f_rgb[2]);
-			free_matrix(f_rgb);
-			printf("f_color: %d\n", data->f_color);
-		}
-		else if (current->type == C)
-		{
-			c_rgb = ft_split(current->data, ',');
-			data->c_color = ft_atoi(c_rgb[0]) << 16 \
-							| ft_atoi(c_rgb[1]) << 8 \
-							| ft_atoi(c_rgb[2]);
-			free_matrix(c_rgb);
-			printf("c_color: %d\n", data->c_color);
-		}
-		current = current->next;
-	}
-}
-
-static int	ft_isdigit_str(char *str)
-{
-	int i;
-
-	if (!str || !*str)
-		return (0);
-	i = 0;
-	while (str[i])
-	{
-		if (!ft_isdigit(str[i]))
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-int	rgb_textures(t_token *tokens)
-{
-	int		i;
-	int		number;
-	int		len;
-	char	**rgb;
+	int		count;
 	t_token	*current;
 
+	count = 0;
 	current = tokens;
 	while (current != NULL)
 	{
-		if (current->type == F || current->type == C)
+		if (current->type != MAP && current->type != NONE)
+			count++;
+		else if (current->type == MAP)
 		{
-			len = ft_strlen(current->data);
-			if (current->data[len - 1] == ',')
-				return (COLOR_ERROR);
-			rgb = ft_split(current->data, ',');
-			if (rgb == NULL)
-				return (COLOR_ERROR);
-			i = 0;
-			while (rgb[i])
-			{
-				if (!ft_isdigit_str(rgb[i]))
-					return (free_matrix(rgb), COLOR_ERROR);
-				number = ft_atoi(rgb[i]);
-				if (number < 0 || number > 255)
-					return (free_matrix(rgb), COLOR_ERROR);
-				i++;
-			}
-			if (i != 3)
-				return (free_matrix(rgb), COLOR_ERROR);
-			free_matrix(rgb);
+			if (count != 6)
+				return (TEXTURE_ERROR);
 		}
 		current = current->next;
 	}

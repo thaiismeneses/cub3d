@@ -61,20 +61,22 @@ static void	moviments_front_back(t_mlx_data *data, int keycode)
 	move_y = data->player.dir_y * MOVE_SPEED;
 	if (keycode == XK_w)
 	{
-		if (is_valid_position(data, data->player.pos_x + move_x, data->player.pos_y))
+		if (is_valid_position(data, data->player.pos_x + move_x,
+				data->player.pos_y))
 			data->player.pos_x += move_x;
-		if (is_valid_position(data, data->player.pos_x, data->player.pos_y + move_y))
+		if (is_valid_position(data, data->player.pos_x,
+				data->player.pos_y + move_y))
 			data->player.pos_y += move_y;
-
 	}
 	if (keycode == XK_s)
 	{
-		if (is_valid_position(data, data->player.pos_x - move_x, data->player.pos_y))
-			data->player.pos_x -=  move_x;
-		if (is_valid_position(data, data->player.pos_x, data->player.pos_y - move_y))
-			data->player.pos_y -=  move_y;
+		if (is_valid_position(data, data->player.pos_x - move_x,
+				data->player.pos_y))
+			data->player.pos_x -= move_x;
+		if (is_valid_position(data, data->player.pos_x,
+				data->player.pos_y - move_y))
+			data->player.pos_y -= move_y;
 	}
-
 }
 
 static void	moviments_left_right(t_mlx_data *data, int keycode)
@@ -86,16 +88,20 @@ static void	moviments_left_right(t_mlx_data *data, int keycode)
 	move_y = data->player.plane_y * MOVE_SPEED;
 	if (keycode == XK_a)
 	{
-		if (is_valid_position(data, data->player.pos_x - move_x, data->player.pos_y))
+		if (is_valid_position(data, data->player.pos_x - move_x,
+				data->player.pos_y))
 			data->player.pos_x -= move_x;
-		if (is_valid_position(data, data->player.pos_x, data->player.pos_y - move_y))
+		if (is_valid_position(data, data->player.pos_x,
+				data->player.pos_y - move_y))
 			data->player.pos_y -= move_y;
 	}
 	if (keycode == XK_d)
 	{
-		if (is_valid_position(data, data->player.pos_x + move_x, data->player.pos_y))
+		if (is_valid_position(data, data->player.pos_x + move_x,
+				data->player.pos_y))
 			data->player.pos_x += move_x;
-		if (is_valid_position(data, data->player.pos_x, data->player.pos_y + move_y))
+		if (is_valid_position(data, data->player.pos_x,
+				data->player.pos_y + move_y))
 			data->player.pos_y += move_y;
 	}
 }
