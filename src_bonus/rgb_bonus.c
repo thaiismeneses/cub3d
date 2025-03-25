@@ -6,11 +6,40 @@
 /*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 17:27:39 by lfuruno-          #+#    #+#             */
-/*   Updated: 2025/03/24 11:16:36 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/03/25 12:48:17 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+void	get_rgb_color_to_hex(t_mlx_data *data)
+{
+	t_token	*current;
+	char	**f_rgb;
+	char	**c_rgb;
+
+	current = data->tokens;
+	while (current != NULL)
+	{
+		if (current->type == F)
+		{
+			f_rgb = ft_split(current->data, ',');
+			data->f_color = ft_atoi(f_rgb[0]) << 16 \
+							| ft_atoi(f_rgb[1]) << 8 \
+							| ft_atoi(f_rgb[2]);
+			free_matrix(f_rgb);
+		}
+		else if (current->type == C)
+		{
+			c_rgb = ft_split(current->data, ',');
+			data->c_color = ft_atoi(c_rgb[0]) << 16 \
+							| ft_atoi(c_rgb[1]) << 8 \
+							| ft_atoi(c_rgb[2]);
+			free_matrix(c_rgb);
+		}
+		current = current->next;
+	}
+}
 
 int	is_valid_number(char **rgb)
 {

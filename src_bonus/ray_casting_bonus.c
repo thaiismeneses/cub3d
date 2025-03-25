@@ -1,15 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_casting.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+
-	+:+     */
-/*   By: thfranco <thfranco@student.42.rio>         +#+  +:+
-	+#+        */
-/*                                                +#+#+#+#+#+
-	+#+           */
-/*   Created: 2025/02/03 21:21:58 by thfranco          #+#    #+#             */
-/*   Updated: 2025/02/24 10:59:44 by thfranco         ###   ########.fr       */
+/*   ray_casting_bonus.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/25 12:43:13 by thfranco          #+#    #+#             */
+/*   Updated: 2025/03/25 12:43:13 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +94,7 @@ void	wall_distance(t_mlx_data *data)
 		if (data->ray.ray_dir_x > 0)
 			data->ray.tex_num = 2;
 		else
-			data->ray.ray_dir_x = 3;
+			data->ray.tex_num = 3;
 	}
 	else
 	{
