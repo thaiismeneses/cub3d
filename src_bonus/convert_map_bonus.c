@@ -43,10 +43,7 @@ void	convert_map(t_mlx_data *data)
 		j = 0;
 		while (j < len)
 		{
-			if (data->map[i][j] == '1')
-				data->map_int[i][j] = 1;
-			else
-				data->map_int[i][j] = 0;
+			check_position(data, i, j);
 			j++;
 		}
 		i++;
