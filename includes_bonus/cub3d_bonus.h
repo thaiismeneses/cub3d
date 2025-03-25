@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfuruno- <lfuruno-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 18:25:32 by lfuruno-          #+#    #+#             */
-/*   Updated: 2025/03/24 18:27:11 by lfuruno-         ###   ########.fr       */
+/*   Updated: 2025/03/25 12:55:32 by thfranco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef enum s_type
 	NO,
 	SO,
 	WE,
-	EA
+	EA,
 	F,
 	C,
 	NONE,
@@ -211,89 +211,88 @@ typedef struct s_portrat
 	char	**map_portrat;
 }			t_portrat;
 
-/*** validation.c ***/
+/*** main_bonus.c ***/
+void	config(t_mlx_data *data);
+int		game_loop(t_mlx_data *data);
+int		main(int argc, char **argv);
+
+/*** validation_bonus.c ***/
 int		check_extension(char *argv, char *ext);
 int		error_messages(int error);
 int		check_errors(t_mlx_data *data);
 
-/*** map_file ***/
+/*** map_file_bonus.c ***/
 int		height(char **map);
 int		width(char **map);
 char	**open_fd(char *map_ext);
 
-/*** elements.c ***/
+/*** elements_bonus.c ***/
 t_type	find_type(char *map, int i);
 int		type_index(t_type type, int i);
+int		val_rgb(t_token *tokens);
 int		val_texture(t_token *tokens);
 
-/*** parse.c ***/
+/*** parse_bonus_bonus.c ***/
 char	*get_token(char *cmd, int i, int start);
 t_token	*set_token_list(t_token *data, int type, char *value);
 
 /*** tokenization.c ***/
+t_token	*process_line(char *line, t_token *data);
 t_token	*tokenization(char **map, t_token *data);
-
-/*** val_map.c ***/
-int		map_exist(t_token *tokens);
 
 /*** textures.c ***/
 int		verify_order(t_token *tokens);
-void	get_rgb_color_to_hex(t_mlx_data *data);
 int		is_valid_file_path(char *path);
 int		xpm_file(t_token *tokens);
 void	load_texture(t_mlx_data *data);
 
+/*** val_map_bonus.c***/
 int		valid_player(t_token *tokens);
 int		valid_char(t_token *tokens);
 int		break_map(t_token *tokens);
 int		map_exist(t_token *tokens);
 
-/*** extra_print.c ***/
-void	print_array(char **map);
-void	print_token_list(t_token *head);
-
-/*** textures ***/
-int		is_valid_file_path(char *path);
-int		xpm_file(t_token *tokens);
-
-/*** rgb.c ***/
+/*** rgb_bonus.c ***/
+void	get_rgb_color_to_hex(t_mlx_data *data);
+int		is_valid_number(char **rgb);
 int		rgb_textures(t_token *tokens);
 
-/*** valid_wall ***/
+/*** val_wall_bonus.c ***/
 int		valid_wall(t_mlx_data *data);
 
-/*** free.c ***/
+/*** free_bonus.c ***/
 void	free_list(t_token *token);
 void	free_matrix(char **matrix);
 void	free_matrix_int(int **matrix);
 void	free_data_struct(t_mlx_data *data);
 int		free_game(t_mlx_data *data);
 
-/*** key_settings.c ***/
+/*** key_settings_bonus.c ***/
 int		handle_board(int keycode, t_mlx_data *data);
 
-/*** player.c ***/
+/*** player_bonus.c ***/
 void	init_player(t_player *player);
-void	find_player(t_mlx_data *data);
 void	find_direction(t_mlx_data *data);
 void	find_plane(t_mlx_data *data);
+void	find_player(t_mlx_data *data);
 
 /*** wall_utils ***/
 char	**map_to_matrix(t_token *tokens);
 
-/*** frame.c ***/
+/*** frame_bonus.c ***/
+void	put_on_portrat(char **map, t_portrat *portrat, size_t i, size_t j);
 char	**make_portrat(char **map);
 
-/*** playable_map ***/
+/*** playable_map_bonus.c ***/
 void	xy_player(char **map, t_map *map_copy);
 int		playable_map(t_mlx_data *data);
 
-/*** ray_casting.c ***/
+/*** ray_casting_bonus.c ***/
 void	set_values(t_mlx_data *data, int x);
-void	wall_distance(t_mlx_data *data);
-void	wall_height(t_mlx_data *data);
 void	set_ray_direction(t_mlx_data *data);
 void	algorithm_dda(t_mlx_data *data);
+void	wall_distance(t_mlx_data *data);
+void	wall_height(t_mlx_data *data);
 
 /*** create_img.c ***/
 void	my_put_pixel(t_img *img, int x, int y, int color);
@@ -301,43 +300,44 @@ void	create_image(t_mlx_data *data);
 void	draw_vertical_line(t_mlx_data *data, int x);
 void	ray_casting(t_mlx_data *data);
 
-/*** rendering.c ***/
+/*** rendering_bonus.c ***/
 void	render(t_mlx_data *data);
 
-/*** convert_map.c ***/
+/*** convert_map_bonus.c ***/
+void	check_position(t_mlx_data *data, int i, int j);
 void	convert_map(t_mlx_data *data);
 
-/*** mini_map.c ***/
+/*** mini_map_bonus.c ***/
 void	draw_minimap(t_mlx_data *data);
 
-/*** moves.c ***/
+/*** moves_bonus.c ***/
 void	moviments(t_mlx_data *data, int keycode);
 
 /*** ceiling_and_floor.c ***/
 void	draw_ceiling_and_floor(t_mlx_data *data);
 
 /*** ceiling_and_floor_bonus.c ***/
-void	dist_to_window(t_mlx_data *data, t_floor_ceiling *fc, int y, int flag);
 void	set_direction_ray(t_mlx_data *data);
-int		color_ceiling_floor(t_mlx_data *data, int flag);
+void	dist_to_window(t_mlx_data *data, t_floor_ceiling *fc, int y, int flag);
 void	textures_ceiling_floor(t_mlx_data *data, t_floor_ceiling *fc, int flag);
+int		color_ceiling_floor(t_mlx_data *data, int flag);
 
 /*** draw_ceiling_floor.c ***/
 void	utils_ceiling_floor(t_mlx_data *data, int x, int y);
 void	draw_ceiling_floor(t_mlx_data *data);
 
-/*** init_structs.c ***/
-void	init_data(t_mlx_data *data);
-void	init_ray(t__ray *ray);
-void	init_floor_ceiling(t_floor_ceiling *floor_ceiling);
+/*** init_structs_bonus.c ***/
 void	init_img(t_img *img);
 void	init_textures(t_texture *texture);
+void	init_floor_ceiling(t_floor_ceiling *floor_ceiling);
+void	init_ray(t__ray *ray);
+void	init_data(t_mlx_data *data);
 
-/*** init_strcucts_two.c ***/
+/*** init_strcucts_two_bonus.c ***/
 t_map	*struct_map(char **map);
 void	init_portrat(t_portrat *portrat);
 
-/*** wall_collision.c ***/
+/*** wall_collision_collision_bonus.c ***/
 int		is_valid_position(t_mlx_data *data, double new_x, double new_y);
 
 /*** move_with_mouse_bonus.c ***/

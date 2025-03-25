@@ -37,36 +37,60 @@ void	create_image(t_mlx_data *data)
 	}
 }
 
-void	draw_vertical_line(t_mlx_data *data, int x)
+static void	draw_vertical_line_loop(t_mlx_data *data, int x,
+	int start_y, int end_y)
 {
-	int	color;
 	int	y;
-	int	tex_x;
 	int	tex_y;
+	int	color;
+	int	tex_x;
 
-	tex_x = (int)(data->ray.wall_x * data->textures[data->ray.tex_num].width);
-	if (data->ray.side == 0 && data->ray.ray_dir_x > 0)
-		tex_x = data->textures[data->ray.tex_num].width - tex_x -1;
-	if (data->ray.side == 1 && data->ray.ray_dir_y < 0)
-		tex_x = data->textures[data->ray.tex_num].width - tex_x -1;
-	data->ray.step = 1.0 * data->textures[data->ray.tex_num].height
-		/ data->ray.line_height;
-	data->ray.tex_pos = (data->ray.draw_start - HEIGHT / 2
-			+ data->ray.line_height / 2) * data->ray.step;
-	y = data->ray.draw_start;
-	while (y < data->ray.draw_end)
+	y = start_y;
+	tex_x = data->ray.tex_x;
+	while (y < end_y)
 	{
 		tex_y = (int)data->ray.tex_pos;
+		if (tex_y < 0)
+			tex_y = 0;
 		if (tex_y >= data->textures[data->ray.tex_num].height)
 			tex_y = data->textures[data->ray.tex_num].height - 1;
 		data->ray.tex_pos += data->ray.step;
-		color = *((int *)(data->textures[data->ray.tex_num].addr
+		color = *((int *)
+				(data->textures[data->ray.tex_num].addr
 					+ (tex_y * data->textures[data->ray.tex_num].line_length
-						+ tex_x * (data->textures
-						[data->ray.tex_num].bits_per_pixel / 8))));
+						+ tex_x * (data->textures[data->ray.tex_num]
+							.bits_per_pixel / 8))));
 		my_put_pixel(&data->img, x, y, color);
 		y++;
 	}
+}
+
+void	draw_vertical_line(t_mlx_data *data, int x)
+{
+	int	tex_x;
+	int	y;
+	int	end_y;
+
+	tex_x = (int)(data->ray.wall_x * data->textures[data->ray.tex_num].width);
+	if (data->ray.side == 0 && data->ray.ray_dir_x > 0)
+		tex_x = data->textures[data->ray.tex_num].width - tex_x - 1;
+	if (data->ray.side == 1 && data->ray.ray_dir_y < 0)
+		tex_x = data->textures[data->ray.tex_num].width - tex_x - 1;
+	data->ray.tex_x = tex_x;
+	data->ray.step = 1.0 * data->textures[data->ray.tex_num]
+		.height / data->ray.line_height;
+	data->ray.tex_pos = (data->ray.draw_start - HEIGHT / 2
+			+ data->ray.line_height / 2) * data->ray.step;
+	y = data->ray.draw_start;
+	if (y < 0)
+	{
+		data->ray.tex_pos -= (0 - data->ray.draw_start) * data->ray.step;
+		y = 0;
+	}
+	end_y = data->ray.draw_end;
+	if (end_y > HEIGHT)
+		end_y = HEIGHT;
+	draw_vertical_line_loop(data, x, y, end_y);
 }
 
 void	ray_casting(t_mlx_data *data)
@@ -84,16 +108,4 @@ void	ray_casting(t_mlx_data *data)
 		draw_vertical_line(data, x);
 		x++;
 	}
-}
-
-void	render(t_mlx_data *data)
-{
-	if (!data->textures[0].img)
-		load_texture(data);
-	create_image(data);
-	draw_ceiling_and_floor(data);
-	ray_casting(data);
-	draw_minimap(data);
-	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
-	mlx_destroy_image(data->mlx, data->img.img);
 }
