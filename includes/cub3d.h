@@ -213,6 +213,11 @@ typedef struct s_portrat
 	char	**map_portrat;
 }			t_portrat;
 
+/*** main.c ***/
+void	config(t_mlx_data *data);
+int		game_loop(t_mlx_data *data);
+int		main(int argc, char **argv);
+
 /*** validation.c ***/
 int		check_extension(char *argv, char *ext);
 int		error_messages(int error);
@@ -226,6 +231,7 @@ char	**open_fd(char *map_ext);
 /*** elements.c ***/
 t_type	find_type(char *map, int i);
 int		type_index(t_type type, int i);
+int		val_rgb(t_token *tokens);
 int		val_texture(t_token *tokens);
 
 /*** parse.c ***/
@@ -233,6 +239,7 @@ char	*get_token(char *cmd, int i, int start);
 t_token	*set_token_list(t_token *data, int type, char *value);
 
 /*** tokenization.c ***/
+t_token	*process_line(char *line, t_token *data);
 t_token	*tokenization(char **map, t_token *data);
 
 /*** val_map.c ***/
@@ -240,6 +247,7 @@ int		map_exist(t_token *tokens);
 
 /*** rgb.c ***/
 void	get_rgb_color_to_hex(t_mlx_data *data);
+int		is_valid_number(char **rgb);
 int		rgb_textures(t_token *tokens);
 
 /*** textures.c ***/
@@ -248,22 +256,17 @@ int		is_valid_file_path(char *path);
 int		xpm_file(t_token *tokens);
 void	load_texture(t_mlx_data *data);
 
+/*** valid_map.c ***/
 int		valid_player(t_token *tokens);
 int		valid_char(t_token *tokens);
 int		break_map(t_token *tokens);
 int		map_exist(t_token *tokens);
 
-/*** extra_print.c ***/
-void	print_array(char **map);
-void	print_token_list(t_token *head);
-
-/*** textures ***/
-int		rgb_textures(t_token *tokens);
-int		is_valid_file_path(char *path);
-int		xpm_file(t_token *tokens);
-
-/*** valid_wall ***/
+/*** valid_wall.c ***/
 int		valid_wall(t_mlx_data *data);
+
+/*** wall_utils.c ***/
+char	**map_to_matrix(t_token *tokens);
 
 /*** free.c ***/
 void	free_list(t_token *token);
@@ -285,6 +288,7 @@ void	find_plane(t_mlx_data *data);
 char	**map_to_matrix(t_token *tokens);
 
 /*** frame.c ***/
+void	put_on_portrat(char **map, t_portrat *portrat, size_t i, size_t j);
 char	**make_portrat(char **map);
 
 /*** playable_map ***/
@@ -303,6 +307,8 @@ void	my_put_pixel(t_img *img, int x, int y, int color);
 void	create_image(t_mlx_data *data);
 void	draw_vertical_line(t_mlx_data *data, int x);
 void	ray_casting(t_mlx_data *data);
+
+/*** rendering.c ***/
 void	render(t_mlx_data *data);
 
 /*** convert_map.c ***/
@@ -317,17 +323,12 @@ void	moviments(t_mlx_data *data, int keycode);
 /*** ceiling_and_floor.c ***/
 void	draw_ceiling_and_floor(t_mlx_data *data);
 
-/*** ceiling_and_floor_bonus.c ***/
-void	dist_to_window(t_mlx_data *data, t_floor_ceiling *fc, int y, int flag);
-void	textures_ceiling_floor(t_mlx_data *data, t_floor_ceiling *fc, int flag);
-void	draw_ceiling_floor(t_mlx_data *data);
-
 /*** init_structs.c ***/
-void	init_data(t_mlx_data *data);
-void	init_ray(t__ray *ray);
-void	init_floor_ceiling(t_floor_ceiling *floor_ceiling);
 void	init_img(t_img *img);
 void	init_textures(t_texture *texture);
+void	init_floor_ceiling(t_floor_ceiling *floor_ceiling);
+void	init_ray(t__ray *ray);
+void	init_data(t_mlx_data *data);
 
 /*** init_structs_two.c */
 void	init_portrat(t_portrat *portrat);
@@ -335,21 +336,5 @@ t_map	*struct_map(char **map);
 
 /*** wall_collision.c  ***/
 int		is_valid_position(t_mlx_data *data, double new_x, double new_y);
-
-/*** move_with_mouse_bonus.c ***/
-int		mouse(int x, int y, t_mlx_data *data);
-
-/*** animation_bonus.c ***/
-void	update_animation(t_mlx_data *data);
-void	draw_scaled_pixel(t_mlx_data *data, t_point base, int scale, int color);
-void	draw_jellyfish_instance(t_mlx_data *data, t_point jelly_pos,
-			t_texture current, int scale);
-t_point	calculate_jellyfish_position(t_mlx_data *data, int i,
-			t_texture current, int scale);
-void	render_animation(t_mlx_data *data);
-
-/*** init_animation_bonus.c ***/
-void	init_animation(t_animation *animation);
-void	load_animation(t_mlx_data *data);
 
 #endif
