@@ -72,6 +72,7 @@ int	val_rgb(t_token *tokens)
 	d = 0;
 	f = verify_texture(tokens, F);
 	c = verify_texture(tokens, C);
+	d = verify_texture(tokens, DR);
 	if (f != 1 || c != 1 || d != 1)
 		return (TEXTURE_ERROR);
 	return (NONE_ERROR);
