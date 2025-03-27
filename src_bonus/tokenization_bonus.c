@@ -3,21 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   tokenization_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
+/*   By: lfuruno- <lfuruno-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 16:25:12 by lfuruno-          #+#    #+#             */
-/*   Updated: 2025/03/24 11:54:39 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/03/27 18:39:25 by lfuruno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes_bonus/cub3d_bonus.h"
 
+static int	call_split(char *line)
+{
+	int		i;
+	char	**split;
+
+	i = 0;
+	split = ft_split(line, ' ');
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
+	return (i);
+}
+
 static void	help_token(char *line, int *start, int *j, t_type type)
 {
+	if (type == C || type == F)
+	{
+		while (line[*j])
+			(*j)++;
+	}
 	if (type != MAP)
 	{
 		while (line[*j] && !ft_isspace(line[*j]))
 			(*j)++;
+		if (type != NONE && call_split(line) != 2)
+		{
+			error_messages(TEXTURE_ERROR);
+			exit(1);
+		}
 	}
 	else
 	{

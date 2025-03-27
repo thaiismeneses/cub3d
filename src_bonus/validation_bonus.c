@@ -59,7 +59,7 @@ int	check_errors(t_mlx_data *data)
 	if (val_texture(data->tokens) == TEXTURE_ERROR
 		|| verify_order(data->tokens) == TEXTURE_ERROR
 		|| map_exist(data->tokens) == TEXTURE_ERROR)
-			return (error_messages(TEXTURE_ERROR));
+		return (error_messages(TEXTURE_ERROR));
 	else if (xpm_file(data->tokens) == PATH_ERROR)
 		return (error_messages(PATH_ERROR));
 	else if (rgb_textures(data->tokens) == COLOR_ERROR)

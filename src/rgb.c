@@ -6,7 +6,7 @@
 /*   By: lfuruno- <lfuruno-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:07:49 by lfuruno-          #+#    #+#             */
-/*   Updated: 2025/03/24 16:00:35 by lfuruno-         ###   ########.fr       */
+/*   Updated: 2025/03/27 18:38:46 by lfuruno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,18 @@ int	is_valid_number(char **rgb)
 {
 	int	i;
 	int	number;
+	int	j;
 
 	i = 0;
 	while (rgb[i])
 	{
+		j = 0;
+		while (rgb[i][j])
+		{
+			if (ft_isalpha(rgb[i][j]))
+				return (free(rgb), COLOR_ERROR);
+			j++;
+		}
 		number = ft_atoi(rgb[i]);
 		if (number < 0 || number > 255)
 			return (free(rgb), COLOR_ERROR);
