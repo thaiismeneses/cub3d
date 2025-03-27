@@ -239,7 +239,7 @@ char	*get_token(char *cmd, int i, int start);
 t_token	*set_token_list(t_token *data, int type, char *value);
 
 /*** tokenization.c ***/
-t_token	*process_line(char *line, t_token *data);
+t_token	*process_line(char **map, char *line, t_token *data);
 t_token	*tokenization(char **map, t_token *data);
 
 /*** val_map.c ***/
