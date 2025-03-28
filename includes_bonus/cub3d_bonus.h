@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfranco <thfranco@student.42.rio>         +#+  +:+       +#+        */
+/*   By: lfuruno- <lfuruno-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 18:25:32 by lfuruno-          #+#    #+#             */
-/*   Updated: 2025/03/25 12:55:32 by thfranco         ###   ########.fr       */
+/*   Updated: 2025/03/27 18:50:41 by lfuruno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,7 +237,7 @@ char	*get_token(char *cmd, int i, int start);
 t_token	*set_token_list(t_token *data, int type, char *value);
 
 /*** tokenization.c ***/
-t_token	*process_line(char *line, t_token *data);
+t_token	*process_line(char **map, char *line, t_token *data);
 t_token	*tokenization(char **map, t_token *data);
 
 /*** textures.c ***/
